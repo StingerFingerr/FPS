@@ -69,6 +69,12 @@ namespace Player.Inputs
 
 		public void SprintInput(bool newSprintState)
 		{
+			if (stances.currentStance is Stance.Prone)
+			{
+				sprint = false;
+				return;
+			}
+				
 			sprint = newSprintState;
 		}
 		
