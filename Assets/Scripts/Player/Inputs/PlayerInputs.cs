@@ -1,12 +1,15 @@
+using Player.Player_stance;
 using UnityEngine;
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 using UnityEngine.InputSystem;
+#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 #endif
 
-namespace StarterAssets
+namespace Player.Inputs
 {
-	public class StarterAssetsInputs : MonoBehaviour
+	public class PlayerInputs : MonoBehaviour
 	{
+		public Stances stances;
+		
 		[Header("Character Input Values")]
 		public Vector2 move;
 		public Vector2 look;
@@ -36,17 +39,15 @@ namespace StarterAssets
 
 		public void OnJump(InputValue value)
 		{
+			if(stances.currentStance is Stance.Prone)
+				return;
+			
 			JumpInput(value.isPressed);
 		}
 
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
-		}
-		
-		public void OnAim(InputValue value)
-		{
-			Debug.Log("aim");
 		}
 #endif
 
