@@ -64,6 +64,11 @@ namespace Player.Player_stance
             };
         }
 
+        public void OnJump()
+        {
+            if (currentStance is Stance.Crouch)
+                currentStance = Stance.Normal;
+        }
         public void OnCrouch()
         {
             if (currentStance is Stance.Crouch)

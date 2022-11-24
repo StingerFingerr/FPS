@@ -1,6 +1,8 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text;
+using Player;
+using Player.Inputs;
 using UnityEditor;
 using UnityEngine;
 
@@ -46,7 +48,7 @@ namespace StarterAssets
         
         static string GetFirstPersonPrefabPath()
         {
-            if (TryLocatePrefab(PlayerCapsulePrefabName, null, new[] { typeof(FirstPersonController), typeof(StarterAssetsInputs) }, out GameObject _, out string prefabPath))
+            if (TryLocatePrefab(PlayerCapsulePrefabName, null, new[] { typeof(FirstPersonController), typeof(PlayerInputs) }, out GameObject _, out string prefabPath))
             {
                 var pathString = new StringBuilder();
                 var currentDirectory = new FileInfo(prefabPath).Directory;
