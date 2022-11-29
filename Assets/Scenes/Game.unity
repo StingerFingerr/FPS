@@ -82191,6 +82191,11 @@ PrefabInstance:
       propertyPath: stances
       value: 
       objectReference: {fileID: 8997996946907055124}
+    - target: {fileID: 8997996946907055125, guid: c4c546b258be303449ac30dc89c37570,
+        type: 3}
+      propertyPath: leanRight.cameraOffset.y
+      value: -0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4c546b258be303449ac30dc89c37570, type: 3}
 --- !u!114 &8997996946907055124 stripped
