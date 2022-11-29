@@ -1,0 +1,40 @@
+using System;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+namespace Weapon
+{
+    public abstract class WeaponBase: MonoBehaviour
+    {
+        [Header("Aiming")]
+        public Vector3 hipPosition;
+        public Vector3 aimPosition;
+        public float aimingSpeed = 10f;
+        
+        public event Action<bool> OnAiming;
+        public event Action OnShot;
+        public event Action OnReloading;
+        
+        private void OnAim(InputValue inputValue)
+        {
+            Aim(inputValue.isPressed);
+        }
+
+        private void OnFire(InputValue inputValue)
+        {
+            Shot();
+        }
+
+        private void OnReload(InputValue inputValue)
+        {
+            Reload();
+        }
+        
+        protected virtual void Reload() => 
+            OnReloading?.Invoke();
+        protected virtual void Shot() => 
+            OnShot?.Invoke();
+        protected virtual void Aim(bool aim) => 
+            OnAiming?.Invoke(aim);
+    }
+}
