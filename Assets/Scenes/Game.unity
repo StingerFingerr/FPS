@@ -43089,6 +43089,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1160665283}
   - component: {fileID: 1160665284}
+  - component: {fileID: 1160665285}
   m_Layer: 0
   m_Name: M4_8
   m_TagString: Untagged
@@ -43127,6 +43128,43 @@ MonoBehaviour:
   hipPosition: {x: 0.34, y: -0.28, z: 0.55}
   aimPosition: {x: 0, y: -0.165, z: 0.4}
   aimingSpeed: 10
+--- !u!114 &1160665285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1160665282}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5be5f5dc1ad04ee4a57f222df2d5660c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalLookSway:
+    swayIntensity: 3
+    maxHorizontalSway: 30
+    maxVerticalSway: 30
+    invertHorizontalSway: 0
+    invertVerticalSway: 0
+  aimingLookSway:
+    swayIntensity: 2
+    maxHorizontalSway: 10
+    maxVerticalSway: 10
+    invertHorizontalSway: 0
+    invertVerticalSway: 0
+  normalMoveSway:
+    swayIntensity: 5
+    maxHorizontalSway: 20
+    maxVerticalSway: 20
+    invertHorizontalSway: 0
+    invertVerticalSway: 1
+  aimingMoveSway:
+    swayIntensity: 1
+    maxHorizontalSway: 20
+    maxVerticalSway: 20
+    invertHorizontalSway: 0
+    invertVerticalSway: 1
+  swaySpeed: 8
 --- !u!1001 &1160758538
 PrefabInstance:
   m_ObjectHideFlags: 0
