@@ -12,7 +12,7 @@ namespace Weapon
         public float aimingSpeed = 10f;
         
         public event Action<bool> OnAiming;
-        public event Action OnShot;
+        public event Action<Vector2> OnShot;
         public event Action OnReloading;
         
         private void OnAim(InputValue inputValue)
@@ -22,7 +22,7 @@ namespace Weapon
 
         private void OnFire(InputValue inputValue)
         {
-            Shot();
+            Shot(Vector2.zero);
         }
 
         private void OnReload(InputValue inputValue)
@@ -32,9 +32,13 @@ namespace Weapon
         
         protected virtual void Reload() => 
             OnReloading?.Invoke();
-        protected virtual void Shot() => 
-            OnShot?.Invoke();
+        protected virtual void Shot(Vector2 recoil) => 
+            OnShot?.Invoke(recoil);
         protected virtual void Aim(bool aim) => 
             OnAiming?.Invoke(aim);
+
+
+        public abstract void Hide();
+        public abstract void Show();
     }
 }
