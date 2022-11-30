@@ -43128,6 +43128,10 @@ MonoBehaviour:
   hipPosition: {x: 0.34, y: -0.28, z: 0.55}
   aimPosition: {x: 0, y: -0.165, z: 0.4}
   aimingSpeed: 10
+  recoil:
+    maxVerticalRecoil: 0.3
+    minVerticalRecoil: 0.25
+    maxHorizontalRecoil: 0.1
 --- !u!114 &1160665285
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -82670,12 +82674,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 2146943653}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &4135013737280333810 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5716477916305778353, guid: c4c546b258be303449ac30dc89c37570,
-    type: 3}
-  m_PrefabInstance: {fileID: 8518426158255112515}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8518426158255112515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -82695,6 +82693,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 117965870200823789, guid: c4c546b258be303449ac30dc89c37570,
         type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 1160665284}
+    - target: {fileID: 117965870200823789, guid: c4c546b258be303449ac30dc89c37570,
+        type: 3}
       propertyPath: stances
       value: 
       objectReference: {fileID: 8997996946907055124}
@@ -82702,7 +82705,7 @@ PrefabInstance:
         type: 3}
       propertyPath: cameraHolder
       value: 
-      objectReference: {fileID: 4135013737280333810}
+      objectReference: {fileID: 8518426158255112516}
     - target: {fileID: 117965870200823789, guid: c4c546b258be303449ac30dc89c37570,
         type: 3}
       propertyPath: groundLayers.m_Bits

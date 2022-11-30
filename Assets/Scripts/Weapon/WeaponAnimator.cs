@@ -63,7 +63,7 @@ namespace Weapon
 
         private void Reloading() => 
             weaponAnimator.SetTrigger(Reload);
-        private void Shot() => 
+        private void Shot(Vector2 recoil) => 
             weaponAnimator.SetTrigger(Fire);
 
         private void SwitchMovingAnimator(bool aim)
