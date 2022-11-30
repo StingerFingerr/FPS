@@ -36,5 +36,9 @@ namespace Weapon
             OnShot?.Invoke(recoil);
         protected virtual void Aim(bool aim) => 
             OnAiming?.Invoke(aim);
+
+
+        public abstract void Hide();
+        public abstract void Show();
     }
 }

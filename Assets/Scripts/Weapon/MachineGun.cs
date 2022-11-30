@@ -5,6 +5,7 @@ namespace Weapon
 {
     public sealed class MachineGun: WeaponBase
     {
+        public WeaponAnimator animator;
         public RecoilParameters recoil;
         
         private Vector3 _targetPosition;
@@ -53,6 +54,18 @@ namespace Weapon
         {
             transform.localPosition =
                 Vector3.Lerp(transform.localPosition, _targetPosition, Time.deltaTime * aimingSpeed);
+        }
+
+        public override void Hide()
+        {
+            animator.Hide();
+            enabled = false;
+        }
+
+        public override void Show()
+        {
+            animator.Show();
+            enabled = true;
         }
     }
 }

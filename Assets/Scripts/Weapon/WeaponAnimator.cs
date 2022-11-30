@@ -19,9 +19,13 @@ namespace Weapon
         private bool _sprintParameter;
         
         private bool _isAiming;
-        
+        private static readonly int Hide1 = Animator.StringToHash("Hide");
+        private static readonly int Show1 = Animator.StringToHash("Show");
+
         private void OnEnable()
         {
+            ReadParameters();
+            
             weaponBase.OnShot += Shot;
             weaponBase.OnReloading += Reloading;
             weaponBase.OnAiming += SwitchMovingAnimator;
@@ -29,6 +33,8 @@ namespace Weapon
 
         private void OnDisable()
         {
+            SaveParameters();
+            
             weaponBase.OnShot -= Shot;
             weaponBase.OnReloading -= Reloading;
             weaponBase.OnAiming -= SwitchMovingAnimator;
@@ -50,6 +56,8 @@ namespace Weapon
         private void OnMove(InputValue inputValue)
         {
             bool walking = inputValue.Get<Vector2>() != Vector2.zero;
+            if (walking is false)
+                movingAnimator.SetBool(Sprint, false);
             movingAnimator.SetBool(Walk, walking);
             _walkParameter = walking;
         }
@@ -80,16 +88,39 @@ namespace Weapon
             movingAnimator.enabled = true;
             movingAnimator.Rebind();
 
-            movingAnimator.SetBool(Walk, _walkParameter);
-            movingAnimator.SetBool(Sprint, _sprintParameter);
+            ReadParameters();
         }
 
         private void TurnOffMovingAnimator()
         {
             movingAnimator.enabled = false;
 
+            SaveParameters();
+        }
+
+        private void ReadParameters()
+        {
+            movingAnimator.SetBool(Walk, _walkParameter);
+            movingAnimator.SetBool(Sprint, _sprintParameter);
+        }
+
+        private void SaveParameters()
+        {
             _walkParameter = movingAnimator.GetBool(Walk);
             _sprintParameter = movingAnimator.GetBool(Sprint);
+        }
+
+        public void Hide()
+        {
+            enabled = false;
+            movingAnimator.SetTrigger(Hide1);
+        }
+
+        public void Show()
+        {
+            enabled = true;
+            movingAnimator.enabled = true;
+            movingAnimator.SetTrigger(Show1);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Player.Inputs;
+﻿using System;
+using Player.Inputs;
 using Player.Player_settings;
 using Player.Player_stance;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace Player
 	public class FirstPersonController : MonoBehaviour
 	{
 		public Stances stances;
-		public WeaponBase weapon;
+		public WeaponHolder weaponHolder;
 		[Header("Player")] 
 		public SpeedSettings speedSettings;
 
@@ -49,13 +50,26 @@ namespace Player
 
 		private CharacterController _controller;
 		private PlayerInputs _input;
+		private WeaponBase _weapon;
 
 		private const float Threshold = 0.01f;
 
-		private void Awake()
+		private void OnEnable()
 		{
-			weapon.OnShot += SetRecoil;
+			_weapon = weaponHolder.CurrentWeapon;
+			if(_weapon)
+				_weapon.OnShot += SetRecoil;
 
+			weaponHolder.SwitchCurrentWeapon += SetCurrentWeapon;
+		}
+
+		private void SetCurrentWeapon(WeaponBase weapon)
+		{
+			if(_weapon)
+				_weapon.OnShot -= SetRecoil;
+			_weapon = weapon;
+			if(_weapon)
+				weapon.OnShot += SetRecoil;
 		}
 
 		private void Start()
