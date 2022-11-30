@@ -354,7 +354,7 @@
                     "name": "",
                     "id": "884a117b-8b2a-451d-b901-2b13e32c1c96",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Tap",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Fire",

@@ -1,5 +1,3 @@
-using System;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -17,6 +15,9 @@ namespace Weapon
         private static readonly int Reload = Animator.StringToHash("Reload");
         private static readonly int Fire = Animator.StringToHash("Fire");
 
+        private bool _walkParameter;
+        private bool _sprintParameter;
+        
         private bool _isAiming;
         
         private void OnEnable()
@@ -35,19 +36,30 @@ namespace Weapon
 
         private void Update()
         {
-            if (_isAiming)
-            {
-                float deltaTime = Time.deltaTime * weaponBase.aimingSpeed;
-                transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, deltaTime);
-                transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(Vector3.zero), deltaTime);
-            }
+            if (_isAiming)            
+                ResetPosAndRot();
         }
 
-        private void OnMove(InputValue inputValue) => 
-            movingAnimator.SetBool(Walk, inputValue.Get<Vector2>()!=Vector2.zero);
+        private void ResetPosAndRot()
+        {
+            float deltaTime = Time.deltaTime * weaponBase.aimingSpeed;
+            transform.localPosition = Vector3.Lerp(transform.localPosition, Vector3.zero, deltaTime);
+            transform.localRotation = Quaternion.Lerp(transform.localRotation, Quaternion.Euler(Vector3.zero), deltaTime);
+        }
 
-        private void OnSprint(InputValue inputValue) => 
-            movingAnimator.SetBool(Sprint, inputValue.isPressed);
+        private void OnMove(InputValue inputValue)
+        {
+            bool walking = inputValue.Get<Vector2>() != Vector2.zero;
+            movingAnimator.SetBool(Walk, walking);
+            _walkParameter = walking;
+        }
+
+        private void OnSprint(InputValue inputValue)
+        {
+            bool sprinting = inputValue.isPressed;
+            movingAnimator.SetBool(Sprint, sprinting);
+            _sprintParameter = sprinting;
+        }
 
         private void Reloading() => 
             weaponAnimator.SetTrigger(Reload);
@@ -57,10 +69,27 @@ namespace Weapon
         private void SwitchMovingAnimator(bool aim)
         {
             _isAiming = aim;
-            if(_isAiming)
-                movingAnimator.enabled = false;
+            if (_isAiming)
+                TurnOffMovingAnimator();
             else
-                movingAnimator.enabled = true;
+                TurnOnMovingAnimator();
+        }
+
+        private void TurnOnMovingAnimator()
+        {
+            movingAnimator.enabled = true;
+            movingAnimator.Rebind();
+
+            movingAnimator.SetBool(Walk, _walkParameter);
+            movingAnimator.SetBool(Sprint, _sprintParameter);
+        }
+
+        private void TurnOffMovingAnimator()
+        {
+            movingAnimator.enabled = false;
+
+            _walkParameter = movingAnimator.GetBool(Walk);
+            _sprintParameter = movingAnimator.GetBool(Sprint);
         }
     }
 }
