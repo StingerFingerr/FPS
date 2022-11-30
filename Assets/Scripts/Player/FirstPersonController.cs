@@ -1,21 +1,19 @@
-﻿using Player.Inputs;
+﻿using System;
+using Player.Inputs;
 using Player.Player_settings;
 using Player.Player_stance;
 using UnityEngine;
 using UnityEngine.InputSystem;
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-#endif
+using Weapon;
 
 namespace Player
 {
 	[RequireComponent(typeof(CharacterController))]
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 	[RequireComponent(typeof(PlayerInput))]
-#endif
 	public class FirstPersonController : MonoBehaviour
 	{
 		public Stances stances;
-		
+		public WeaponHolder weaponHolder;
 		[Header("Player")] 
 		public SpeedSettings speedSettings;
 
@@ -25,6 +23,8 @@ namespace Player
 
 		[Space(10)]
 		public float jumpTimeout = 0.1f;
+
+
 		public float fallTimeout = 0.15f;
 
 		public bool isGrounded = true;
@@ -33,57 +33,49 @@ namespace Player
 		public LayerMask groundLayers;
 
 		[Header("Camera")]
-		public GameObject cameraHolder;
+		public Transform cameraHolder;
+		public float recoilReduceSpeed = 10f;
+
 		public float topClamp = 90.0f;
 		public float bottomClamp = -90.0f;
-
-		private float _cinemachineTargetPitch;
-
+		
 		private float _speed;
-		private float _rotationVelocity;
 		private float _verticalVelocity;
 		private float _terminalVelocity = 53.0f;
 
 		private float _jumpTimeoutDelta;
 		private float _fallTimeoutDelta;
 
-	
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		private PlayerInput _playerInput;
-#endif
+		private Vector2 _recoil;
+
 		private CharacterController _controller;
 		private PlayerInputs _input;
-		private GameObject _mainCamera;
+		private WeaponBase _weapon;
 
 		private const float Threshold = 0.01f;
 
-		private bool IsCurrentDeviceMouse
+		private void OnEnable()
 		{
-			get
-			{
-				#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-				return _playerInput.currentControlScheme == "KeyboardMouse";
-				#else
-				return false;
-				#endif
-			}
+			_weapon = weaponHolder.CurrentWeapon;
+			if(_weapon)
+				_weapon.OnShot += SetRecoil;
+
+			weaponHolder.SwitchCurrentWeapon += SetCurrentWeapon;
 		}
 
-		private void Awake()
+		private void SetCurrentWeapon(WeaponBase weapon)
 		{
-			if (_mainCamera == null)
-			{
-				_mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-			}
+			if(_weapon)
+				_weapon.OnShot -= SetRecoil;
+			_weapon = weapon;
+			if(_weapon)
+				weapon.OnShot += SetRecoil;
 		}
 
 		private void Start()
 		{
 			_controller = GetComponent<CharacterController>();
 			_input = GetComponent<PlayerInputs>();
-#if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-			_playerInput = GetComponent<PlayerInput>();
-#endif
 
 			_jumpTimeoutDelta = jumpTimeout;
 			_fallTimeoutDelta = fallTimeout;
@@ -99,6 +91,14 @@ namespace Player
 		private void LateUpdate()
 		{
 			CameraRotation();
+			UpdateRecoil();
+		}
+
+		private void UpdateRecoil()
+		{
+			cameraHolder.Rotate(Vector3.right * -_recoil.y);
+			transform.Rotate(Vector3.up * _recoil.x);
+			ReduceRecoil();
 		}
 
 		private void GroundedCheck()
@@ -111,17 +111,19 @@ namespace Player
 		{
 			if (_input.look.sqrMagnitude >= Threshold)
 			{
-				float deltaTimeMultiplier = IsCurrentDeviceMouse ? 1.0f : Time.deltaTime;
-				
-				_cinemachineTargetPitch += _input.look.y * speedSettings.rotationSpeed * deltaTimeMultiplier;
-				_rotationVelocity = _input.look.x * speedSettings.rotationSpeed * deltaTimeMultiplier;
+				float rotationX = _input.look.y * speedSettings.rotationSpeed;
+				float rotationY = _input.look.x * speedSettings.rotationSpeed;
 
-				_cinemachineTargetPitch = ClampAngle(_cinemachineTargetPitch, bottomClamp, topClamp);
+				rotationX = ClampAngle(rotationX, bottomClamp, topClamp);
 
-				cameraHolder.transform.localRotation = Quaternion.Euler(_cinemachineTargetPitch, 0.0f, 0.0f);
-
-				transform.Rotate(Vector3.up * _rotationVelocity);
+				cameraHolder.Rotate(Vector3.right * rotationX);
+				transform.Rotate(Vector3.up * rotationY);
 			}
+		}
+
+		private void ReduceRecoil()
+		{
+			_recoil = Vector2.Lerp(_recoil, Vector2.zero, Time.deltaTime * recoilReduceSpeed);
 		}
 
 		private void Move()
@@ -232,5 +234,8 @@ namespace Player
 
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z), groundedRadius);
 		}
+
+		private void SetRecoil(Vector2 recoil) => 
+			_recoil = recoil;
 	}
 }
