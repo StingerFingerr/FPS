@@ -56,10 +56,6 @@ namespace Player
 
 		private void OnEnable()
 		{
-			_weapon = weaponHolder.CurrentWeapon;
-			if(_weapon)
-				_weapon.OnShot += SetRecoil;
-
 			weaponHolder.SwitchCurrentWeapon += SetCurrentWeapon;
 		}
 

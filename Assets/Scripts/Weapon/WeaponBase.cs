@@ -1,10 +1,11 @@
 using System;
+using Player.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace Weapon
 {
-    public abstract class WeaponBase: MonoBehaviour
+    public abstract class WeaponBase: MonoBehaviour, IInteractable
     {
         [Header("Aiming")]
         public Vector3 hipPosition;
@@ -40,5 +41,10 @@ namespace Weapon
 
         public abstract void Hide();
         public abstract void Show();
+
+        public abstract void Interact();
+
+        public abstract void Take();
+        public abstract void ThrowAway();
     }
 }

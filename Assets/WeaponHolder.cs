@@ -11,12 +11,29 @@ public class WeaponHolder : MonoBehaviour
     public WeaponBase CurrentWeapon => weapons[0];
 
     private int _weaponIndex = 0;
-    
-    public void SetNewWeapon(WeaponBase weapon)
+
+    private void Start()
     {
-        SwitchCurrentWeapon?.Invoke(weapon);
+        if (weapons[_weaponIndex] is not null)
+            SwitchCurrentWeapon?.Invoke(weapons[_weaponIndex]);
     }
 
+    public void SetNewWeapon(WeaponBase weapon)
+    {
+        weapons[_weaponIndex]?.ThrowAway();
+
+        weapons[_weaponIndex] = weapon;
+        weapons[_weaponIndex].transform.parent = transform;
+        weapons[_weaponIndex].Take();
+    }
+
+    private void OnThrowAway(InputValue inputValue)
+    {
+        weapons[_weaponIndex]?.ThrowAway();
+        weapons[_weaponIndex] = null;
+        SwitchCurrentWeapon?.Invoke(null);
+    }
+    
     private void OnScroll(InputValue inputValue)
     {
         float scroll = inputValue.Get<float>();
@@ -24,21 +41,27 @@ public class WeaponHolder : MonoBehaviour
             return;
 
         weapons[_weaponIndex]?.Hide();
-        
+
         if (scroll > 0)
-        {
-            _weaponIndex++;
-            if (_weaponIndex == weapons.Length)
-                _weaponIndex = 0;
-        }else if (scroll < 0)
-        {
-            _weaponIndex--;
-            if (_weaponIndex < 0)
-                _weaponIndex = weapons.Length - 1;
-        }
+            ScrollForward();
+        else if (scroll < 0)        
+            ScrollBackward();
 
         weapons[_weaponIndex]?.Show();
         SwitchCurrentWeapon?.Invoke(weapons[_weaponIndex]);
     }
 
+    private void ScrollBackward()
+    {
+        _weaponIndex--;
+        if (_weaponIndex < 0)
+            _weaponIndex = weapons.Length - 1;
+    }
+
+    private void ScrollForward()
+    {
+        _weaponIndex++;
+        if (_weaponIndex == weapons.Length)
+            _weaponIndex = 0;
+    }
 }

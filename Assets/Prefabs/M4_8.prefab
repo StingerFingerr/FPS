@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5558015365564369354}
   - component: {fileID: 5558015365564369353}
   - component: {fileID: 5558015365564369352}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Moving Animations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,9 @@ GameObject:
   - component: {fileID: 5558015366341336928}
   - component: {fileID: 5558015366341336935}
   - component: {fileID: 7815726368179226547}
-  m_Layer: 0
+  - component: {fileID: 4170445654296443538}
+  - component: {fileID: 7773989430750169141}
+  m_Layer: 11
   m_Name: M4_8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,6 +125,9 @@ MonoBehaviour:
     maxVerticalRecoil: 0.3
     minVerticalRecoil: 0.25
     maxHorizontalRecoil: 0.1
+  interactableCollider: {fileID: 4170445654296443538}
+  rigidBody: {fileID: 7773989430750169141}
+  sway: {fileID: 7815726368179226547}
 --- !u!114 &7815726368179226547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -130,7 +135,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558015366341336929}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5be5f5dc1ad04ee4a57f222df2d5660c, type: 3}
   m_Name: 
@@ -160,6 +165,35 @@ MonoBehaviour:
     invertHorizontalSway: 0
     invertVerticalSway: 1
   swaySpeed: 8
+--- !u!65 &4170445654296443538
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558015366341336929}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.0896419, y: 0.34879464, z: 1.0897067}
+  m_Center: {x: 0.003322497, y: -0.006644845, z: -0.04485351}
+--- !u!54 &7773989430750169141
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558015366341336929}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1001 &5558015366804864263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -170,6 +204,30 @@ PrefabInstance:
     - target: {fileID: 1117582899397640, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_Name
       value: M4_8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1117582899397640, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1426050648627750, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1522581053908082, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1872817399433040, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1887184217783776, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1892571237583176, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73, type: 3}
       propertyPath: m_RootOrder
