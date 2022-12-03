@@ -24,8 +24,6 @@ namespace Weapon
 
         private void OnEnable()
         {
-            ReadParameters();
-            
             weaponBase.OnShot += Shot;
             weaponBase.OnReloading += Reloading;
             weaponBase.OnAiming += SwitchMovingAnimator;
@@ -33,8 +31,6 @@ namespace Weapon
 
         private void OnDisable()
         {
-            SaveParameters();
-            
             weaponBase.OnShot -= Shot;
             weaponBase.OnReloading -= Reloading;
             weaponBase.OnAiming -= SwitchMovingAnimator;
@@ -46,6 +42,32 @@ namespace Weapon
                 ResetPosAndRot();
         }
 
+        public void Hide()
+        {
+            SaveParameters();
+            enabled = false;
+            movingAnimator.SetTrigger(Hide1);
+        }
+
+        public void Show()
+        {
+            ReadParameters();
+            enabled = true;
+            movingAnimator.enabled = true;
+            movingAnimator.SetTrigger(Show1);
+        }
+
+        public void Enable()
+        {
+            movingAnimator.enabled = true;
+            enabled = true;
+        }
+        public void Disable()
+        {
+            movingAnimator.enabled = false;
+            enabled = false;
+        }
+        
         private void ResetPosAndRot()
         {
             float deltaTime = Time.deltaTime * weaponBase.aimingSpeed;
@@ -71,6 +93,7 @@ namespace Weapon
 
         private void Reloading() => 
             weaponAnimator.SetTrigger(Reload);
+
         private void Shot(Vector2 recoil) => 
             weaponAnimator.SetTrigger(Fire);
 
@@ -108,19 +131,6 @@ namespace Weapon
         {
             _walkParameter = movingAnimator.GetBool(Walk);
             _sprintParameter = movingAnimator.GetBool(Sprint);
-        }
-
-        public void Hide()
-        {
-            enabled = false;
-            movingAnimator.SetTrigger(Hide1);
-        }
-
-        public void Show()
-        {
-            enabled = true;
-            movingAnimator.enabled = true;
-            movingAnimator.SetTrigger(Show1);
         }
     }
 }

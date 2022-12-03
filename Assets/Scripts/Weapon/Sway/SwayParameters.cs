@@ -3,12 +3,12 @@ using System;
 namespace Weapon.Sway
 {
     [Serializable]
-    public class SwayParameters
+    public struct SwayParameters
     {
-        public float swayIntensity = 3f;
+        public float swayIntensity;
 
-        public float maxHorizontalSway = 20f;
-        public float maxVerticalSway = 20f;
+        public float maxHorizontalSway;
+        public float maxVerticalSway;
 
         public bool invertHorizontalSway;
         public bool invertVerticalSway;
