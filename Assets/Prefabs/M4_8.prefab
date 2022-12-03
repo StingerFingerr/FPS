@@ -82,6 +82,7 @@ GameObject:
   - component: {fileID: 7815726368179226547}
   - component: {fileID: 4170445654296443538}
   - component: {fileID: 7773989430750169141}
+  - component: {fileID: 1973985785677845941}
   m_Layer: 11
   m_Name: M4_8
   m_TagString: Untagged
@@ -194,6 +195,56 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1973985785677845941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558015366341336929}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee49d424a4e41e48a550d8c5d4bc0c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pulsingPattern:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.017898029
+      outSlope: -0.017898029
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.22519818
+    - serializedVersion: 3
+      time: 0.5
+      value: 1
+      inSlope: 0.028764281
+      outSlope: 0.028764281
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0.0033514048
+      outSlope: 0.0033514048
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.36680487
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  pulsationSpeed: 0.5
+  pulsationSize: 5
+  minPulsationSize: 1
+  outline: {fileID: 4068752765432467985}
+  onHoverMessage: Pres F to take M4_8
 --- !u!1001 &5558015366804864263
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -373,6 +424,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &4068752765432467985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5557989397127313679}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0.78645355, b: 0.0037735105, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!4 &5560924668506345503 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4035219142733080, guid: 689946d975a0e55449b1e7ae41933e73,
