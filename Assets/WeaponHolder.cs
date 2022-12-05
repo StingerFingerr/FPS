@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
@@ -6,11 +7,11 @@ using Weapon;
 public class WeaponHolder : MonoBehaviour
 {
     public WeaponBase[] weapons;
-
+    public float switchWeaponTimeout = .5f;
     public event Action<WeaponBase> SwitchCurrentWeapon;
-    public WeaponBase CurrentWeapon => weapons[0];
-
+    
     private int _weaponIndex = 0;
+    private bool _canSwitchWeapon = true;
 
     private void Start()
     {
@@ -40,6 +41,9 @@ public class WeaponHolder : MonoBehaviour
         if(scroll==0)
             return;
 
+        if(_canSwitchWeapon is false)
+            return;
+        
         weapons[_weaponIndex]?.Hide();
 
         if (scroll > 0)
@@ -47,8 +51,17 @@ public class WeaponHolder : MonoBehaviour
         else if (scroll < 0)        
             ScrollBackward();
 
+        StartCoroutine(StartSwitchTimeout(switchWeaponTimeout));
+        
         weapons[_weaponIndex]?.Show();
         SwitchCurrentWeapon?.Invoke(weapons[_weaponIndex]);
+    }
+
+    private void ScrollForward()
+    {
+        _weaponIndex++;
+        if (_weaponIndex == weapons.Length)
+            _weaponIndex = 0;
     }
 
     private void ScrollBackward()
@@ -58,10 +71,10 @@ public class WeaponHolder : MonoBehaviour
             _weaponIndex = weapons.Length - 1;
     }
 
-    private void ScrollForward()
+    private IEnumerator StartSwitchTimeout(float timeOut)
     {
-        _weaponIndex++;
-        if (_weaponIndex == weapons.Length)
-            _weaponIndex = 0;
-    }
+        _canSwitchWeapon = false;
+        yield return new WaitForSeconds(timeOut);
+        _canSwitchWeapon = true;
+    } 
 }
