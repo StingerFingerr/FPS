@@ -79,7 +79,7 @@
                 },
                 {
                     "name": "Fire",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "83ee3ea2-1574-43f5-ae10-3ed90cc9c86d",
                     "expectedControlType": "Button",
                     "processors": "",
@@ -117,6 +117,15 @@
                     "name": "ThrowAway",
                     "type": "Button",
                     "id": "afa6e406-e399-479e-b0ee-e3089198babc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "SwitchFiringMode",
+                    "type": "Button",
+                    "id": "cc4a31b1-1a3a-4f5b-9d76-db80da3bf0e4",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -429,6 +438,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "ThrowAway",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "76242705-47fa-4a59-9d5e-ebc90b8edbf4",
+                    "path": "<Keyboard>/b",
+                    "interactions": "Tap",
+                    "processors": "",
+                    "groups": "",
+                    "action": "SwitchFiringMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
