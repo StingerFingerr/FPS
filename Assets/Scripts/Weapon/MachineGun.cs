@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
+using Weapon.FiringModes;
 using Weapon.Recoil;
 using Weapon.Sway;
 
@@ -11,8 +13,10 @@ namespace Weapon
         public BoxCollider interactableCollider;
         public Rigidbody rigidBody;
         public WeaponSway sway;
+        public FiringModeBase[] firingModes;
         
         private Vector3 _targetPosition;
+        private int _currentFiringMode;
 
         private void OnEnable() => 
             _targetPosition = hipPosition;
@@ -21,11 +25,24 @@ namespace Weapon
         {
             UpdateAiming();
         }
-
-        protected override void Shot(Vector2 recoil)
+        
+        private void OnFire(InputValue inputValue)
         {
-            recoil = CalculateRecoil();
-            base.Shot(recoil);
+            if(IsHidden)
+                return;
+            
+            if(inputValue.isPressed)
+                firingModes[_currentFiringMode].StartFiring(Shot);
+            else 
+                firingModes[_currentFiringMode].FinishFiring();
+        }
+
+        private void OnSwitchFiringMode(InputValue inputValue)
+        {
+            Debug.Log("switch");
+            _currentFiringMode++;
+            if (_currentFiringMode >= firingModes.Length)
+                _currentFiringMode = 0;
         }
 
         private Vector2 CalculateRecoil()
@@ -36,7 +53,10 @@ namespace Weapon
                 y = Random.Range(recoil.minVerticalRecoil, recoil.maxVerticalRecoil)
             };
         }
-        
+
+        private void Shot() => 
+            base.Shot(CalculateRecoil());
+
 
         protected override void Aim(bool aim)
         {
@@ -62,22 +82,24 @@ namespace Weapon
 
         public override void Hide()
         {
+            IsHidden = true;
             animator.Hide();
             enabled = false;
         }
 
         public override void Show()
         {
+            IsHidden = false;
             animator.Show();
             enabled = true;
         }
 
         public override void Interact()
         {
-            
+            Take();
         }
 
-        public override void Take()
+        protected override void Take()
         {
             interactableCollider.enabled = false;
             animator.Enable();

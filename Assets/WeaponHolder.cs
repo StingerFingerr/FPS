@@ -25,7 +25,6 @@ public class WeaponHolder : MonoBehaviour
 
         weapons[_weaponIndex] = weapon;
         weapons[_weaponIndex].transform.parent = transform;
-        weapons[_weaponIndex].Take();
     }
 
     private void OnThrowAway(InputValue inputValue)
