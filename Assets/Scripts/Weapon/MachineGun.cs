@@ -39,6 +39,9 @@ namespace Weapon
 
         private void OnSwitchFiringMode(InputValue inputValue)
         {
+            if(IsHidden)
+                return;
+
             _currentFiringMode++;
             if (_currentFiringMode >= firingModes.Length)
                 _currentFiringMode = 0;

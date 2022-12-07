@@ -19,11 +19,21 @@ namespace Weapon
         public event Action<Vector2> OnShot;
         public event Action OnReloading;
         
-        private void OnAim(InputValue inputValue) => 
+        private void OnAim(InputValue inputValue)
+        {
+            if(IsHidden)
+                return;
+            
             Aim(inputValue.isPressed);
+        }
 
-        private void OnReload(InputValue inputValue) => 
+        private void OnReload(InputValue inputValue)
+        {
+            if(IsHidden)
+                return;
+            
             Reload();
+        }
 
         protected virtual void Reload() => 
             OnReloading?.Invoke();
