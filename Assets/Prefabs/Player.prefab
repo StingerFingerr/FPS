@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1146754261}
   - component: {fileID: 1146754262}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weapon Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 8997996946907055124}
   - component: {fileID: 8997996946907055125}
   - component: {fileID: 1004755972}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1800874545692912415}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lean Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 4390740856173759472}
   - component: {fileID: 4390740856173759473}
   - component: {fileID: 4390740856173759486}
-  m_Layer: 8
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -486,7 +486,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5716477916305778358}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera Holder
   m_TagString: CinemachineTarget
   m_Icon: {fileID: 0}
@@ -521,7 +521,7 @@ GameObject:
   - component: {fileID: 8518426158019811037}
   - component: {fileID: 8518426158019811038}
   - component: {fileID: 8518426158019811039}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
