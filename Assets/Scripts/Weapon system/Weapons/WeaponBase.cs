@@ -1,16 +1,20 @@
 using System;
 using Player.Interaction;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Weapon
 {
     public abstract class WeaponBase: MonoBehaviour, IInteractable
     {
+        public class Factory: PlaceholderFactory<string, WeaponBase>
+        { }
+        
         [Header("Aiming")]
         public Vector3 hipPosition;
         public Vector3 aimPosition;
+        public Vector3 hiddenPosition;
         public float aimingSpeed = 10f;
 
         public bool isHidden;

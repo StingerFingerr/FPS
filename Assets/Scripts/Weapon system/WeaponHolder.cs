@@ -1,11 +1,13 @@
 using System;
 using System.Collections;
+using Game_logic;
+using Infrastructure;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
 using Weapon_system;
 
-public class WeaponHolder : MonoBehaviour
+public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 {
     public WeaponSlot[] weaponSlots;
     public float switchWeaponTimeout = .5f;
@@ -30,7 +32,7 @@ public class WeaponHolder : MonoBehaviour
         CurrentWeapon?.ThrowAway();
 
         CurrentWeapon = weapon;
-        CurrentWeapon.transform.parent = transform;
+        CurrentWeapon.transform.parent = weaponSlots[_weaponIndex].transform;
     }
 
     private void OnThrowAway(InputValue inputValue)
@@ -81,5 +83,15 @@ public class WeaponHolder : MonoBehaviour
         _canSwitchWeapon = false;
         yield return new WaitForSeconds(timeOut);
         _canSwitchWeapon = true;
-    } 
+    }
+
+    public void Load(Progress progress)
+    {
+        _weaponIndex = progress.weaponHolderInfo.currentWeaponIndex;
+    }
+
+    public void Save(Progress progress)
+    {
+        progress.weaponHolderInfo.currentWeaponIndex = _weaponIndex;
+    }
 }

@@ -1,17 +1,15 @@
+using Infrastructure;
 using Zenject;
 
-namespace Infrastructure
+public class BootstrapInstaller: MonoInstaller
 {
-    public class BootstrapInstaller: MonoInstaller
+    public override void InstallBindings()
     {
-        public override void InstallBindings()
-        {
-            BindProgressService();
-        }
+        BindProgressService();
+    }
 
-        private void BindProgressService()
-        {
-            Container.Bind<IProgressService>().To<ProgressService>().AsSingle().NonLazy();
-        }
+    private void BindProgressService()
+    {
+        Container.Bind<IProgressService>().To<ProgressService>().AsSingle().NonLazy();
     }
 }
