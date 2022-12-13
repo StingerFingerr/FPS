@@ -3,34 +3,40 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
+using Weapon_system;
 
 public class WeaponHolder : MonoBehaviour
 {
-    public WeaponBase[] weapons;
+    public WeaponSlot[] weaponSlots;
     public float switchWeaponTimeout = .5f;
     public event Action<WeaponBase> SwitchCurrentWeapon;
-    
+
+    private WeaponBase CurrentWeapon
+    {
+        get => weaponSlots[_weaponIndex].weapon;
+        set => weaponSlots[_weaponIndex].weapon = value;
+    }
     private int _weaponIndex = 0;
     private bool _canSwitchWeapon = true;
 
     private void Start()
     {
-        if (weapons[_weaponIndex] is not null)
-            SwitchCurrentWeapon?.Invoke(weapons[_weaponIndex]);
+        if (CurrentWeapon is not null)
+            SwitchCurrentWeapon?.Invoke(CurrentWeapon);
     }
 
     public void SetNewWeapon(WeaponBase weapon)
     {
-        weapons[_weaponIndex]?.ThrowAway();
+        CurrentWeapon?.ThrowAway();
 
-        weapons[_weaponIndex] = weapon;
-        weapons[_weaponIndex].transform.parent = transform;
+        CurrentWeapon = weapon;
+        CurrentWeapon.transform.parent = transform;
     }
 
     private void OnThrowAway(InputValue inputValue)
     {
-        weapons[_weaponIndex]?.ThrowAway();
-        weapons[_weaponIndex] = null;
+        CurrentWeapon?.ThrowAway();
+        CurrentWeapon = null;
         SwitchCurrentWeapon?.Invoke(null);
     }
     
@@ -43,7 +49,7 @@ public class WeaponHolder : MonoBehaviour
         if(_canSwitchWeapon is false)
             return;
         
-        weapons[_weaponIndex]?.Hide();
+        CurrentWeapon?.Hide();
 
         if (scroll > 0)
             ScrollForward();
@@ -52,14 +58,14 @@ public class WeaponHolder : MonoBehaviour
 
         StartCoroutine(StartSwitchTimeout(switchWeaponTimeout));
         
-        weapons[_weaponIndex]?.Show();
-        SwitchCurrentWeapon?.Invoke(weapons[_weaponIndex]);
+        CurrentWeapon?.Show();
+        SwitchCurrentWeapon?.Invoke(CurrentWeapon);
     }
 
     private void ScrollForward()
     {
         _weaponIndex++;
-        if (_weaponIndex == weapons.Length)
+        if (_weaponIndex == weaponSlots.Length)
             _weaponIndex = 0;
     }
 
@@ -67,7 +73,7 @@ public class WeaponHolder : MonoBehaviour
     {
         _weaponIndex--;
         if (_weaponIndex < 0)
-            _weaponIndex = weapons.Length - 1;
+            _weaponIndex = weaponSlots.Length - 1;
     }
 
     private IEnumerator StartSwitchTimeout(float timeOut)

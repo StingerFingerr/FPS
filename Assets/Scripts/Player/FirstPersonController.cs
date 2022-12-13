@@ -1,4 +1,5 @@
 ﻿using Game_logic;
+using Helpers;
 using Infrastructure;
 using Player.Inputs;
 using Player.Player_settings;
@@ -237,16 +238,16 @@ namespace Player
 
 		public void Load(Progress progress)
 		{
-			transform.position = progress.PlayerState.position;
-			transform.rotation = progress.PlayerState.rotation;
-			cameraHolder.rotation = progress.PlayerState.cameraRotation;
+			transform.position = progress.PlayerState.position.ToVector3();
+			transform.eulerAngles = progress.PlayerState.rotation.ToVector3();
+			cameraHolder.eulerAngles = progress.PlayerState.cameraRotation.ToVector3();
 		}
 		
 		public void Save(Progress progress)
 		{
-			progress.PlayerState.position = transform.position;
-			progress.PlayerState.rotation = transform.rotation;
-			progress.PlayerState.cameraRotation = cameraHolder.rotation;
+			progress.PlayerState.position = transform.position.ToVec3();
+			progress.PlayerState.rotation = transform.eulerAngles.ToVec3();
+			progress.PlayerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();
 		}
 	}
 }

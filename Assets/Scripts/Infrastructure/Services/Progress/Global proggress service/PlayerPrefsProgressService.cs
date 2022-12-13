@@ -1,14 +1,12 @@
 using Game_logic;
 using UnityEngine;
+using Newtonsoft.Json;
 
 namespace Infrastructure
 {
     public class ProgressService: IProgressService
     {
         private const string KEY = "Save";
-
-        public void Save(Progress progress) => 
-            PlayerPrefs.SetString(KEY, JsonUtility.ToJson(progress));
 
         public Progress Load()
         {
@@ -18,15 +16,17 @@ namespace Infrastructure
                 return InitNewProgress();
         }
 
+        public void Save(Progress progress) => 
+            PlayerPrefs.SetString(KEY,  JsonConvert.SerializeObject(progress));
+
         private Progress InitNewProgress()
         {
-            Progress progress = new Progress();
-            PlayerPrefs.SetString(KEY, JsonUtility.ToJson(progress));
+            PlayerPrefs.SetString(KEY,  JsonConvert.SerializeObject(new Progress()));
             return null;
         }
 
         private Progress LoadProgress() => 
-            JsonUtility.FromJson<Progress>(PlayerPrefs.GetString(KEY));
+           (Progress) JsonConvert.DeserializeObject(PlayerPrefs.GetString(KEY), typeof(Progress));
 
         private bool SaveExists() => 
             PlayerPrefs.HasKey(KEY);

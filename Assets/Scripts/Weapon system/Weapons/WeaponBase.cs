@@ -13,7 +13,7 @@ namespace Weapon
         public Vector3 aimPosition;
         public float aimingSpeed = 10f;
 
-        protected bool IsHidden;
+        public bool isHidden;
         
         public event Action<bool> OnAiming;
         public event Action<Vector2> OnShot;
@@ -21,7 +21,7 @@ namespace Weapon
         
         private void OnAim(InputValue inputValue)
         {
-            if(IsHidden)
+            if(isHidden)
                 return;
             
             Aim(inputValue.isPressed);
@@ -29,7 +29,7 @@ namespace Weapon
 
         private void OnReload(InputValue inputValue)
         {
-            if(IsHidden)
+            if(isHidden)
                 return;
             
             Reload();

@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using Player;
 using UnityEngine;
+using Weapon_system;
 using Zenject;
 
 namespace Infrastructure
@@ -12,7 +14,12 @@ namespace Infrastructure
         {
             BindPlayer();
             BindSceneProgressService();
+
+            Container.BindInterfacesTo<WeaponSlot>().FromMethodMultiple(GetWeaponSlots);
         }
+
+        private IEnumerable<WeaponSlot> GetWeaponSlots(InjectContext arg) => 
+            FindObjectsOfType<WeaponSlot>();
 
         private void BindSceneProgressService()
         {

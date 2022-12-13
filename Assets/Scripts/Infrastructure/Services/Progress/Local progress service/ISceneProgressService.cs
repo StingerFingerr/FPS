@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Infrastructure
 {
-    public interface ISceneProgressService: IInitializable, IDisposable
+    public interface ISceneProgressService: IInitializable
     {
         void InformProgressReaders();
         void SaveGame();

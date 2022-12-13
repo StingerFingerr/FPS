@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Game_logic;
+using UnityEngine;
 
 namespace Infrastructure
 {
@@ -34,6 +35,7 @@ namespace Infrastructure
                 _progressWriters.ForEach(w => w.Save(_progress));
                 _progressService.Save(_progress);
             }
+            
         }
 
         private bool LoadProgressIfRequired()
@@ -44,8 +46,5 @@ namespace Infrastructure
 
         public void Initialize() => 
             InformProgressReaders();
-
-        public void Dispose() => 
-            SaveGame();
     }
 }

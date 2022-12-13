@@ -28,7 +28,7 @@ namespace Weapon
         
         private void OnFire(InputValue inputValue)
         {
-            if(IsHidden)
+            if(isHidden)
                 return;
             
             if(inputValue.isPressed)
@@ -39,7 +39,7 @@ namespace Weapon
 
         private void OnSwitchFiringMode(InputValue inputValue)
         {
-            if(IsHidden)
+            if(isHidden)
                 return;
 
             _currentFiringMode++;
@@ -84,14 +84,14 @@ namespace Weapon
 
         public override void Hide()
         {
-            IsHidden = true;
+            isHidden = true;
             animator.Hide();
             enabled = false;
         }
 
         public override void Show()
         {
-            IsHidden = false;
+            isHidden = false;
             animator.Show();
             enabled = true;
         }

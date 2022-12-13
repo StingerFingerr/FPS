@@ -16,7 +16,7 @@ namespace Game_logic
 
         private void OnTriggerEnter(Collider other)
         {
-            Debug.Log("game saved");
+            Debug.Log("Game Saved on save trigger");
             _progressService.SaveGame();
         }
     }
