@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Game_logic;
+using Helpers;
+using Infrastructure;
 using Player.Inputs;
 using Player.Player_settings;
 using Player.Player_stance;
@@ -10,7 +12,7 @@ namespace Player
 {
 	[RequireComponent(typeof(CharacterController))]
 	[RequireComponent(typeof(PlayerInput))]
-	public class FirstPersonController : MonoBehaviour
+	public class FirstPersonController : MonoBehaviour, IProgressReader, IProgressWriter
 	{
 		public Stances stances;
 		public WeaponHolder weaponHolder;
@@ -233,5 +235,19 @@ namespace Player
 
 		private void SetRecoil(Vector2 recoil) => 
 			_recoil = recoil;
+
+		public void Load(Progress progress)
+		{
+			transform.position = progress.PlayerState.position.ToVector3();
+			transform.eulerAngles = progress.PlayerState.rotation.ToVector3();
+			cameraHolder.eulerAngles = progress.PlayerState.cameraRotation.ToVector3();
+		}
+		
+		public void Save(Progress progress)
+		{
+			progress.PlayerState.position = transform.position.ToVec3();
+			progress.PlayerState.rotation = transform.eulerAngles.ToVec3();
+			progress.PlayerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();
+		}
 	}
 }
