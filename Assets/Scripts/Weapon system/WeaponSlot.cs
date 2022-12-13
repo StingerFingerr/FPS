@@ -34,14 +34,16 @@ namespace Weapon_system
                 weapon.isHidden = info.isHidden;
                 weapon.transform.parent = transform;
                 weapon.transform.localEulerAngles = Vector3.zero;
-
+                
                 if (info.isHidden)
                 {
-                    weapon.transform.localPosition = weapon.hiddenPosition;
+                    weapon.transform.localPosition = weapon.hipPosition;
                     weapon.Hide();
                 }
                 else
+                {
                     weapon.Show();
+                }
             }
         }
 

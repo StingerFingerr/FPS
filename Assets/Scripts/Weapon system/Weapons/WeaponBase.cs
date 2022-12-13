@@ -14,7 +14,6 @@ namespace Weapon
         [Header("Aiming")]
         public Vector3 hipPosition;
         public Vector3 aimPosition;
-        public Vector3 hiddenPosition;
         public float aimingSpeed = 10f;
 
         public bool isHidden;

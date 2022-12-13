@@ -88,7 +88,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558015365564369355}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 8fbf2d6473fa6a44682825b4040b36ba, type: 2}
   m_CullingMode: 0
@@ -148,14 +148,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558015366341336929}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9de30e5be0d49b1ad58e3c1a0c8fb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hipPosition: {x: 0.34, y: -0.28, z: 0.55}
   aimPosition: {x: 0, y: -0.165, z: 0.4}
-  hiddenPosition: {x: 0.35, y: -0.28, z: -0.5}
+  hiddenPosition: {x: 0.35, y: -0.28, z: 0.5}
   aimingSpeed: 10
   isHidden: 0
   animator: {fileID: 5558015365564369353}
