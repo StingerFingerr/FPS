@@ -153,6 +153,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9de30e5be0d49b1ad58e3c1a0c8fb94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  name: M4
   hipPosition: {x: 0.34, y: -0.28, z: 0.55}
   aimPosition: {x: 0, y: -0.165, z: 0.4}
   aimingSpeed: 10

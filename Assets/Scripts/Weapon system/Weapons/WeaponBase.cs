@@ -10,6 +10,8 @@ namespace Weapon
     {
         public class Factory: PlaceholderFactory<string, WeaponBase>
         { }
+
+        public new string name;
         
         [Header("Aiming")]
         public Vector3 hipPosition;

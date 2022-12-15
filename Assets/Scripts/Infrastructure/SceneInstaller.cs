@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Infrastructure;
 using Player;
 using UnityEngine;
-using Weapon_system;
 using Zenject;
 
 public class SceneInstaller: MonoInstaller

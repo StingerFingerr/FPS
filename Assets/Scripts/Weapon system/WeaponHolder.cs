@@ -5,7 +5,6 @@ using Infrastructure;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
-using Weapon_system;
 
 public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 {
