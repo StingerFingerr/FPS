@@ -132,7 +132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5558015366341336929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.34, y: -0.28, z: 0.55}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -155,7 +155,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hipPosition: {x: 0.34, y: -0.28, z: 0.55}
   aimPosition: {x: 0, y: -0.165, z: 0.4}
+  hiddenPosition: {x: 0.35, y: -0.28, z: 0.5}
   aimingSpeed: 10
+  isHidden: 0
   animator: {fileID: 5558015365564369353}
   recoil:
     maxVerticalRecoil: 0.3

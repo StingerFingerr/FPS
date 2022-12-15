@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 using Weapon.FiringModes;
 using Weapon.Recoil;
 using Weapon.Sway;
+using Random = UnityEngine.Random;
 
 namespace Weapon
 {
@@ -18,7 +19,7 @@ namespace Weapon
         private Vector3 _targetPosition;
         private int _currentFiringMode;
 
-        private void OnEnable() => 
+        private void Start() => 
             _targetPosition = hipPosition;
 
         private void Update()
@@ -121,8 +122,7 @@ namespace Weapon
 
             rigidBody.isKinematic = false;
             AddForce();
-
-
+            
             transform.parent = null;
             enabled = false;
         }

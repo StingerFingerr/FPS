@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Weapon;
 
 namespace Game_logic
 {
@@ -8,5 +9,7 @@ namespace Game_logic
     {
         public PlayerState PlayerState = new();
         public Dictionary<string, WeaponInfo> WeaponInfos = new();
+        public WeaponHolderInfo weaponHolderInfo = new();
+
     }
 }

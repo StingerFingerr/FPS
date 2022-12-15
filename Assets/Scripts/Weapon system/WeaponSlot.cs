@@ -12,20 +12,39 @@ namespace Weapon_system
         public WeaponBase weapon;
 
         private UniqueId _uniqueId;
+        private WeaponBase.Factory _weaponFactory;
         
         [Inject]
-        private void Construct()
+        private void Construct(WeaponBase.Factory weaponFactory)
         {
-
+            _weaponFactory = weaponFactory;
 
             _uniqueId ??= GetComponent<UniqueId>();
         }
         
         public void Load(Progress progress)
         {
-            if (progress.WeaponInfos.ContainsKey(_uniqueId.id))
-                Debug.Log(progress.WeaponInfos[_uniqueId.id]?.name);
-            else Debug.Log("null");
+            WeaponInfo info = progress.WeaponInfos[_uniqueId.id];
+
+            if (info is not null)
+            {
+                weapon = _weaponFactory.Create(info.name);
+
+                weapon.name = info.name;
+                weapon.isHidden = info.isHidden;
+                weapon.transform.parent = transform;
+                weapon.transform.localEulerAngles = Vector3.zero;
+                
+                if (info.isHidden)
+                {
+                    weapon.transform.localPosition = weapon.hipPosition;
+                    weapon.Hide();
+                }
+                else
+                {
+                    weapon.Show();
+                }
+            }
         }
 
         public void Save(Progress progress)
