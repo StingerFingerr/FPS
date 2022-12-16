@@ -12,6 +12,7 @@ namespace Weapon
         { }
 
         public new string name;
+        public CrosshairType crosshairType;
         
         [Header("Aiming")]
         public Vector3 hipPosition;

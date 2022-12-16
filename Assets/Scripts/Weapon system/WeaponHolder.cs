@@ -32,12 +32,15 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 
         CurrentWeapon = weapon;
         CurrentWeapon.transform.parent = weaponSlots[_weaponIndex].transform;
+        
+        SwitchCurrentWeapon?.Invoke(CurrentWeapon);
     }
 
     private void OnThrowAway(InputValue inputValue)
     {
         CurrentWeapon?.ThrowAway();
         CurrentWeapon = null;
+        
         SwitchCurrentWeapon?.Invoke(null);
     }
     
