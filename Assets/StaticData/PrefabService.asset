@@ -17,3 +17,4 @@ MonoBehaviour:
   crosshairsPrefabs:
   - {fileID: 9013263448306912819, guid: 9b522e8f2ba39e146a0210016376b0e7, type: 3}
   - {fileID: 259143283605095931, guid: e102b580da9939b419a2ca6d7b740f2f, type: 3}
+  - {fileID: 6601135571122488645, guid: 4db39f1fb57117a4d95d1ac6db1bb17e, type: 3}

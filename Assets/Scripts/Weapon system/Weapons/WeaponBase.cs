@@ -1,10 +1,15 @@
 using System;
+using Animation;
 using Player.Interaction;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapon;
+using Weapon.Recoil;
+using Weapon.Sway;
 using Zenject;
+using Random = UnityEngine.Random;
 
-namespace Weapon
+namespace Weapons
 {
     public abstract class WeaponBase: MonoBehaviour, IInteractable
     {
@@ -13,13 +18,26 @@ namespace Weapon
 
         public new string name;
         public CrosshairType crosshairType;
-        
+
         [Header("Aiming")]
         public Vector3 hipPosition;
         public Vector3 aimPosition;
         public float aimingSpeed = 10f;
 
-        public bool isHidden;
+        public WeaponAnimator animator;
+
+        public RecoilParameters recoil;
+
+        public BoxCollider interactableCollider;
+
+        public WeaponSway sway;
+
+        public Rigidbody rigidBody;
+
+
+        public bool allowRun = true;
+        
+        [HideInInspector]public bool isHidden;
         
         public event Action<bool> OnAiming;
         public event Action<Vector2> OnShot;
@@ -49,12 +67,54 @@ namespace Weapon
             OnAiming?.Invoke(aim);
 
 
-        public abstract void Hide();
-        public abstract void Show();
+        public virtual void Hide()
+        {
+            isHidden = true;
+            animator.Hide();
+            enabled = false;
+        }
 
-        public abstract void Interact();
+        public virtual void Show()
+        {
+            isHidden = false;
+            animator.Show();
+            enabled = true;
+        }
 
-        protected abstract void Take();
-        public abstract void ThrowAway();
+        public virtual void Interact() => 
+            Take();
+
+        protected virtual void Take()
+        {
+            interactableCollider.enabled = false;
+            animator.Enable();
+            
+            rigidBody.isKinematic = true;
+
+            sway.enabled = true;
+            
+            enabled = true;
+        }
+
+        public virtual void ThrowAway()
+        {
+            interactableCollider.enabled = true;
+            sway.enabled = false;
+            animator.Disable();
+
+            rigidBody.isKinematic = false;
+
+            transform.parent = null;
+            enabled = false;
+        }
+        
+        protected Vector2 CalculateRecoil()
+        {
+            return new()
+            {
+                x = Random.Range(-recoil.maxHorizontalRecoil, recoil.maxHorizontalRecoil),
+                y = Random.Range(recoil.minVerticalRecoil, recoil.maxVerticalRecoil)
+            };
+        }
     }
 }

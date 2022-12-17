@@ -7,6 +7,7 @@ using Player.Player_stance;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
+using Weapons;
 
 namespace Player
 {

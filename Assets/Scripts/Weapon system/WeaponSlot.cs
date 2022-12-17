@@ -2,6 +2,7 @@ using Game_logic;
 using Infrastructure;
 using UnityEngine;
 using Weapon;
+using Weapons;
 using Zenject;
 
 [RequireComponent(typeof(UniqueId))]
@@ -33,6 +34,7 @@ public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
             weapon.transform.parent = transform;
             weapon.transform.localEulerAngles = Vector3.zero;
                 
+            weapon.Interact();
             if (info.isHidden)
             {
                 weapon.transform.localPosition = weapon.hipPosition;

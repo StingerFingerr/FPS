@@ -3,6 +3,7 @@ using System.Linq;
 using Infrastructure;
 using UnityEngine;
 using Weapon;
+using Weapons;
 
 [CreateAssetMenu(menuName = "Services/PrefabService", fileName = "PrefabService")]
 public class PrefabService: ScriptableObject, IPrefabService

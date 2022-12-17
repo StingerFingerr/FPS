@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using Weapon;
+using Weapons;
 
 namespace Player.Interaction
 {

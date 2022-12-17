@@ -1,6 +1,7 @@
 using UnityEngine;
+using Weapons;
 
-namespace Weapon.Effects
+namespace Effects
 {
     public class WeaponVfx: MonoBehaviour
     {
@@ -14,7 +15,7 @@ namespace Weapon.Effects
         private void OnDisable() => 
             weapon.OnShot -= PlayEffect;
         
-        private void PlayEffect(Vector2 obj)
+        private void PlayEffect(Vector2 recoil)
         {
             var effect = Instantiate(effectPrefab, effectRoot);
         }

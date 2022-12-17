@@ -5,6 +5,7 @@ using Infrastructure;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
+using Weapons;
 
 public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 {
@@ -22,8 +23,7 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 
     private void Start()
     {
-        if (CurrentWeapon is not null)
-            SwitchCurrentWeapon?.Invoke(CurrentWeapon);
+        SwitchCurrentWeapon?.Invoke(CurrentWeapon);
     }
 
     public void SetNewWeapon(WeaponBase weapon)

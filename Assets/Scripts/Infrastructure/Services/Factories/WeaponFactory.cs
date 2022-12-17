@@ -1,5 +1,6 @@
 using Infrastructure;
 using Weapon;
+using Weapons;
 using Zenject;
 
 public class WeaponFactory: IFactory<string, WeaponBase>

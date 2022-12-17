@@ -1,19 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon.FiringModes;
-using Weapon.Recoil;
-using Weapon.Sway;
-using Random = UnityEngine.Random;
 
-namespace Weapon
+namespace Weapons
 {
     public sealed class MachineGun: WeaponBase
     {
-        public WeaponAnimator animator;
-        public RecoilParameters recoil;
-        public BoxCollider interactableCollider;
-        public Rigidbody rigidBody;
-        public WeaponSway sway;
         public FiringModeBase[] firingModes;
         
         private Vector3 _targetPosition;
@@ -48,15 +40,6 @@ namespace Weapon
                 _currentFiringMode = 0;
         }
 
-        private Vector2 CalculateRecoil()
-        {
-            return new()
-            {
-                x = Random.Range(-recoil.maxHorizontalRecoil, recoil.maxHorizontalRecoil),
-                y = Random.Range(recoil.minVerticalRecoil, recoil.maxVerticalRecoil)
-            };
-        }
-
         private void Shot() => 
             base.Shot(CalculateRecoil());
 
@@ -83,48 +66,11 @@ namespace Weapon
                 Vector3.Lerp(transform.localPosition, _targetPosition, Time.deltaTime * aimingSpeed);
         }
 
-        public override void Hide()
-        {
-            isHidden = true;
-            animator.Hide();
-            enabled = false;
-        }
-
-        public override void Show()
-        {
-            isHidden = false;
-            animator.Show();
-            enabled = true;
-        }
-
-        public override void Interact()
-        {
-            Take();
-        }
-
-        protected override void Take()
-        {
-            interactableCollider.enabled = false;
-            animator.Enable();
-            
-            rigidBody.isKinematic = true;
-
-            sway.enabled = true;
-            
-            enabled = true;
-        }
-
         public override void ThrowAway()
         {
-            interactableCollider.enabled = true;
-            sway.enabled = false;
-            animator.Disable();
-
-            rigidBody.isKinematic = false;
+            firingModes[_currentFiringMode].FinishFiring();
+            base.ThrowAway();
             AddForce();
-            
-            transform.parent = null;
-            enabled = false;
         }
 
         private void AddForce()
