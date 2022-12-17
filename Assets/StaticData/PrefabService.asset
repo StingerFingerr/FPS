@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponsPrefabs:
   - {fileID: 5558015366341336935, guid: 7b5a03335c38a7e468c33e2dac070fa2, type: 3}
+  - {fileID: 9088867870206212642, guid: fc8a7115309836a46a2f73ed05a06a29, type: 3}
   crosshairsPrefabs:
   - {fileID: 9013263448306912819, guid: 9b522e8f2ba39e146a0210016376b0e7, type: 3}
   - {fileID: 259143283605095931, guid: e102b580da9939b419a2ca6d7b740f2f, type: 3}

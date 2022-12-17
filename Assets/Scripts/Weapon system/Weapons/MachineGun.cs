@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon.FiringModes;
@@ -7,6 +8,12 @@ namespace Weapons
     public sealed class MachineGun: WeaponBase
     {
         public FiringModeBase[] firingModes;
+
+        public AudioSource audioSource;
+        public AudioClip shotClip;
+        public AudioClip reloadClip;
+        public AudioClip equippedClip;
+        public AudioClip switchFiringModeClip;
         
         private Vector3 _targetPosition;
         private int _currentFiringMode;
@@ -38,11 +45,27 @@ namespace Weapons
             _currentFiringMode++;
             if (_currentFiringMode >= firingModes.Length)
                 _currentFiringMode = 0;
+            
+            audioSource.PlayOneShot(switchFiringModeClip);
         }
 
-        private void Shot() => 
+        private void Shot()
+        {
+            audioSource.PlayOneShot(shotClip);
             base.Shot(CalculateRecoil());
+        }
 
+        protected override void Reload()
+        {
+            audioSource.PlayOneShot(reloadClip);
+            base.Reload();
+        }
+
+        public override void Show()
+        {
+            audioSource.PlayOneShot(equippedClip);
+            base.Show();
+        }
 
         protected override void Aim(bool aim)
         {

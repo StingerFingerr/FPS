@@ -18,6 +18,12 @@ namespace Weapons
         private Coroutine _shootingCoroutine;
         private float _currentAngularSpeed = 0;
         private bool _isFiring;
+
+        public AudioSource audioSource;
+        public AudioClip reloadClip;
+        public AudioClip launchAndFiringClip;
+        public AudioClip stoppingClip;
+        public AudioClip equippedClip;
         
         private void Update()
         {
@@ -49,6 +55,8 @@ namespace Weapons
         {
             _isFiring = true;
             
+            audioSource.PlayOneShot(launchAndFiringClip);
+            
             float timer = 0;
 
             while (timer < accelerationTime)
@@ -62,7 +70,7 @@ namespace Weapons
             }
             
             autoFiringMode.StartFiring(Shot);
-            
+
             while (CanShooting())
             {
                 ApplyBarrelRotation();
@@ -76,7 +84,10 @@ namespace Weapons
         {
             if(_isFiring is false)
                 return;
-            
+
+            audioSource.Stop();
+            audioSource.PlayOneShot(stoppingClip);
+
             _isFiring = false;
             autoFiringMode.FinishFiring();
             StopCoroutine(_shootingCoroutine);
@@ -86,10 +97,11 @@ namespace Weapons
         private IEnumerator StopMinigun()
         {
             float timer = 0;
-
+            float initialSpeed = _currentAngularSpeed;
+            
             while (timer < stopTime)
             {
-                _currentAngularSpeed = Mathf.Lerp(_currentAngularSpeed, 0, timer / stopTime);
+                _currentAngularSpeed = Mathf.Lerp(initialSpeed, 0, timer / stopTime);
                 ApplyBarrelRotation();
                 timer += Time.deltaTime;
                 yield return null;
@@ -102,14 +114,28 @@ namespace Weapons
         private bool CanShooting() => 
             true;
 
-        private void Shot() => 
+        private void Shot()
+        {
             base.Shot(CalculateRecoil());
+        }
 
+        public override void Show()
+        {
+            audioSource.PlayOneShot(equippedClip);
+            base.Show();
+        }
+        protected override void Reload()
+        {
+            audioSource.PlayOneShot(reloadClip);
+            base.Reload();
+        }
+        
         public override void ThrowAway()
         {
             StopAllCoroutines();
             StartCoroutine(StopMinigun());
             autoFiringMode.FinishFiring();
+            audioSource.Stop();
             
             base.ThrowAway();
             AddForce();
