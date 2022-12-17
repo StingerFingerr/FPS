@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using Infrastructure;
 using Player;
 using UnityEngine;
-using Weapon_system;
 using Zenject;
 
 public class SceneInstaller: MonoInstaller
@@ -18,7 +17,7 @@ public class SceneInstaller: MonoInstaller
     }
 
     private void BindWeaponHolder() => 
-        Container.BindInterfacesTo<WeaponHolder>().FromMethod(GetWeaponHolder);
+        Container.BindInterfacesAndSelfTo<WeaponHolder>().FromMethod(GetWeaponHolder);
 
     private void BindWeaponSlots() => 
         Container.BindInterfacesTo<WeaponSlot>().FromMethodMultiple(GetWeaponSlots);

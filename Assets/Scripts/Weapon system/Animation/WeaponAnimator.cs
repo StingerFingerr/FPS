@@ -1,7 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using Weapons;
 
-namespace Weapon
+namespace Animation
 {
     public class WeaponAnimator: MonoBehaviour
     {
@@ -86,16 +87,25 @@ namespace Weapon
 
         private void OnSprint(InputValue inputValue)
         {
+            if(weaponBase.allowRun is false)
+                return;
+
             bool sprinting = inputValue.isPressed;
             movingAnimator.SetBool(Sprint, sprinting);
             _sprintParameter = sprinting;
         }
 
-        private void Reloading() => 
-            weaponAnimator.SetTrigger(Reload);
+        private void Reloading()
+        {
+            if(weaponAnimator)
+                weaponAnimator.SetTrigger(Reload);
+        }
 
-        private void Shot(Vector2 recoil) => 
-            weaponAnimator.SetTrigger(Fire);
+        private void Shot(Vector2 recoil)
+        {
+            if(weaponAnimator)
+                weaponAnimator.SetTrigger(Fire);
+        }
 
         private void SwitchMovingAnimator(bool aim)
         {

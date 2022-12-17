@@ -1,4 +1,5 @@
 using Weapon;
+using Weapons;
 using Zenject;
 
 public class FactoriesInstaller: MonoInstaller

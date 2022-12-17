@@ -1,10 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Game_logic;
 using UnityEngine;
 
 namespace Infrastructure
 {
-    public class SceneProgressService : ISceneProgressService
+    public class SceneProgressService : ISceneProgressService, IDisposable
     {
         private IProgressService _progressService;
         private List<IProgressReader> _progressReaders;
@@ -46,5 +47,10 @@ namespace Infrastructure
 
         public void Initialize() => 
             InformProgressReaders();
+
+        public void Dispose()
+        {
+            //SaveGame();
+        }
     }
 }

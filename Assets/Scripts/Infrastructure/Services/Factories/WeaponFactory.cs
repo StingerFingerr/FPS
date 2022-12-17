@@ -1,7 +1,6 @@
 using Infrastructure;
-using Unity.Mathematics;
-using UnityEngine;
 using Weapon;
+using Weapons;
 using Zenject;
 
 public class WeaponFactory: IFactory<string, WeaponBase>

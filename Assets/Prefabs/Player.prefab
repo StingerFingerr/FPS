@@ -136,7 +136,6 @@ MonoBehaviour:
   gravity: -15
   jumpTimeout: 0.1
   fallTimeout: 0.15
-  isGrounded: 1
   groundedOffset: -0.14
   groundedRadius: 0.5
   groundLayers:
