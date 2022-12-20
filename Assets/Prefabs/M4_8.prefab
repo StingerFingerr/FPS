@@ -293,8 +293,10 @@ MonoBehaviour:
   pulsationSpeed: 0.5
   pulsationSize: 5
   minPulsationSize: 1
+  pulsationOffset: 0.3
   outline: {fileID: 4068752765432467985}
-  onHoverMessage: Pres F to take M4_8
+  onHoverTerm: WeaponOnHoverMessage
+  onHoverName: M4
 --- !u!114 &-3614463239454624219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,7 +675,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.78645355, b: 0.0037735105, a: 1}
-  outlineWidth: 2
+  outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

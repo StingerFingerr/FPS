@@ -2,6 +2,7 @@ namespace Player.Interaction
 {
     public interface IHoverable
     {
-        string OnHover();
+        string OnHoverBegin();
+        void OnHoverEnd();
     }
 }
