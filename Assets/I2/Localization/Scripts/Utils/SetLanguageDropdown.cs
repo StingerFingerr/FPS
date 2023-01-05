@@ -1,5 +1,7 @@
-﻿using UnityEngine;
-using UnityEngine.UI;
+﻿using System.Collections.Generic;
+using System.Linq;
+using TMPro;
+using UnityEngine;
 
 namespace I2.Loc
 {
@@ -7,9 +9,12 @@ namespace I2.Loc
 	public class SetLanguageDropdown : MonoBehaviour 
 	{
         #if UNITY_5_2 || UNITY_5_3 || UNITY_5_4_OR_NEWER
+
+		public List<Sprite> flagsSprites;
+		
         void OnEnable()
 		{
-			var dropdown = GetComponent<Dropdown>();
+			var dropdown = GetComponent<TMP_Dropdown>();
 			if (dropdown==null)
 				return;
 
@@ -17,9 +22,22 @@ namespace I2.Loc
 			if (LocalizationManager.Sources.Count==0) LocalizationManager.UpdateSources();
 			var languages = LocalizationManager.GetAllLanguages();
 
+			var options = new List<TMP_Dropdown.OptionData>(languages.Count);
+			foreach (var language in languages)
+			{
+				var option = new TMP_Dropdown.OptionData()
+				{
+					image = flagsSprites.FirstOrDefault(s =>
+						s.name.Equals(LocalizationManager.GetLanguageCode(language))),
+					text = language
+				};
+				options.Add(option);
+			}
+			
+			
 			// Fill the dropdown elements
 			dropdown.ClearOptions();
-			dropdown.AddOptions( languages );
+			dropdown.AddOptions( options );
 
 			dropdown.value = languages.IndexOf( currentLanguage );
 			dropdown.onValueChanged.RemoveListener( OnValueChanged );
@@ -29,7 +47,7 @@ namespace I2.Loc
 		
 		void OnValueChanged( int index )
 		{
-			var dropdown = GetComponent<Dropdown>();
+			var dropdown = GetComponent<TMP_Dropdown>();
 			if (index<0)
 			{
 				index = 0;
