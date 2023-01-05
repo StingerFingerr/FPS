@@ -1,8 +1,9 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using Weapon.FiringModes;
 
-namespace Weapon.FiringModes
+namespace FiringModes
 {
     public class AutoFiringMode: FiringModeBase
     {
@@ -10,10 +11,8 @@ namespace Weapon.FiringModes
 
         private Coroutine _autoFiring;
         
-        public override void StartFiring(Action shot)
-        {
+        public override void StartFiring(Action shot) => 
             _autoFiring = StartCoroutine(StarAutoFiring(shot));
-        }
 
         private IEnumerator StarAutoFiring(Action shot)
         {
@@ -26,7 +25,8 @@ namespace Weapon.FiringModes
 
         public override void FinishFiring()
         {
-            StopCoroutine(_autoFiring);
+            if(_autoFiring is not null)
+                StopCoroutine(_autoFiring);
         }
     }
 }

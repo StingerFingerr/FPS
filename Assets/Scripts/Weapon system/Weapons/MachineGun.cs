@@ -1,20 +1,19 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon.FiringModes;
-using Weapon.Recoil;
-using Weapon.Sway;
-using Random = UnityEngine.Random;
 
-namespace Weapon
+namespace Weapons
 {
     public sealed class MachineGun: WeaponBase
     {
-        public WeaponAnimator animator;
-        public RecoilParameters recoil;
-        public BoxCollider interactableCollider;
-        public Rigidbody rigidBody;
-        public WeaponSway sway;
         public FiringModeBase[] firingModes;
+
+        public AudioSource audioSource;
+        public AudioClip shotClip;
+        public AudioClip reloadClip;
+        public AudioClip equippedClip;
+        public AudioClip switchFiringModeClip;
         
         private Vector3 _targetPosition;
         private int _currentFiringMode;
@@ -46,20 +45,27 @@ namespace Weapon
             _currentFiringMode++;
             if (_currentFiringMode >= firingModes.Length)
                 _currentFiringMode = 0;
+            
+            audioSource.PlayOneShot(switchFiringModeClip);
         }
 
-        private Vector2 CalculateRecoil()
+        private void Shot()
         {
-            return new()
-            {
-                x = Random.Range(-recoil.maxHorizontalRecoil, recoil.maxHorizontalRecoil),
-                y = Random.Range(recoil.minVerticalRecoil, recoil.maxVerticalRecoil)
-            };
+            audioSource.PlayOneShot(shotClip);
+            base.Shot(CalculateRecoil());
         }
 
-        private void Shot() => 
-            base.Shot(CalculateRecoil());
+        protected override void Reload()
+        {
+            audioSource.PlayOneShot(reloadClip);
+            base.Reload();
+        }
 
+        public override void Show()
+        {
+            audioSource.PlayOneShot(equippedClip);
+            base.Show();
+        }
 
         protected override void Aim(bool aim)
         {
@@ -83,48 +89,11 @@ namespace Weapon
                 Vector3.Lerp(transform.localPosition, _targetPosition, Time.deltaTime * aimingSpeed);
         }
 
-        public override void Hide()
-        {
-            isHidden = true;
-            animator.Hide();
-            enabled = false;
-        }
-
-        public override void Show()
-        {
-            isHidden = false;
-            animator.Show();
-            enabled = true;
-        }
-
-        public override void Interact()
-        {
-            Take();
-        }
-
-        protected override void Take()
-        {
-            interactableCollider.enabled = false;
-            animator.Enable();
-            
-            rigidBody.isKinematic = true;
-
-            sway.enabled = true;
-            
-            enabled = true;
-        }
-
         public override void ThrowAway()
         {
-            interactableCollider.enabled = true;
-            sway.enabled = false;
-            animator.Disable();
-
-            rigidBody.isKinematic = false;
+            firingModes[_currentFiringMode].FinishFiring();
+            base.ThrowAway();
             AddForce();
-            
-            transform.parent = null;
-            enabled = false;
         }
 
         private void AddForce()

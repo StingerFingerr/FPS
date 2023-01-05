@@ -1,7 +1,7 @@
 using Player.Interaction;
 using UnityEngine;
 
-namespace Weapon.Effects
+namespace Effects
 {
     public class OutlineOnHover: MonoBehaviour, IHoverable
     {
@@ -9,21 +9,50 @@ namespace Weapon.Effects
         public float pulsationSpeed = 1f;
         public float pulsationSize = 1f;
         public float minPulsationSize = .5f;
+        public float pulsationOffset = .3f;
         public Outline outline;
         
-        public string onHoverMessage = string.Empty;
+        public string onHoverTerm = string.Empty;
+        public string onHoverName = string.Empty;
+        private string NAME = "{[NAME]}";
+
+        private Coroutine _outlineAnimation;
 
         private bool _isOnHover;
         private float _time;
+        private string _message;
 
-        private void SimulateOutline()
+        private void Update()
         {
-            enabled = true;
-            _isOnHover = true;
-            outline.enabled = true;
-            outline.OutlineWidth = pulsingPattern.Evaluate(_time) * pulsationSize + minPulsationSize;
+            SetOutlineWidth();
             UpdateTime();
         }
+
+        public string OnHoverBegin()
+        {
+            if (_isOnHover)
+                return _message;
+            
+            _time = -pulsationOffset;
+            _isOnHover = true;
+            outline.enabled = true;
+            enabled = true;
+            
+            return GetHoverMessage();
+        }
+
+        public void OnHoverEnd()
+        {
+            if(_isOnHover is false)
+                return;
+            
+            _isOnHover = false;
+            outline.enabled = false;
+            enabled = false;
+        }
+
+        private void SetOutlineWidth() => 
+            outline.OutlineWidth = pulsingPattern.Evaluate(_time) * pulsationSize + minPulsationSize;
 
         private void UpdateTime()
         {
@@ -32,26 +61,14 @@ namespace Weapon.Effects
                 _time = 0;
         }
 
-        private void LateUpdate()
+        private string GetHoverMessage()
         {
-            if(_isOnHover is false)
-                DisableOutline();
+            if (string.IsNullOrEmpty(_message))
+                _message = I2.Loc.LocalizationManager
+                    .GetTranslation(onHoverTerm)
+                    .Replace(NAME, onHoverName);
             
-            _isOnHover = false;
-        }
-
-        private void DisableOutline()
-        {
-            _time = 0;
-            outline.enabled = false;
-            enabled = false;
-        }
-
-        public string OnHover()
-        {
-            SimulateOutline();
-            
-            return onHoverMessage;
+            return _message;
         }
     }
 }
