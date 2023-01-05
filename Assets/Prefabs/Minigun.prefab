@@ -307,29 +307,29 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: -0.017898029
-      outSlope: -0.017898029
-      tangentMode: 0
+      inSlope: 0.3768056
+      outSlope: 0.2590547
+      tangentMode: 1
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.22519818
+      outWeight: 0.2540107
     - serializedVersion: 3
       time: 0.5
       value: 1
-      inSlope: 0.028764281
-      outSlope: 0.028764281
-      tangentMode: 0
+      inSlope: 0.020946594
+      outSlope: 0.017318293
+      tangentMode: 1
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
+      inWeight: 0.23796791
+      outWeight: 0.28787887
     - serializedVersion: 3
-      time: 1
+      time: 1.0022278
       value: 0
-      inSlope: 0.0033514048
-      outSlope: 0.0033514048
+      inSlope: -0.23611432
+      outSlope: -0.23611432
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.36680487
+      inWeight: 0.25757575
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
@@ -337,8 +337,10 @@ MonoBehaviour:
   pulsationSpeed: 0.5
   pulsationSize: 5
   minPulsationSize: 1
+  pulsationOffset: 0.3
   outline: {fileID: 7947419818816193745}
-  onHoverMessage: Pres F to take M4_8
+  onHoverTerm: WeaponOnHoverMessage
+  onHoverName: Minigun
 --- !u!65 &9088867870206212641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -567,7 +569,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.78645355, b: 0.0037735105, a: 1}
-  outlineWidth: 2
+  outlineWidth: 1
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
