@@ -34,6 +34,7 @@ namespace Weapons
 
         public Rigidbody rigidBody;
 
+        public Sprite icon;
 
         public bool allowRun = true;
         

@@ -240,6 +240,7 @@ MonoBehaviour:
   interactableCollider: {fileID: 9088867870206212641}
   sway: {fileID: 9088867870206212643}
   rigidBody: {fileID: 9088867870206212654}
+  icon: {fileID: 21300000, guid: d30c8b0cace731f459749114c6c92345, type: 3}
   allowRun: 0
   isHidden: 0
   maxBarrelAngularSpeed: 20
@@ -366,7 +367,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 1
+  m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0

@@ -1,5 +1,8 @@
+using System;
 using Player.Interaction;
+using UI.Game;
 using UnityEngine;
+using Zenject;
 
 namespace Effects
 {
@@ -15,7 +18,7 @@ namespace Effects
         public string onHoverTerm = string.Empty;
         public string onHoverName = string.Empty;
         private string NAME = "{[NAME]}";
-
+        
         private Coroutine _outlineAnimation;
 
         private bool _isOnHover;
@@ -49,6 +52,7 @@ namespace Effects
             _isOnHover = false;
             outline.enabled = false;
             enabled = false;
+            
         }
 
         private void SetOutlineWidth() => 

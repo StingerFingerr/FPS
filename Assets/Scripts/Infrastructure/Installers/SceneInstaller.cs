@@ -1,23 +1,21 @@
 using System.Collections.Generic;
-using Game_runner;
+using UI.Game;
 using Zenject;
 
 public class SceneInstaller: MonoInstaller
 {
-    public LevelInitializer levelInitializer;
-        
+    public OnHoverMessageView onHoverMessageView;
+    
     public override void InstallBindings()
     {
-        BindLevelInitializer();
-        
         BindWeaponSlots();
         BindWeaponHolder();
+        BindOnHoverMessageView();
     }
 
-    private void BindLevelInitializer()
+    private void BindOnHoverMessageView()
     {
-        Container.BindInstance(levelInitializer);
-
+        Container.Bind<OnHoverMessageView>().FromComponentInNewPrefab(onHoverMessageView).AsSingle();
     }
 
     private void BindWeaponHolder() => 

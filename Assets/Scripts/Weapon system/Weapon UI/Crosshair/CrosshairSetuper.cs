@@ -25,11 +25,11 @@ public class CrosshairSetuper: MonoBehaviour
 
     private void OnEnable()
     {
-        _weaponHolder.SwitchCurrentWeapon += SetNewCrosshairFor;
+        _weaponHolder.OnWeaponSwitched += SetNewCrosshairFor;
     }
 
     private void OnDisable() => 
-        _weaponHolder.SwitchCurrentWeapon -= SetNewCrosshairFor;
+        _weaponHolder.OnWeaponSwitched -= SetNewCrosshairFor;
 
     private void Update()
     {
@@ -40,7 +40,7 @@ public class CrosshairSetuper: MonoBehaviour
         }
     }
 
-    private void SetNewCrosshairFor(WeaponBase weapon)
+    private void SetNewCrosshairFor(WeaponBase weapon, int index)
     {
         SwitchWeapon(weapon);
         CreateNewCrossHair(weapon);

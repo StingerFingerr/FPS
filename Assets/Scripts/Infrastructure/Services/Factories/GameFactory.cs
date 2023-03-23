@@ -1,5 +1,8 @@
 using Infrastructure;
 using Player;
+using Prefab_service;
+using UI.Game;
+using UnityEngine;
 using Zenject;
 
 public class GameFactory: IFactory
@@ -23,10 +26,14 @@ public class GameFactory: IFactory
         return player;
     }
 
-    public CrosshairSetuper CreateCrosshairSetuper()
+    public GameUI CreateGameUI()
     {
-        var prefab = _prefabService.GetCrosshairSetuper();
-        return _diContainer.InstantiatePrefabForComponent<CrosshairSetuper>(prefab);
+        var prefab = _prefabService.GetGameUIPrefab();
+        var ui = _diContainer.InstantiatePrefabForComponent<GameUI>(prefab);
+
+        _diContainer.BindInterfacesAndSelfTo<GameUI>().FromInstance(ui);
+        
+        return ui;
     }
 
 
