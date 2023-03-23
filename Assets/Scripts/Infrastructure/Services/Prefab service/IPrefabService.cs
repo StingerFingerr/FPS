@@ -4,7 +4,10 @@ namespace Infrastructure
 {
     public interface IPrefabService
     {
-        GameObject GetWeaponPrefabByName(string name);
+        public GameObject GetWeaponPrefabByName(string name);
         public GameObject GetCrosshairPrefabByType(CrosshairType type);
+        public GameObject GetPlayerPrefab();
+
+        public GameObject GetCrosshairSetuper();
     }
 }

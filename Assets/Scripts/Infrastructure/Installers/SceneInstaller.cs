@@ -1,19 +1,23 @@
 using System.Collections.Generic;
-using Infrastructure;
-using Player;
-using UnityEngine;
+using Game_runner;
 using Zenject;
 
 public class SceneInstaller: MonoInstaller
 {
-    public GameObject playerPrefab;
+    public LevelInitializer levelInitializer;
         
     public override void InstallBindings()
     {
-        BindPlayer();
-        BindSceneProgressService();
+        BindLevelInitializer();
+        
         BindWeaponSlots();
         BindWeaponHolder();
+    }
+
+    private void BindLevelInitializer()
+    {
+        Container.BindInstance(levelInitializer);
+
     }
 
     private void BindWeaponHolder() => 
@@ -21,21 +25,6 @@ public class SceneInstaller: MonoInstaller
 
     private void BindWeaponSlots() => 
         Container.BindInterfacesTo<WeaponSlot>().FromMethodMultiple(GetWeaponSlots);
-
-    private void BindSceneProgressService()
-    {
-        Container.Bind<ISceneProgressService>().To<SceneProgressService>().AsSingle().NonLazy();
-        Container.BindInterfacesTo<ISceneProgressService>().FromResolve();
-    }
-
-    private void BindPlayer()
-    {
-        Container
-            .BindInterfacesAndSelfTo<FirstPersonController>()
-            .FromComponentInNewPrefab(playerPrefab)
-            .AsSingle()
-            .NonLazy();
-    }
 
     private WeaponHolder GetWeaponHolder(InjectContext arg) => 
         FindObjectOfType<WeaponHolder>();
