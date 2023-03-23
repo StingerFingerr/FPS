@@ -1,4 +1,5 @@
-﻿using Game_logic;
+﻿using System;
+using Game_logic;
 using Helpers;
 using Infrastructure;
 using Player.Inputs;
@@ -239,6 +240,7 @@ namespace Player
 
 		public void Load(Progress progress)
 		{
+			Debug.Log("player load");
 			transform.position = progress.PlayerState.position.ToVector3();
 			transform.eulerAngles = progress.PlayerState.rotation.ToVector3();
 			cameraHolder.eulerAngles = progress.PlayerState.cameraRotation.ToVector3();
@@ -246,6 +248,7 @@ namespace Player
 		
 		public void Save(Progress progress)
 		{
+			Debug.Log("Player save");
 			progress.PlayerState.position = transform.position.ToVec3();
 			progress.PlayerState.rotation = transform.eulerAngles.ToVec3();
 			progress.PlayerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();
