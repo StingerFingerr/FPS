@@ -1,7 +1,9 @@
 using System.Collections;
+using UI.Game;
 using UnityEngine;
 using Weapon;
 using Weapons;
+using Zenject;
 
 namespace Player.Interaction
 {
@@ -14,12 +16,17 @@ namespace Player.Interaction
         public float castPointerTimeout = .1f;
         public LayerMask interactableMask;
         public Transform pointerForward;
-        
+
+        private DiContainer _diContainer;
+        private OnHoverMessageView _onHoverMessageView;
         
         private IInteractable _interactable;
         private IHoverable _hoverable;
-        
-        
+
+        [Inject]
+        private void Construct(DiContainer diContainer) => 
+            _diContainer = diContainer;
+
         private void OnEnable() => 
             StartCoroutine(StartCastingPointers());
 
@@ -42,16 +49,21 @@ namespace Player.Interaction
                 IHoverable newHoverable = hit.transform.gameObject.GetComponent<IHoverable>();
 
                 if(newHoverable == _hoverable)
-                    _hoverable?.OnHoverBegin();
+                {
+                    _onHoverMessageView ??= _diContainer.Resolve<OnHoverMessageView>();
+                    _onHoverMessageView.Show(_hoverable?.OnHoverBegin());
+                }
                 else
                 {
                     _hoverable?.OnHoverEnd();
+                    _onHoverMessageView?.Hide();
                     _hoverable = newHoverable;
                 }
             }
             else
             {
                 _hoverable?.OnHoverEnd();
+                _onHoverMessageView?.Hide();
                 _interactable = null;
                 _hoverable = null;
             }

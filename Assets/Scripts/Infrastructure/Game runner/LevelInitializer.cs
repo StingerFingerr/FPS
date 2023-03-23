@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Effects;
 using Game_state_machine;
 using Infrastructure;
 using UnityEngine;
@@ -31,9 +32,9 @@ namespace Game_runner
         private void Start()
         {
             _gameFactory.CreatePlayer();
-            _gameFactory.CreateCrosshairGameUI();
+            _gameFactory.CreateGameUI();
             
-            LoadProgress(); // ??
+            LoadProgress();
         }
 
         private void LoadProgress()

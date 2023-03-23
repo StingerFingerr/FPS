@@ -2,6 +2,7 @@ using Infrastructure;
 using Player;
 using Prefab_service;
 using UI.Game;
+using UnityEngine;
 using Zenject;
 
 public class GameFactory: IFactory
@@ -25,10 +26,14 @@ public class GameFactory: IFactory
         return player;
     }
 
-    public GameUI CreateCrosshairGameUI()
+    public GameUI CreateGameUI()
     {
         var prefab = _prefabService.GetGameUIPrefab();
-        return _diContainer.InstantiatePrefabForComponent<GameUI>(prefab);
+        var ui = _diContainer.InstantiatePrefabForComponent<GameUI>(prefab);
+
+        _diContainer.BindInterfacesAndSelfTo<GameUI>().FromInstance(ui);
+        
+        return ui;
     }
 
 
