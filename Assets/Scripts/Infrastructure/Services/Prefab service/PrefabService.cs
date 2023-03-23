@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Infrastructure;
+using Prefab_service;
 using UnityEngine;
 using Weapon;
 using Weapons;
@@ -11,7 +12,7 @@ public class PrefabService: ScriptableObject, IPrefabService
     public List<WeaponBase> weaponsPrefabs;
     public List<DynamicCrosshairBase> crosshairsPrefabs;
     public GameObject playerPrefab;
-    public GameObject crossHairSetuperPrefab;
+    public GameObject GameUIPrefab;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;
@@ -22,6 +23,6 @@ public class PrefabService: ScriptableObject, IPrefabService
     public GameObject GetPlayerPrefab() => 
         playerPrefab;
 
-    public GameObject GetCrosshairSetuper() => 
-        crossHairSetuperPrefab;
+    public GameObject GetGameUIPrefab() => 
+        GameUIPrefab;
 }

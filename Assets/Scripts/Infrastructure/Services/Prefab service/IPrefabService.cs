@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Infrastructure
+namespace Prefab_service
 {
     public interface IPrefabService
     {
@@ -8,6 +8,6 @@ namespace Infrastructure
         public GameObject GetCrosshairPrefabByType(CrosshairType type);
         public GameObject GetPlayerPrefab();
 
-        public GameObject GetCrosshairSetuper();
+        public GameObject GetGameUIPrefab();
     }
 }

@@ -21,5 +21,5 @@ MonoBehaviour:
   - {fileID: 6601135571122488645, guid: 4db39f1fb57117a4d95d1ac6db1bb17e, type: 3}
   playerPrefab: {fileID: 117965870200823786, guid: c4c546b258be303449ac30dc89c37570,
     type: 3}
-  crossHairSetuperPrefab: {fileID: 3194686539019092264, guid: 45974748f61daf94880fe2e1e5a5247c,
+  GameUIPrefab: {fileID: 3194686539019092264, guid: 45974748f61daf94880fe2e1e5a5247c,
     type: 3}

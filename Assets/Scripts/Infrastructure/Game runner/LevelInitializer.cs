@@ -31,9 +31,7 @@ namespace Game_runner
         private void Start()
         {
             _gameFactory.CreatePlayer();
-            _gameFactory.CreateCrosshairSetuper();
-            
-            
+            _gameFactory.CreateCrosshairGameUI();
             
             LoadProgress(); // ??
         }
