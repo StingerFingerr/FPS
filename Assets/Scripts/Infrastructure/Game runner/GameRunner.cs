@@ -13,6 +13,6 @@ namespace Game_runner
             _stateMachine = stateMachine;
 
         private void Start() => 
-            _stateMachine.Enter<LoadMainMenuState>();
+            _stateMachine.Enter<InitialState>();
     }
 }

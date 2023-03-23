@@ -9,5 +9,5 @@ public class UiInstaller: MonoInstaller
 
     private void BindCachedCrosshairFactory() =>
         Container.BindFactory<CrosshairType, DynamicCrosshairBase, DynamicCrosshairBase.CachedFactory>()
-            .FromFactory<CrosshairCachedFactory>().NonLazy();
+            .FromFactory<CrosshairCachedFactory>();
 }

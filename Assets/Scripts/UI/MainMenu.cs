@@ -14,15 +14,18 @@ namespace UI
 
         private IGameStateMachine _gameStateMachine;
         private IWarningPanel _warningPanel;
+        private IProgressService _progressService;
 
         [Inject]
         private void Construct(
             IGameStateMachine gameStateMachine,
-            IWarningPanel warningPanel
+            IWarningPanel warningPanel,
+            IProgressService progressService
             )
         {
             _gameStateMachine = gameStateMachine;
             _warningPanel = warningPanel;
+            _progressService = progressService;
         }
 
         private void OnEnable()
@@ -33,12 +36,27 @@ namespace UI
 
         private void StartNewGame()
         {
-            
+            if(_progressService.SaveExists())
+                _warningPanel.Show(String.Empty, ResetProgressAndStartNewGame);
+            else
+                ResetProgressAndStartNewGame();
+        }
+
+        private void ResetProgressAndStartNewGame()
+        {
+            _progressService.ResetProgress();
+            StartLevelLoading();
         }
 
         private void LoadSave()
         {
-            _warningPanel.Show(String.Empty);
+            if(_progressService.Load())
+                StartLevelLoading();
+            else
+                _warningPanel.Show(String.Empty);
         }
+
+        private void StartLevelLoading() => 
+            _gameStateMachine.Enter<LoadLevelState>();
     }
 }

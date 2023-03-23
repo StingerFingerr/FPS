@@ -1,6 +1,5 @@
 using Coroutine_runner;
 using Game_state_machine;
-using Infrastructure;
 using LoadingScreen;
 using Scene_service;
 using UnityEngine;
@@ -30,8 +29,10 @@ public class ProjectInstaller: MonoInstaller, ICoroutineRunner
 
     private void BindGameStates()
     {
-        Container.Bind<LoadMainMenuState>().AsSingle();
-        Container.Bind<MainMenuState>().AsSingle();
+        Container.Bind<InitialState>().AsSingle();
+        Container.Bind<MenuBuilderState>().AsSingle();
+        Container.Bind<LoadLevelState>().AsSingle();
+        Container.Bind<GameLoopState>().AsSingle();
     }
 
     private void BindProgressService() => 
