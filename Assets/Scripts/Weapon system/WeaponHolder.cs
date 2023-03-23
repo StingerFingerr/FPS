@@ -41,7 +41,7 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
         CurrentWeapon?.ThrowAway();
         CurrentWeapon = null;
         
-        OnWeaponSwitched?.Invoke(null, -1);
+        OnWeaponSwitched?.Invoke(null, _weaponIndex);
     }
     
     private void OnScroll(InputValue inputValue)
