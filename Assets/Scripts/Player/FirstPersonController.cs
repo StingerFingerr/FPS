@@ -1,16 +1,20 @@
 ﻿using System;
+using Game_logic;
+using Helpers;
+using Infrastructure;
 using Player.Inputs;
 using Player.Player_settings;
 using Player.Player_stance;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
+using Weapons;
 
 namespace Player
 {
 	[RequireComponent(typeof(CharacterController))]
 	[RequireComponent(typeof(PlayerInput))]
-	public class FirstPersonController : MonoBehaviour
+	public class FirstPersonController : MonoBehaviour, IProgressReader, IProgressWriter
 	{
 		public Stances stances;
 		public WeaponHolder weaponHolder;
@@ -23,11 +27,11 @@ namespace Player
 
 		[Space(10)]
 		public float jumpTimeout = 0.1f;
-
-
 		public float fallTimeout = 0.15f;
 
-		public bool isGrounded = true;
+		public bool IsMoving => _input.move != Vector2.zero;
+		public bool IsLooking => _input.look.magnitude > 1;
+		public bool IsGrounded { get; set; } = true;
 		public float groundedOffset = -0.14f;
 		public float groundedRadius = 0.5f;
 		public LayerMask groundLayers;
@@ -56,10 +60,10 @@ namespace Player
 
 		private void OnEnable()
 		{
-			weaponHolder.SwitchCurrentWeapon += SetCurrentWeapon;
+			weaponHolder.OnWeaponSwitched += SetCurrentWeaponSwitched;
 		}
 
-		private void SetCurrentWeapon(WeaponBase weapon)
+		private void SetCurrentWeaponSwitched(WeaponBase weapon, int index)
 		{
 			if(_weapon)
 				_weapon.OnShot -= SetRecoil;
@@ -100,7 +104,7 @@ namespace Player
 		private void GroundedCheck()
 		{
 			Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z);
-			isGrounded = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers, QueryTriggerInteraction.Ignore);
+			IsGrounded = Physics.CheckSphere(spherePosition, groundedRadius, groundLayers, QueryTriggerInteraction.Ignore);
 		}
 
 		private void CameraRotation()
@@ -175,7 +179,7 @@ namespace Player
 
 		private void JumpAndGravity()
 		{
-			if (isGrounded)
+			if (IsGrounded)
 			{
 				_fallTimeoutDelta = fallTimeout;
 
@@ -225,7 +229,7 @@ namespace Player
 			Color transparentGreen = new Color(0.0f, 1.0f, 0.0f, 0.35f);
 			Color transparentRed = new Color(1.0f, 0.0f, 0.0f, 0.35f);
 
-			if (isGrounded) Gizmos.color = transparentGreen;
+			if (IsGrounded) Gizmos.color = transparentGreen;
 			else Gizmos.color = transparentRed;
 
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - groundedOffset, transform.position.z), groundedRadius);
@@ -233,5 +237,19 @@ namespace Player
 
 		private void SetRecoil(Vector2 recoil) => 
 			_recoil = recoil;
+
+		public void Load(Progress progress)
+		{
+			transform.position = progress.PlayerState.position.ToVector3();
+			transform.eulerAngles = progress.PlayerState.rotation.ToVector3();
+			cameraHolder.eulerAngles = progress.PlayerState.cameraRotation.ToVector3();
+		}
+		
+		public void Save(Progress progress)
+		{
+			progress.PlayerState.position = transform.position.ToVec3();
+			progress.PlayerState.rotation = transform.eulerAngles.ToVec3();
+			progress.PlayerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();
+		}
 	}
 }
