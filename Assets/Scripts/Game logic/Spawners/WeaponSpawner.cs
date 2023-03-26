@@ -14,7 +14,7 @@ namespace Game_logic.Spawners
         private void Construct(WeaponBase.Factory weaponFactory) => 
             _weaponFactory = weaponFactory;
 
-        private void Start()
+        public void Spawn()
         {
             var weapon = _weaponFactory.Create(weaponName);
             weapon.transform.position = transform.position;
