@@ -118,6 +118,7 @@ GameObject:
   - component: {fileID: -985781183280973038}
   - component: {fileID: 6821696098065409608}
   - component: {fileID: 8664744063532756946}
+  - component: {fileID: 1093619850417959813}
   m_Layer: 11
   m_Name: M4_8
   m_TagString: Untagged
@@ -242,7 +243,7 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
@@ -258,46 +259,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee49d424a4e41e48a550d8c5d4bc0c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pulsingPattern:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: -0.017898029
-      outSlope: -0.017898029
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.22519818
-    - serializedVersion: 3
-      time: 0.5
-      value: 1
-      inSlope: 0.028764281
-      outSlope: 0.028764281
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0.0033514048
-      outSlope: 0.0033514048
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.36680487
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  pulsationSpeed: 0.5
-  pulsationSize: 5
-  minPulsationSize: 1
-  pulsationOffset: 0.3
-  outline: {fileID: 4068752765432467985}
+  interactableObject: {fileID: 1093619850417959813}
   onHoverTerm: WeaponOnHoverMessage
   onHoverName: M4
+  outline: {fileID: 4068752765432467985}
 --- !u!114 &-3614463239454624219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -436,6 +401,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1093619850417959813
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5558015366341336929}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee849a707b6545c58ef66371c1234401, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7222120470481290797
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,7 +653,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.78645355, b: 0.0037735105, a: 1}
-  outlineWidth: 1
+  outlineWidth: 2
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []

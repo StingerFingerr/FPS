@@ -1,5 +1,4 @@
-﻿using System;
-using Game_logic;
+﻿using Game_logic;
 using Helpers;
 using Infrastructure;
 using Player.Inputs;
@@ -7,7 +6,6 @@ using Player.Player_settings;
 using Player.Player_stance;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Weapon;
 using Weapons;
 
 namespace Player
