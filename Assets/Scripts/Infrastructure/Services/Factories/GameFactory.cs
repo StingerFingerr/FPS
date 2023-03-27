@@ -1,5 +1,6 @@
 using Infrastructure;
 using Player;
+using Player.Inputs;
 using Prefab_service;
 using UI.Game;
 using UnityEngine;
@@ -22,6 +23,7 @@ public class GameFactory: IFactory
         var player = _diContainer.InstantiatePrefabForComponent<FirstPersonController>(prefab);
 
         _diContainer.BindInterfacesAndSelfTo<FirstPersonController>().FromInstance(player);
+        _diContainer.BindInstance(player.GetComponent<PlayerInputs>());
         
         return player;
     }

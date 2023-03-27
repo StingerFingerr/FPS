@@ -1,3 +1,4 @@
+using System;
 using Player.Player_stance;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,7 @@ namespace Player.Inputs
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public event Action onInteract; 
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -48,6 +50,11 @@ namespace Player.Inputs
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+
+		private void OnInteract(InputValue value)
+		{
+			onInteract?.Invoke();
 		}
 #endif
 

@@ -1,6 +1,5 @@
-using System;
 using System.Collections.Generic;
-using Effects;
+using Game_logic.Spawners;
 using Game_state_machine;
 using Infrastructure;
 using UnityEngine;
@@ -29,12 +28,19 @@ namespace Game_runner
         }
 
 
-        private void Start()
+        private void Awake()
         {
             _gameFactory.CreatePlayer();
             _gameFactory.CreateGameUI();
-            
+            CreateWeapons();
+
             LoadProgress();
+        }
+
+        private static void CreateWeapons()
+        {
+            foreach (var spawner in GameObject.FindObjectsOfType<WeaponSpawner>())
+                spawner.Spawn();
         }
 
         private void LoadProgress()

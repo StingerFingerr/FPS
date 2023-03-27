@@ -1,5 +1,5 @@
-using System;
 using DG.Tweening;
+using Player.Interaction;
 using TMPro;
 using UnityEngine;
 
@@ -12,26 +12,51 @@ namespace UI.Game
         public float showScaleDuration = .5f;
 
         public float hideFadeDuration = .5f;
+        public float hideFadeOffset = 1f;
 
-        public void Show(string message)
+        private bool _isActive;
+        private Tween _hidingTween;
+        
+        private void OnEnable()
+        {
+            HoverableObject.onHoverBegin += Show;
+            HoverableObject.onHoverEnd += Hide;
+        }
+
+        private void OnDisable()
+        {
+            HoverableObject.onHoverBegin -= Show;
+            HoverableObject.onHoverEnd -= Hide;
+        }
+
+        private void Show(string message)
         {
             messageText.text = message;
 
-            DOTween.Sequence()
-                .Append(messageText.DOFade(1, showFadeDuration))
-                .Append(messageText.transform
-                    .DOScale(1, showScaleDuration)
-                    .SetEase(Ease.OutQuart));
-
+            _hidingTween?.Kill();
+            _hidingTween = null;
+            
+            if (_isActive is false)
+            {
+                DOTween.Sequence()
+                    .Append(messageText.DOFade(1, showFadeDuration))
+                    .Append(messageText.transform
+                        .DOScale(1, showScaleDuration)
+                        .SetEase(Ease.OutQuart));
+            }
+            _isActive = true;
         }
 
-        public void Hide()
+        private void Hide()
         {
-            DOTween.Sequence()
-                .Append(messageText.DOFade(0, hideFadeDuration))
-                .AppendInterval(hideFadeDuration)
-                .onComplete += () => messageText.transform.localScale = Vector3.zero;
+            if (_isActive)
+            {
+                _hidingTween = DOTween.Sequence()
+                    .AppendInterval(hideFadeOffset)
+                    .Append(messageText.DOFade(0, hideFadeDuration))
+                    .AppendInterval(hideFadeDuration);
+            }
+            _isActive = false;
         }
-        
     }
 }

@@ -4,19 +4,12 @@ using Zenject;
 
 public class SceneInstaller: MonoInstaller
 {
-    public OnHoverMessageView onHoverMessageView;
-    
     public override void InstallBindings()
     {
         BindWeaponSlots();
         BindWeaponHolder();
-        BindOnHoverMessageView();
     }
 
-    private void BindOnHoverMessageView()
-    {
-        Container.Bind<OnHoverMessageView>().FromComponentInNewPrefab(onHoverMessageView).AsSingle();
-    }
 
     private void BindWeaponHolder() => 
         Container.BindInterfacesAndSelfTo<WeaponHolder>().FromMethod(GetWeaponHolder);
