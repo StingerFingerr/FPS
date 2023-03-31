@@ -21,5 +21,9 @@ MonoBehaviour:
   - {fileID: 6601135571122488645, guid: 4db39f1fb57117a4d95d1ac6db1bb17e, type: 3}
   playerPrefab: {fileID: 117965870200823786, guid: c4c546b258be303449ac30dc89c37570,
     type: 3}
-  GameUIPrefab: {fileID: 3194686539019092264, guid: 45974748f61daf94880fe2e1e5a5247c,
+  gameUIPrefab: {fileID: 3194686539019092264, guid: 45974748f61daf94880fe2e1e5a5247c,
+    type: 3}
+  gameInventoryPrefab: {fileID: 7049241882072529530, guid: c9d1667a867473343a9636bf105b44a8,
+    type: 3}
+  inventoryDraggableItemPrefab: {fileID: 3024481240443304120, guid: d753bbb32d76209458920bb5107da601,
     type: 3}

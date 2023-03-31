@@ -114,6 +114,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Tab",
+                    "type": "Button",
+                    "id": "cae44b38-d33b-4a3c-a538-24e941d2da40",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "ThrowAway",
                     "type": "Button",
                     "id": "afa6e406-e399-479e-b0ee-e3089198babc",
@@ -449,6 +458,45 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchFiringMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "46c088c6-3322-4969-b784-91e7b8b5291d",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Inventory",
+            "id": "495bbf11-ac14-41bf-809e-bb0ef8971b14",
+            "actions": [
+                {
+                    "name": "Tab",
+                    "type": "Button",
+                    "id": "cf153d37-b2c6-49a8-bd79-0dc295992c4d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "b89f5126-cd0b-4db6-bccd-eac87954d18d",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

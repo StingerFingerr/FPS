@@ -238,16 +238,16 @@ namespace Player
 
 		public void Load(Progress progress)
 		{
-			transform.position = progress.PlayerState.position.ToVector3();
-			transform.eulerAngles = progress.PlayerState.rotation.ToVector3();
-			cameraHolder.eulerAngles = progress.PlayerState.cameraRotation.ToVector3();
+			transform.position = progress.playerState.position.ToVector3();
+			transform.eulerAngles = progress.playerState.rotation.ToVector3();
+			cameraHolder.eulerAngles = progress.playerState.cameraRotation.ToVector3();
 		}
 		
 		public void Save(Progress progress)
 		{
-			progress.PlayerState.position = transform.position.ToVec3();
-			progress.PlayerState.rotation = transform.eulerAngles.ToVec3();
-			progress.PlayerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();
+			progress.playerState.position = transform.position.ToVec3();
+			progress.playerState.rotation = transform.eulerAngles.ToVec3();
+			progress.playerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();
 		}
 	}
 }

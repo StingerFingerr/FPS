@@ -1,9 +1,7 @@
-using Infrastructure;
 using Player;
 using Player.Inputs;
 using Prefab_service;
 using UI.Game;
-using UnityEngine;
 using Zenject;
 
 public class GameFactory: IFactory
@@ -22,8 +20,8 @@ public class GameFactory: IFactory
         var prefab = _prefabService.GetPlayerPrefab();
         var player = _diContainer.InstantiatePrefabForComponent<FirstPersonController>(prefab);
 
-        _diContainer.BindInterfacesAndSelfTo<FirstPersonController>().FromInstance(player);
-        _diContainer.BindInstance(player.GetComponent<PlayerInputs>());
+        _diContainer.BindInterfacesAndSelfTo<FirstPersonController>().FromInstance(player).AsSingle();
+        _diContainer.BindInstance(player.GetComponent<PlayerInputs>()).AsSingle();
         
         return player;
     }
@@ -32,9 +30,13 @@ public class GameFactory: IFactory
     {
         var prefab = _prefabService.GetGameUIPrefab();
         var ui = _diContainer.InstantiatePrefabForComponent<GameUI>(prefab);
+        return ui;
+    }
 
-        _diContainer.BindInterfacesAndSelfTo<GameUI>().FromInstance(ui);
-        
+    public UIInventory CreateInventoryUI()
+    {
+        var prefab = _prefabService.GetInventoryUIPrefab();
+        var ui = _diContainer.InstantiatePrefabForComponent<UIInventory>(prefab);
         return ui;
     }
 

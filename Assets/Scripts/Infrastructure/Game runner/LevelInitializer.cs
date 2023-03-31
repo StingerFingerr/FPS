@@ -33,6 +33,7 @@ namespace Game_runner
             _gameFactory.CreatePlayer();
             _gameFactory.CreateGameUI();
             CreateWeapons();
+            _gameFactory.CreateInventoryUI();
 
             LoadProgress();
         }
@@ -45,7 +46,9 @@ namespace Game_runner
 
         private void LoadProgress()
         {
-            if(_progressService.Progress is not null)
+            if(_progressService.Progress is null)
+                _diContainer.Resolve<List<IProgressInitializer>>().ForEach(i => i.InitializeProgressData());
+            else
                 _diContainer.Resolve<List<IProgressReader>>().ForEach(r => r.Load(_progressService.Progress));
             
             _gameStateMachine.Enter<GameLoopState>();
