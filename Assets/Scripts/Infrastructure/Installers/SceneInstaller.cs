@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UI.Game;
 using Zenject;
 
 public class SceneInstaller: MonoInstaller
@@ -8,6 +7,14 @@ public class SceneInstaller: MonoInstaller
     {
         BindWeaponSlots();
         BindWeaponHolder();
+
+        BindIInventory();
+    }
+
+    private void BindIInventory()
+    {
+        Container.BindInterfacesAndSelfTo<GridInventory>().AsSingle();
+        //Container.Bind<IInventory>().To<GridInventory>().AsSingle();
     }
 
 

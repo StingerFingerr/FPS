@@ -2,9 +2,9 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace UI.Game
+namespace UI.Game.Game_UI
 {
-    public class AmmoView: MonoBehaviour
+    public class UIAmmo: MonoBehaviour
     {
         public TextMeshProUGUI ammoText;
         public float showDuration = .5f;

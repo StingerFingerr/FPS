@@ -7,6 +7,7 @@ public class FactoriesInstaller: MonoInstaller
     {
         BindGameFactory();
         BindWeaponFactory();
+
     }
 
     private void BindGameFactory() => 

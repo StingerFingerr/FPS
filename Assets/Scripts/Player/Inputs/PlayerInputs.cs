@@ -16,7 +16,8 @@ namespace Player.Inputs
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
-		public event Action onInteract; 
+		public event Action onInteract;
+		public event Action onTab;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -55,6 +56,11 @@ namespace Player.Inputs
 		private void OnInteract(InputValue value)
 		{
 			onInteract?.Invoke();
+		}
+
+		private void OnTab(InputValue value)
+		{
+			onTab?.Invoke();
 		}
 #endif
 

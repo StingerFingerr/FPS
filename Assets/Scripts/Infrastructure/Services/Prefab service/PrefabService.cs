@@ -1,18 +1,17 @@
 using System.Collections.Generic;
 using System.Linq;
-using Infrastructure;
 using Prefab_service;
 using UnityEngine;
-using Weapon;
 using Weapons;
 
-[CreateAssetMenu(menuName = "Services/PrefabService", fileName = "PrefabService")]
+[CreateAssetMenu(menuName = "Services/create PrefabService", fileName = "PrefabService")]
 public class PrefabService: ScriptableObject, IPrefabService
 {
     public List<WeaponBase> weaponsPrefabs;
     public List<DynamicCrosshairBase> crosshairsPrefabs;
     public GameObject playerPrefab;
-    public GameObject GameUIPrefab;
+    public GameObject gameUIPrefab;
+    public GameObject gameInventoryPrefab;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;
@@ -24,5 +23,8 @@ public class PrefabService: ScriptableObject, IPrefabService
         playerPrefab;
 
     public GameObject GetGameUIPrefab() => 
-        GameUIPrefab;
+        gameUIPrefab;
+
+    public GameObject GetInventoryUIPrefab() => 
+        gameInventoryPrefab;
 }

@@ -1,6 +1,8 @@
 using System;
 using Animation;
+using Attachment_system;
 using Player.Interaction;
+using UI.Game.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
@@ -35,6 +37,7 @@ namespace Weapons
         public Rigidbody rigidBody;
 
         public Sprite icon;
+        public UIInventoryWeaponItem uiInventoryWeaponItem;
 
         public bool allowRun = true;
         

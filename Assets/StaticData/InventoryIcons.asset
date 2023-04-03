@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c027daaf4a4a4865978338f4cee1ea26, type: 3}
+  m_Name: InventoryIcons
+  m_EditorClassIdentifier: 
+  ammo: {fileID: 21300000, guid: 15a479c42307f334c96dd61bf459cc61, type: 3}
+  medKitLittle: {fileID: 21300000, guid: f7e91c9304cad294584c61504d0aa385, type: 3}
+  medKitBig: {fileID: 21300000, guid: 57b32d209e451e24890346924355ead0, type: 3}
+  silencer: {fileID: 21300000, guid: 4a2b2120fdd51424e8e81fff46e7ef0b, type: 3}
+  compensator: {fileID: 21300000, guid: 4443f26e8c8ed3245bbe3efa12661edb, type: 3}
+  extendedMagazine: {fileID: 0}

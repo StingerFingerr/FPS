@@ -9,5 +9,6 @@ namespace Prefab_service
         public GameObject GetPlayerPrefab();
 
         public GameObject GetGameUIPrefab();
+        public GameObject GetInventoryUIPrefab();
     }
 }

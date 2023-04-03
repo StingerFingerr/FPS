@@ -3,9 +3,9 @@ using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
-namespace UI.Game
+namespace UI.Game.Game_UI
 {
-    public class GrenadesView: MonoBehaviour
+    public class UIGrenades: MonoBehaviour
     {
         public TextMeshProUGUI grenadesText;
 

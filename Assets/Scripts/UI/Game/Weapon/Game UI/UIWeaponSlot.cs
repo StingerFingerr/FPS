@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI.Game
+namespace UI.Game.Game_UI
 {
-    public class WeaponSlotView: MonoBehaviour
+    public class UIWeaponSlot: MonoBehaviour
     {
         public Image weaponIcon;
         

@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04b4c034a30c3f24cbf0ab97c9b2d494, type: 3}
-  m_Name: PrefabServiceInstaller
+  m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
+  m_Name: Silencer info
   m_EditorClassIdentifier: 
-  prefabService: {fileID: 11400000, guid: d3670338520f28f4ba54b1d9d8ce9636, type: 2}
+  title: Silencer
+  description: 
+  maxItemsInSlot: 1
+  isStackable: 0
+  type: 4
+  secondaryType: 1
