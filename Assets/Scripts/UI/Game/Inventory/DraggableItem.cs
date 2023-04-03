@@ -1,5 +1,5 @@
 using TMPro;
-using UI;
+using UI.Game.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -11,7 +11,8 @@ public class DraggableItem: MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI amountText;
 
-    public UIInventorySlot UIInventorySlot { get; private set; }
+    public UISlot UIInventorySlot { get; private set; }
+    public InventoryItemInfo ItemInfo { get; set; }
 
     private IInventoryIcons _inventoryIcons;
     
@@ -26,15 +27,19 @@ public class DraggableItem: MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     {
         _rectTransform = GetComponent<RectTransform>();
         _canvasGroup = GetComponent<CanvasGroup>();
-        UIInventorySlot = GetComponentInParent<UIInventorySlot>();
+        UIInventorySlot = GetComponentInParent<UISlot>();
     }
 
-    public void Hide() => 
+    public void Hide()
+    {
+        ItemInfo = null;
         gameObject.SetActive(false);
+    }
 
     public void SetNewInfo(InventoryItemInfo itemInfo, int amount)
     {
-        icon.sprite = _inventoryIcons.GetIcon(itemInfo.type);
+        ItemInfo = itemInfo;
+        icon.sprite = _inventoryIcons.GetIcon(itemInfo);
         if (amount > 1)
         {
             amountText.text = $"x{amount}";

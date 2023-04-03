@@ -238,7 +238,7 @@ MonoBehaviour:
   - {fileID: 1426075486}
   emptyWeaponSlotIcon: {fileID: 21300000, guid: d1b499f4d28d8a846a228c5f81fa9dad,
     type: 3}
-  ammoView: {fileID: 1121338525156487311}
+  uiAmmo: {fileID: 1121338525156487311}
   slots: {fileID: 758737928}
   slotsYPos:
   - -70

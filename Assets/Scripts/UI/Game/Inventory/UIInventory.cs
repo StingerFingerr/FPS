@@ -12,6 +12,8 @@ public class UIInventory: MonoBehaviour
     public InventoryItemInfo bulletsInfo;
     public InventoryItemInfo medKitLittleInfo;
     public InventoryItemInfo medKitBigInfo;
+    public InventoryItemInfo silencerInfo;
+    public InventoryItemInfo compensatorInfo;
     
     private IInventory _inventory;
     private PlayerInputs _playerInputs;
@@ -32,6 +34,14 @@ public class UIInventory: MonoBehaviour
         SetupUIInventorySlots();
         RefreshSlots();
 
+        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[22], compensatorInfo);
+        //FillInventory();
+
+        CloseInventory();
+    }
+
+    private void FillInventory()
+    {
         _inventory.TryToAdd(bulletsInfo, 30);
         _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[10], bulletsInfo, 5);
         _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[12], medKitLittleInfo, 5);
@@ -39,8 +49,8 @@ public class UIInventory: MonoBehaviour
         _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[15], medKitLittleInfo, 10);
         _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[17], medKitBigInfo, 10);
         _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[18], medKitBigInfo, 10);
-        
-        CloseInventory();
+        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[19], silencerInfo);
+        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[22], silencerInfo);
     }
 
     private void OnEnable()

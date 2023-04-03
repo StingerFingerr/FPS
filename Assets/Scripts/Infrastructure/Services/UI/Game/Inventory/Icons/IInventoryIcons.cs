@@ -2,5 +2,5 @@ using UnityEngine;
 
 public interface IInventoryIcons
 {
-    Sprite GetIcon(InventoryItemType type);
+    Sprite GetIcon(InventoryItemInfo info);
 }

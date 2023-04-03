@@ -3,13 +3,13 @@ using UnityEngine;
 using Weapons;
 using Zenject;
 
-namespace UI.Game
+namespace UI.Game.Game_UI
 {
-    public class WeaponHolderView: MonoBehaviour
+    public class UIWeaponHolder: MonoBehaviour
     {
-        public WeaponSlotView[] weaponSlotViews;
+        public UIWeaponSlot[] weaponSlotViews;
         public Sprite emptyWeaponSlotIcon;
-        public AmmoView ammoView;
+        public UIAmmo uiAmmo;
 
         public RectTransform slots;
         public float[] slotsYPos;
@@ -49,9 +49,9 @@ namespace UI.Game
         private void SwitchWeapon(WeaponBase weapon, int index)
         {
             if(weapon is null)
-                ammoView.Hide();
+                uiAmmo.Hide();
             else
-                ammoView.Show(Random.Range(1,20), 20);
+                uiAmmo.Show(Random.Range(1,20), 20);
 
             SetWeaponSlotView(weapon, index);
             SetActiveSlotByIndex(index);
@@ -68,7 +68,7 @@ namespace UI.Game
             
             for (int i = 0; i < weaponSlotViews.Length; i++)
             {
-                WeaponSlotView slot = weaponSlotViews[i];
+                UIWeaponSlot slot = weaponSlotViews[i];
                 if (i == index)
                 {
                     DOTween.Sequence()

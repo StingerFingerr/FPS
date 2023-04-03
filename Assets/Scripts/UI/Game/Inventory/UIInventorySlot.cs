@@ -1,34 +1,29 @@
-using DG.Tweening;
+using UI.Game.Inventory;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
-using Zenject;
 
-public class UIInventorySlot: MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+public class UIInventorySlot: UISlot
 {
-    public DraggableItem draggableItem;
-
-    public Image slotBack;
-    public Color normalColor;
-    public Color highlightedColor;
-
-    private IInventory _inventory;
     public IInventorySlot InventorySlot { get; private set; }
 
-    [Inject]
-    private void Construct(IInventory inventory) => 
-        _inventory = inventory;
-
-    public void SetupInventorySlot(IInventorySlot slot) => 
-        InventorySlot = slot;
-
-    public void OnDrop(PointerEventData eventData)
+    public override void OnDrop(PointerEventData eventData)
     {
-        var draggableItem = eventData.pointerDrag.GetComponent<DraggableItem>();
+        var item = eventData.pointerDrag.GetComponent<DraggableItem>();
 
-        draggableItem.OnEndDrag(null);
-        
-        _inventory.MoveItemFromSlotToSlot(draggableItem.UIInventorySlot.InventorySlot, InventorySlot);
+        item.OnEndDrag(null);
+
+        if (item.UIInventorySlot is UIInventorySlot uiInventorySlot)
+        {
+            Inventory.MoveItemFromSlotToSlot(uiInventorySlot.InventorySlot, InventorySlot);
+            return;
+        }
+
+        if (item.UIInventorySlot is UIInventoryAttachmentSlot uiAttachmentSlot)
+        {
+            Inventory.TryToAddIntoSlot(InventorySlot, uiAttachmentSlot.ItemInfo);
+            uiAttachmentSlot.Clear();
+
+        }
     }
 
     public void Refresh()
@@ -39,9 +34,6 @@ public class UIInventorySlot: MonoBehaviour, IDropHandler, IPointerEnterHandler,
             draggableItem.SetNewInfo(InventorySlot.ItemInfo, InventorySlot.Amount);
     }
 
-    public void OnPointerEnter(PointerEventData eventData) => 
-        slotBack.DOColor(highlightedColor, .1f);
-
-    public void OnPointerExit(PointerEventData eventData) => 
-        slotBack.DOColor(normalColor, .1f);
+    public void SetupInventorySlot(IInventorySlot slot) => 
+        InventorySlot = slot;
 }

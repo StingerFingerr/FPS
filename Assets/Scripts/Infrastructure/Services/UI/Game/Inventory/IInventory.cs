@@ -11,5 +11,6 @@ public interface IInventory: IProgressReader, IProgressWriter, IProgressInitiali
     int GetAmountOfItems(InventoryItemInfo itemInfo);
     void MoveItemFromSlotToSlot(IInventorySlot fromSlot, IInventorySlot toSlot);
     bool TryToAddIntoSlot(IInventorySlot slot, InventoryItemInfo itemInfo, int count = 1);
+    void RemoveFromSlot(IInventorySlot slot);
 
 }

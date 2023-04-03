@@ -4,6 +4,6 @@ public enum InventoryItemType
     Ammo,
     MedKitLittle,
     MedKitBig,
-    
-        
+    Attachment,
+       
 }

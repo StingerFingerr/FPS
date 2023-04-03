@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using Game_logic;
-using UnityEngine;
 
 public class GridInventory: IInventory
 {
@@ -9,16 +8,11 @@ public class GridInventory: IInventory
     
     private List<InventorySlot> _slots;
     
-    public void Load(Progress progress)
-    {
+    public void Load(Progress progress) => 
         _slots = progress.inventorySlots;
-        Debug.Log($"load: {_slots.Count} slots");
-    }
 
-    public void Save(Progress progress)
-    {
+    public void Save(Progress progress) => 
         progress.inventorySlots = _slots;
-    }
 
     public void InitializeProgressData()
     {
@@ -74,6 +68,14 @@ public class GridInventory: IInventory
         InvokeSuccessfulAdding(itemInfo, amountToAdd);
         
         return TryToAdd(itemInfo, amountLeft);
+    }
+
+    public void RemoveFromSlot(IInventorySlot slot)
+    {
+        slot.Amount = 0;
+        slot.ItemInfo = null;
+        
+        OnInventoryStateChanged?.Invoke();
     }
 
     private bool TryToAddIntoEmptySlot(InventoryItemInfo itemInfo, int amount = 1)
