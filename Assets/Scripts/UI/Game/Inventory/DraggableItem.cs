@@ -1,15 +1,17 @@
 using TMPro;
 using UI.Game.Inventory;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Zenject;
 
 [RequireComponent(typeof(CanvasGroup))]
-public class DraggableItem: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DraggableItem: MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler, IPointerEnterHandler, IPointerExitHandler
 {
     [SerializeField] private Image icon;
     [SerializeField] private TextMeshProUGUI amountText;
+    [SerializeField] private DraggableItemInfoPanel infoPanel;
 
     public UISlot UIInventorySlot { get; private set; }
     public InventoryItemInfo ItemInfo { get; set; }
@@ -57,6 +59,7 @@ public class DraggableItem: MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     {
         UIInventorySlot.transform.SetAsLastSibling();
         _canvasGroup.blocksRaycasts = false;
+        infoPanel.Close();
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -68,5 +71,19 @@ public class DraggableItem: MonoBehaviour, IBeginDragHandler, IEndDragHandler, I
     {
         transform.localPosition = Vector3.zero;
         _canvasGroup.blocksRaycasts = true;
+    }
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        if(ItemInfo is not  null)
+        {
+            UIInventorySlot.transform.SetAsLastSibling();
+            infoPanel.Open(ItemInfo);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        infoPanel.Close();
     }
 }

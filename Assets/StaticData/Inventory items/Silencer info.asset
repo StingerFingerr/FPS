@@ -13,7 +13,9 @@ MonoBehaviour:
   m_Name: Silencer info
   m_EditorClassIdentifier: 
   title: Silencer
-  description: 
+  description: "\u0414\u0435\u043B\u0430\u0435\u0442 \u0437\u0432\u0443\u043A \u0432\u044B\u0441\u0442\u0440\u0435\u043B\u0430
+    \u0442\u0438\u0448\u0435, \u043D\u043E \u0443\u043C\u0435\u043D\u044C\u0448\u0430\u0435\u0442
+    \u0443\u0440\u043E\u043D"
   maxItemsInSlot: 1
   isStackable: 0
   type: 4

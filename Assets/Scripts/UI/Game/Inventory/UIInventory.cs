@@ -34,8 +34,8 @@ public class UIInventory: MonoBehaviour
         SetupUIInventorySlots();
         RefreshSlots();
 
-        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[22], compensatorInfo);
-        //FillInventory();
+        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[25], compensatorInfo);
+        FillInventory();
 
         CloseInventory();
     }
