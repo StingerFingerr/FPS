@@ -11,6 +11,7 @@ namespace UI.Game.Inventory
 
         public void SetWeapon(WeaponBase weapon)
         {
+            Clear();
             _weapon = weapon;
 
             if (_weapon is null)
