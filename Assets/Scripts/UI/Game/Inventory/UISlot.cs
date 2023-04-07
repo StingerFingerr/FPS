@@ -6,7 +6,7 @@ using Zenject;
 
 namespace UI.Game.Inventory
 {
-    public abstract class UISlot: MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler
+    public abstract class UISlot: MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
     {
         public DraggableItem draggableItem;
 
@@ -21,6 +21,7 @@ namespace UI.Game.Inventory
             Inventory = inventory;
 
         public abstract void OnDrop(PointerEventData eventData);
+        public abstract void Drop();
         public virtual void Clear(){}
 
         public void OnPointerEnter(PointerEventData eventData) => 
@@ -28,5 +29,12 @@ namespace UI.Game.Inventory
 
         public void OnPointerExit(PointerEventData eventData) => 
             slotBack.DOColor(normalColor, .1f);
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (eventData.button == PointerEventData.InputButton.Right)            
+                Drop();
+
+        }
     }
 }

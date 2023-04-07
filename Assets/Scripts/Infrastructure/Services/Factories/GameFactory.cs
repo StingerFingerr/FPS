@@ -1,4 +1,5 @@
 using Player;
+using Player.Collectable_items;
 using Player.Inputs;
 using Prefab_service;
 using UI.Game;
@@ -22,6 +23,7 @@ public class GameFactory: IFactory
 
         _diContainer.BindInterfacesAndSelfTo<FirstPersonController>().FromInstance(player).AsSingle();
         _diContainer.BindInstance(player.GetComponent<PlayerInputs>()).AsSingle();
+        _diContainer.BindInstance(player.GetComponentInChildren<CollectableItemDropper>()).AsSingle();
         
         return player;
     }

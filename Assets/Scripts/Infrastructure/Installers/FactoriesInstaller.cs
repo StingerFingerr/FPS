@@ -1,3 +1,5 @@
+using Game_logic.Collectable_items;
+using MemoryPools;
 using Weapons;
 using Zenject;
 
@@ -8,7 +10,19 @@ public class FactoriesInstaller: MonoInstaller
         BindGameFactory();
         BindWeaponFactory();
 
+        //BindCollectableItemsFactory();
+        Container.Bind<CollectableItemAbstractFactory>().AsSingle();
+        BindCollectableItemsPool();
     }
+
+    private void BindCollectableItemsPool() => 
+        Container.Bind<CollectableItemsPool>().AsSingle();
+
+    //private void BindCollectableItemsFactory() => 
+    //    Container
+    //        .BindFactory<InventoryItemInfo, BaseCollectableItem, BaseCollectableItem.Factory>()
+    //        .FromFactory<CollectableItemAbstractFactory>()
+    //        .NonLazy();
 
     private void BindGameFactory() => 
         Container.Bind<GameFactory>().AsSingle();
