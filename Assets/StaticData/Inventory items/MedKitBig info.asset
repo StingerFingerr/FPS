@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
   m_Name: MedKitBig info
   m_EditorClassIdentifier: 
-  title: Med kit big
-  description: '-'
+  titleTerm: MedkitTitle
+  descriptionTerm: MedkitDescription
   maxItemsInSlot: 0
   isStackable: 0
   type: 3
+  secondaryType: 0

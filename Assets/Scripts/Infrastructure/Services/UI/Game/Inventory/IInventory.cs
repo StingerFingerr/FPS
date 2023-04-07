@@ -6,11 +6,11 @@ public interface IInventory: IProgressReader, IProgressWriter, IProgressInitiali
 {
     event Action OnInventoryStateChanged;
 
-    bool TryToAdd(InventoryItemInfo itemInfo, int amount);
+    bool TryToAdd(InventoryItemInfo itemInfo, int amount, out int restAmount);
     List<InventorySlot> GetAllSlots();
     int GetAmountOfItems(InventoryItemInfo itemInfo);
     void MoveItemFromSlotToSlot(IInventorySlot fromSlot, IInventorySlot toSlot);
-    bool TryToAddIntoSlot(IInventorySlot slot, InventoryItemInfo itemInfo, int count = 1);
+    bool TryToAddIntoSlot(IInventorySlot slot, InventoryItemInfo itemInfo, out int restAmount, int count = 1);
     void RemoveFromSlot(IInventorySlot slot);
 
 }

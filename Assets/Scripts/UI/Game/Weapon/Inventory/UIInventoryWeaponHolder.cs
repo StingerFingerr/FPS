@@ -9,7 +9,6 @@ namespace UI.Game.Inventory
         [SerializeField] private UIInventoryWeaponSlot[] slots;
         private WeaponHolder _weaponHolder;
 
-
         [Inject]
         private void Construct(WeaponHolder weaponHolder) => 
             _weaponHolder = weaponHolder;

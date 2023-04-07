@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Game_logic.Collectable_items;
 using Prefab_service;
 using UnityEngine;
 using Weapons;
@@ -12,6 +13,7 @@ public class PrefabService: ScriptableObject, IPrefabService
     public GameObject playerPrefab;
     public GameObject gameUIPrefab;
     public GameObject gameInventoryPrefab;
+    public List<BaseCollectableItem> collectableItemsPrefabs;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;
@@ -27,4 +29,9 @@ public class PrefabService: ScriptableObject, IPrefabService
 
     public GameObject GetInventoryUIPrefab() => 
         gameInventoryPrefab;
+
+    public GameObject GetCollectableItemPrefab(InventoryItemInfo info) =>
+        collectableItemsPrefabs.First(item =>
+            item.info.type == info.type &&
+            item.info.secondaryType == info.secondaryType).gameObject;
 }

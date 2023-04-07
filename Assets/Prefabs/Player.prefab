@@ -257,7 +257,7 @@ MonoBehaviour:
     m_ActionName: UI/New action
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: f62a4b92-ef5e-4175-8f4c-c9075429d32c
+  m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &8997996946907055124
@@ -679,6 +679,7 @@ GameObject:
   - component: {fileID: 8518426158019811037}
   - component: {fileID: 8518426158019811038}
   - component: {fileID: 8518426158019811039}
+  - component: {fileID: 4559525922024888226}
   m_Layer: 10
   m_Name: Main Camera
   m_TagString: Untagged
@@ -786,3 +787,15 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &4559525922024888226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8518426158019811033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4147989c4a014acb90d86990c635f460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

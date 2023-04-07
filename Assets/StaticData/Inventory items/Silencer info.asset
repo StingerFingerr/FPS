@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
   m_Name: Silencer info
   m_EditorClassIdentifier: 
-  title: Silencer
-  description: 
+  titleTerm: SilencerTitle
+  descriptionTerm: SilencerDescription
   maxItemsInSlot: 1
   isStackable: 0
   type: 4

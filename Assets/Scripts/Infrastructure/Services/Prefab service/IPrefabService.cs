@@ -10,5 +10,6 @@ namespace Prefab_service
 
         public GameObject GetGameUIPrefab();
         public GameObject GetInventoryUIPrefab();
+        public GameObject GetCollectableItemPrefab(InventoryItemInfo info);
     }
 }

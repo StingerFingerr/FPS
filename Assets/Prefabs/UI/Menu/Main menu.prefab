@@ -117,7 +117,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 128, y: -119.229996}
-  m_SizeDelta: {x: 254.6, y: 49.96}
+  m_SizeDelta: {x: 397.97, y: 49.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7443647179935302352
 CanvasRenderer:
@@ -147,7 +147,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Show FPS counter
+  m_text: "\u041F\u043E\u043A\u0430\u0437\u044B\u0432\u0430\u0442\u044C \u0441\u0447\u0435\u0442\u0447\u0438\u043A
+    FPS"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a04d95ecdb648d34c9a7dac6abd246f5, type: 2}
   m_sharedMaterial: {fileID: -5276671367049244392, guid: a04d95ecdb648d34c9a7dac6abd246f5,
@@ -1085,7 +1086,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Language
+  m_text: "\u042F\u0437\u044B\u043A"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aca1b111f31605240b591981bbb43845, type: 2}
   m_sharedMaterial: {fileID: -8214596999770789171, guid: aca1b111f31605240b591981bbb43845,
@@ -1548,7 +1549,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Settings
+  m_text: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aca1b111f31605240b591981bbb43845, type: 2}
   m_sharedMaterial: {fileID: -8214596999770789171, guid: aca1b111f31605240b591981bbb43845,
@@ -2150,7 +2151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Sounds
+  m_text: "\u0417\u0432\u0443\u043A\u0438"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aca1b111f31605240b591981bbb43845, type: 2}
   m_sharedMaterial: {fileID: -8214596999770789171, guid: aca1b111f31605240b591981bbb43845,
@@ -3075,7 +3076,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 128, y: 0}
-  m_SizeDelta: {x: 174.92, y: 59.25}
+  m_SizeDelta: {x: 256, y: 59.25}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &7443647181502591704
 CanvasRenderer:
@@ -3105,7 +3106,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Stats
+  m_text: "\u0421\u0442\u0430\u0442\u0438\u0441\u0442\u0438\u043A\u0430"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aca1b111f31605240b591981bbb43845, type: 2}
   m_sharedMaterial: {fileID: -8214596999770789171, guid: aca1b111f31605240b591981bbb43845,
@@ -3677,6 +3678,11 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1982805917892154034, guid: 7ee81a1396b97d94dad19bd5353804fb,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041D\u0430\u0441\u0442\u0440\u043E\u0439\u043A\u0438"
+      objectReference: {fileID: 0}
     - target: {fileID: 1982805919055212052, guid: 7ee81a1396b97d94dad19bd5353804fb,
         type: 3}
       propertyPath: m_Pivot.x
@@ -3916,6 +3922,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMin.x
       value: 0.642
+      objectReference: {fileID: 0}
+    - target: {fileID: 6872815894148733887, guid: 2831eb2b381544f4288e64954d0f5583,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041E\u0441\u043D\u043E\u0432\u043D\u0430\u044F \u0413\u0440\u043E\u043C\u043A\u043E\u0441\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 7841096617708693052, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -4172,7 +4183,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Simple Slide Toggle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 7059222917557418459, guid: 44e46b2e6281e8b4993917a403c69178,
+        type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 7059222917557418457, guid: 44e46b2e6281e8b4993917a403c69178, type: 3}
+    - {fileID: 7059222917557418456, guid: 44e46b2e6281e8b4993917a403c69178, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 44e46b2e6281e8b4993917a403c69178, type: 3}
 --- !u!224 &484770809798764167 stripped
 RectTransform:
@@ -4196,6 +4214,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982805917892154034, guid: 7ee81a1396b97d94dad19bd5353804fb,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041F\u0440\u043E\u0434\u043E\u043B\u0436\u0438\u0442\u044C"
       objectReference: {fileID: 0}
     - target: {fileID: 1982805919055212052, guid: 7ee81a1396b97d94dad19bd5353804fb,
         type: 3}
@@ -4409,6 +4432,11 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0.642
       objectReference: {fileID: 0}
+    - target: {fileID: 6872815894148733887, guid: 2831eb2b381544f4288e64954d0f5583,
+        type: 3}
+      propertyPath: m_text
+      value: "\u042D\u0444\u0444\u0435\u043A\u0442\u044B"
+      objectReference: {fileID: 0}
     - target: {fileID: 7841096617708693052, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_Pivot.x
@@ -4543,6 +4571,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982805917892154034, guid: 7ee81a1396b97d94dad19bd5353804fb,
+        type: 3}
+      propertyPath: m_text
+      value: "\u041D\u043E\u0432\u0430\u044F \u0438\u0433\u0440\u0430"
       objectReference: {fileID: 0}
     - target: {fileID: 1982805919055212052, guid: 7ee81a1396b97d94dad19bd5353804fb,
         type: 3}

@@ -41,6 +41,15 @@ namespace UI.Game.Inventory
             }
         }
 
+        public override void Drop()
+        {
+            if (Inventory.TryToAdd(ItemInfo, 1, out int restAmount))
+            {
+                draggableItem.OnPointerExit(null);
+                Clear();
+            }
+        }
+
         public void SetModule(InventoryItemInfo info)
         {
             ItemInfo = info;

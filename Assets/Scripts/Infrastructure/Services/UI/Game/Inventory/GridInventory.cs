@@ -22,25 +22,43 @@ public class GridInventory: IInventory
             _slots.Add(new InventorySlot());
     }
 
-    public bool TryToAdd(InventoryItemInfo itemInfo, int amount)
+    public bool TryToAdd(InventoryItemInfo itemInfo, int amount, out int restAmount)
     {
+        restAmount = 0;
         if (itemInfo.isStackable is false)
         {
-            if (TryToAddIntoEmptySlot(itemInfo))
+            if (TryToAddIntoEmptySlot(itemInfo, out int rest1))
                 return true;
+            else
+                restAmount = rest1;
         }
-        
-        if (TryToAddIntoSlotWithSameItem(itemInfo, amount)) 
-            return true;
 
-        if (TryToAddIntoEmptySlot(itemInfo, amount)) 
+        if (TryToAddIntoSlotWithSameItem(itemInfo, amount, out int rest2))
+        {
+            restAmount = 0;
             return true;
-        
+        }
+        else
+        {
+            restAmount = rest2;
+        }
+
+        if (TryToAddIntoEmptySlot(itemInfo, out int rest3, restAmount))
+        {
+            restAmount = 0;
+            return true;
+        }
+        else
+        {
+            restAmount = rest3;
+        }
+
         return false;
     }
 
-    public bool TryToAddIntoSlot(IInventorySlot slot, InventoryItemInfo itemInfo, int count = 1)
+    public bool TryToAddIntoSlot(IInventorySlot slot, InventoryItemInfo itemInfo, out int restAmount, int count = 1)
     {
+        restAmount = 0;
         if (itemInfo.isStackable is false)
         {
             slot.ItemInfo = itemInfo;
@@ -48,7 +66,7 @@ public class GridInventory: IInventory
             InvokeSuccessfulAdding(itemInfo, 1);
             return true;
         }
-        
+
         var fits = slot.Amount + count <= itemInfo.maxItemsInSlot;
 
         if (fits)
@@ -64,10 +82,19 @@ public class GridInventory: IInventory
         
         slot.Amount += amountToAdd;
         slot.ItemInfo = itemInfo;
-
+        
         InvokeSuccessfulAdding(itemInfo, amountToAdd);
         
-        return TryToAdd(itemInfo, amountLeft);
+        if (TryToAdd(itemInfo, amountLeft, out int rest))
+        {
+            restAmount = 0;
+            return true;
+        }
+        else
+        {
+            restAmount = rest;
+            return false;
+        }
     }
 
     public void RemoveFromSlot(IInventorySlot slot)
@@ -78,23 +105,30 @@ public class GridInventory: IInventory
         OnInventoryStateChanged?.Invoke();
     }
 
-    private bool TryToAddIntoEmptySlot(InventoryItemInfo itemInfo, int amount = 1)
+    private bool TryToAddIntoEmptySlot(InventoryItemInfo itemInfo, out int restAmount, int amount = 1)
     {
         var emptySlot = _slots.Find(slot => slot.IsEmpty);
 
         if (emptySlot is not null)
         {
-            if (TryToAddIntoSlot(emptySlot, itemInfo, amount))
+            if (TryToAddIntoSlot(emptySlot, itemInfo, out int rest, amount))
             {
                 InvokeSuccessfulAdding(itemInfo, amount);
+                restAmount = 0;
                 return true;
+            }
+            else
+            {
+                restAmount = rest;
+                return false;
             }
         }
 
+        restAmount = amount;
         return false;
     }
 
-    private bool TryToAddIntoSlotWithSameItem(InventoryItemInfo itemInfo, int amount)
+    private bool TryToAddIntoSlotWithSameItem(InventoryItemInfo itemInfo, int amount, out int restAmount)
     {
         var slotWithSameItem = _slots.Find(slot =>
             slot.IsEmpty is false &&
@@ -104,13 +138,20 @@ public class GridInventory: IInventory
 
         if (slotWithSameItem is not null)
         {
-            if (TryToAddIntoSlot(slotWithSameItem, itemInfo, amount))
+            if (TryToAddIntoSlot(slotWithSameItem, itemInfo, out int rest, amount))
             {
                 InvokeSuccessfulAdding(itemInfo, amount);
+                restAmount = 0;
                 return true;
+            }
+            else
+            {
+                restAmount = rest;
+                return false;
             }
         }
 
+        restAmount = amount;
         return false;
     }
 
@@ -136,7 +177,7 @@ public class GridInventory: IInventory
             {
                 InventoryItemInfo info = fromSlot.ItemInfo;
                 fromSlot.Clear();
-                TryToAddIntoEmptySlot(info);
+                TryToAddIntoEmptySlot(info,  out int restAmount);
                 return;
             }
             if (fromSlot.ItemInfo.type == toSlot.ItemInfo.type)
@@ -146,7 +187,7 @@ public class GridInventory: IInventory
             
                 fromSlot.Clear();
             
-                TryToAddIntoSlot(toSlot, itemInfo, amount);
+                TryToAddIntoSlot(toSlot, itemInfo, out int restA, amount);
             
                 return;
             }
