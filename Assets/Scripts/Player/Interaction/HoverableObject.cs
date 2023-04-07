@@ -67,10 +67,14 @@ namespace Player.Interaction
         private string GetHoverMessage()
         {
             if (string.IsNullOrEmpty(_message))
-                _message = I2.Loc.LocalizationManager
-                    .GetTranslation(onHoverTerm)
-                    .Replace(Name, onHoverName);
-            
+            {
+                string hoverName = I2.Loc.LocalizationManager.GetTranslation(onHoverName);
+                if (string.IsNullOrEmpty(hoverName))
+                    hoverName = onHoverName;
+                
+                _message = I2.Loc.LocalizationManager.GetTranslation(onHoverTerm)
+                    .Replace(Name, hoverName);
+            }
             return _message;
         }
 

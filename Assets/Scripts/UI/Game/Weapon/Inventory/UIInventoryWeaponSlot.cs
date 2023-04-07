@@ -18,7 +18,7 @@ namespace UI.Game.Inventory
                 return;
 
             Transform itemTransform = weapon.uiInventoryWeaponItem.transform;
-            itemTransform.parent = transform;
+            itemTransform.SetParent(transform);
             itemTransform.localPosition = Vector3.zero;
 
             _weapon.uiInventoryWeaponItem.transform.localEulerAngles = Vector3.zero;
@@ -26,7 +26,7 @@ namespace UI.Game.Inventory
             _weapon.uiInventoryWeaponItem.attachmentSlots.ForEach(slot =>
             {
                 slot.transform.localEulerAngles = Vector3.zero;
-                slot.transform.parent = inventorySlots;
+                slot.transform.SetParent(inventorySlots);
                 slot.gameObject.SetActive(true);
             });
         }
@@ -39,7 +39,7 @@ namespace UI.Game.Inventory
             _weapon.uiInventoryWeaponItem.gameObject.SetActive(false);
             _weapon.uiInventoryWeaponItem.attachmentSlots.ForEach(slot =>
             {
-                slot.transform.parent = _weapon.uiInventoryWeaponItem.transform;
+                slot.transform.SetParent(_weapon.uiInventoryWeaponItem.transform);
                 slot.gameObject.SetActive(false);
             });
             _weapon = null;

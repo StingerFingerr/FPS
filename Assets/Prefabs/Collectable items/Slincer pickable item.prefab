@@ -172,12 +172,12 @@ PrefabInstance:
     - target: {fileID: 7139559202045486984, guid: c0d1f9f417f358a4281b444200b07d87,
         type: 3}
       propertyPath: onHoverName
-      value: Silencer
+      value: SilencerTitle
       objectReference: {fileID: 0}
     - target: {fileID: 7139559202045486984, guid: c0d1f9f417f358a4281b444200b07d87,
         type: 3}
       propertyPath: onHoverTerm
-      value: WeaponOnHoverMessage
+      value: PressFToTake
       objectReference: {fileID: 0}
     - target: {fileID: 8547991810551060485, guid: c0d1f9f417f358a4281b444200b07d87,
         type: 3}

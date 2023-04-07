@@ -1,4 +1,5 @@
 using DG.Tweening;
+using I2.Loc;
 using TMPro;
 using UnityEngine;
 
@@ -6,20 +7,21 @@ namespace UI.Game.Inventory
 {
     public class DraggableItemInfoPanel: MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI title;
-        [SerializeField] private TextMeshProUGUI description;
-      
+        [SerializeField] private Localize titleLocalize;
+        [SerializeField] private Localize descriptionLocalize;
+
+
         public void Open(InventoryItemInfo info)
         {
-            title.text = info.title;
-            description.text = info.description;
-
+            titleLocalize.SetTerm(info.titleTerm);
+            //titleLocalize.mTerm = info.titleTerm;
+            descriptionLocalize.SetTerm(info.descriptionTerm);
+            //descriptionLocalize.mTerm = info.descriptionTerm;
+            
             transform.DOScale(1, .1f).SetEase(Ease.OutBack);
         }
 
-        public void Close()
-        {
+        public void Close() => 
             transform.DOScale(0, .1f);
-        }
     }
 }

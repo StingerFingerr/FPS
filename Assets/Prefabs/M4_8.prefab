@@ -263,7 +263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableObject: {fileID: 1093619850417959813}
-  onHoverTerm: WeaponOnHoverMessage
+  onHoverTerm: PressFToTake
   onHoverName: M4
   outline: {fileID: 4068752765432467985}
 --- !u!114 &-3614463239454624219

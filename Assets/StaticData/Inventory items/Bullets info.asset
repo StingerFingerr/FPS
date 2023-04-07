@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
   m_Name: Bullets info
   m_EditorClassIdentifier: 
-  title: Bullets
-  description: "\u041F\u043E\u0434\u043E\u0439\u0434\u0443\u0442 \u043A \u043B\u044E\u0431\u043E\u043C\u0443
-    \u043E\u0440\u0443\u0436\u0438\u044E"
+  titleTerm: BulletsTitle
+  descriptionTerm: BulletsDescription
   maxItemsInSlot: 30
   isStackable: 1
   type: 1

@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interactableObject: {fileID: 8140136289670841635}
-  onHoverTerm: WeaponOnHoverMessage
+  onHoverTerm: PressFToTake
   onHoverName: Minigun
   outline: {fileID: 7947419818816193745}
 --- !u!65 &9088867870206212641
