@@ -242,9 +242,14 @@ MonoBehaviour:
   interactableCollider: {fileID: 9088867870206212641}
   sway: {fileID: 9088867870206212643}
   rigidBody: {fileID: 9088867870206212654}
+  attachmentSystem: {fileID: 0}
   icon: {fileID: 21300000, guid: d30c8b0cace731f459749114c6c92345, type: 3}
   uiInventoryWeaponItem: {fileID: 4123874396830427741}
   allowRun: 0
+  ammoLeft: 0
+  magazineCapacity: 60
+  reloadingTime: 4
+  ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
   isHidden: 0
   maxBarrelAngularSpeed: 20
   accelerationTime: 2
@@ -444,6 +449,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Minigun
       objectReference: {fileID: 0}
+    - target: {fileID: 6622269115757337057, guid: 993a3bc75bd2bf14d8455887be0d1fe5,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 9088867870206212642}
     - target: {fileID: 7311394432791247324, guid: 993a3bc75bd2bf14d8455887be0d1fe5,
         type: 3}
       propertyPath: m_Pivot.x

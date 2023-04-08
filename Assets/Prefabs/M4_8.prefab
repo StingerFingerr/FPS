@@ -170,9 +170,14 @@ MonoBehaviour:
   interactableCollider: {fileID: 4170445654296443538}
   sway: {fileID: 7815726368179226547}
   rigidBody: {fileID: 7773989430750169141}
+  attachmentSystem: {fileID: 425901747818471486}
   icon: {fileID: 21300000, guid: 0f296039c5703244faaf5d2ee2ec6a0d, type: 3}
   uiInventoryWeaponItem: {fileID: 7593101365893039284}
   allowRun: 1
+  ammoLeft: 0
+  magazineCapacity: 30
+  reloadingTime: 1.2
+  ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
   isHidden: 0
   firingModes:
   - {fileID: -3614463239454624219}
@@ -923,6 +928,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5558015366341336928}
     m_Modifications:
+    - target: {fileID: 186910238447509143, guid: 40e00dc637327b74db51a9bf0765cd44,
+        type: 3}
+      propertyPath: weapon
+      value: 
+      objectReference: {fileID: 5558015366341336935}
     - target: {fileID: 3717163712824642656, guid: 40e00dc637327b74db51a9bf0765cd44,
         type: 3}
       propertyPath: attachmentSystem

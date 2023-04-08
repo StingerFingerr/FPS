@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon.FiringModes;
@@ -30,11 +30,22 @@ namespace Weapons
         {
             if(isHidden)
                 return;
+            if(IsReloading)
+                return;
             
             if(inputValue.isPressed)
+            {
+                if (ammoLeft <= 0)
+                {
+                    Reload();
+                    return;
+                }
                 firingModes[_currentFiringMode].StartFiring(Shot);
-            else 
+            }
+            else
+            {
                 firingModes[_currentFiringMode].FinishFiring();
+            }
         }
 
         private void OnSwitchFiringMode(InputValue inputValue)
@@ -52,13 +63,22 @@ namespace Weapons
         private void Shot()
         {
             audioSource.PlayOneShot(shotClip);
+
+            ammoLeft--;
+            if (ammoLeft <= 0)            
+                firingModes[_currentFiringMode].FinishFiring();
+
             base.Shot(CalculateRecoil());
         }
 
         protected override void Reload()
         {
-            audioSource.PlayOneShot(reloadClip);
+            if (IsReloading)
+                return;
+            
             base.Reload();
+            if(IsReloading)
+                audioSource.PlayOneShot(reloadClip);
         }
 
         public override void Show()

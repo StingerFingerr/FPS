@@ -439,9 +439,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd47bd05e78445848651c94b75464e17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 0}
   attachmentSlots:
   - {fileID: 8729376831818845307}
   - {fileID: 3717163712824642656}
+  ammoText: {fileID: 8427023986617554305}
 --- !u!1001 &2454555066974351239
 PrefabInstance:
   m_ObjectHideFlags: 0

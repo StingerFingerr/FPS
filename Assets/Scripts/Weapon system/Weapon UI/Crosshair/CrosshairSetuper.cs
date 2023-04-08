@@ -23,10 +23,8 @@ public class CrosshairSetuper: MonoBehaviour
         _crosshairCachedFactory = crosshairCachedFactory;
     }
 
-    private void OnEnable()
-    {
+    private void OnEnable() => 
         _weaponHolder.OnWeaponSwitched += SetNewCrosshairFor;
-    }
 
     private void OnDisable() => 
         _weaponHolder.OnWeaponSwitched -= SetNewCrosshairFor;
@@ -80,11 +78,23 @@ public class CrosshairSetuper: MonoBehaviour
     {
         _weapon.OnShot += OnShot;
         _weapon.OnAiming += OnAim;
+
+        _weapon.OnStartReloading += Hide;
+        _weapon.OnEndReloading += Show;
     }
 
     private void Unsubscribe()
     {
         _weapon.OnShot -= OnShot;
         _weapon.OnAiming -= OnAim;
+        
+        _weapon.OnStartReloading -= Hide;
+        _weapon.OnEndReloading -= Show;
     }
+
+    private void Show() => 
+        _crosshair.Activate();
+
+    private void Hide() => 
+        _crosshair.Deactivate();
 }
