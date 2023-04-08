@@ -1,7 +1,6 @@
-using System.Runtime.InteropServices.WindowsRuntime;
+using Shooting.Firing_modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Weapon.FiringModes;
 
 namespace Weapons
 {

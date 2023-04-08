@@ -31,3 +31,8 @@ MonoBehaviour:
   - {fileID: 4495966181603643782, guid: e5089dfe1b8d8b14d9474a58012d5335, type: 3}
   - {fileID: 2609047670513501499, guid: f64559f49ced9244290f60d65fe2b844, type: 3}
   - {fileID: 2609047670513501499, guid: 72514e357e21a04418e80883d6a547d0, type: 3}
+  bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
+    type: 3}
+  bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
+  bloodyBulletImpactPrefab: {fileID: 100000, guid: 1dfcf9fefc5fb0e4ca5526be356288da,
+    type: 3}

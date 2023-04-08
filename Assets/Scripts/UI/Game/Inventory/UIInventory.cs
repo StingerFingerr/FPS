@@ -34,7 +34,7 @@ public class UIInventory: MonoBehaviour
         SetupUIInventorySlots();
         RefreshSlots();
 
-        _inventory.TryToAdd(bulletsInfo, 59, out int restAmount);
+        _inventory.TryToAdd(bulletsInfo, 300, out int restAmount);
         _inventory.TryToAdd(medKitBigInfo, 3, out int r);
         _inventory.TryToAdd(compensatorInfo, 3, out int ras);
         _inventory.TryToAdd(silencerInfo, 3, out int asdfa);

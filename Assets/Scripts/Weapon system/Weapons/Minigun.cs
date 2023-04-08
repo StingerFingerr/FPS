@@ -1,5 +1,5 @@
 using System.Collections;
-using FiringModes;
+using Shooting.Firing_modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 

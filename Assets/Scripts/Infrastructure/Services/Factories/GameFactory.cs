@@ -1,7 +1,6 @@
 using Player;
 using Player.Collectable_items;
 using Player.Inputs;
-using Prefab_service;
 using UI.Game;
 using Zenject;
 

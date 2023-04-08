@@ -234,6 +234,9 @@ MonoBehaviour:
   hipPosition: {x: 0.4, y: -0.2, z: 0}
   aimPosition: {x: 0, y: 0, z: 0}
   aimingSpeed: 10
+  spreadingFor10Units: 0.5
+  bulletSpawnPoint: {fileID: 8045823912301802178}
+  damage: 100
   animator: {fileID: 9088867871026181121}
   recoil:
     maxVerticalRecoil: 0.2
@@ -246,9 +249,9 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: d30c8b0cace731f459749114c6c92345, type: 3}
   uiInventoryWeaponItem: {fileID: 4123874396830427741}
   allowRun: 0
-  ammoLeft: 0
+  ammoLeft: 60
   magazineCapacity: 60
-  reloadingTime: 4
+  reloadingTime: 3.5
   ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
   isHidden: 0
   maxBarrelAngularSpeed: 20

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Animation;
 using Attachment_system;
+using Shooting;
 using UI.Game.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +25,12 @@ namespace Weapons
         public Vector3 hipPosition;
         public Vector3 aimPosition;
         public float aimingSpeed = 10f;
+        
+        [Header("Shooting")]
+        public float spreadingFor10Units = .1f;
+        public Transform bulletSpawnPoint;
+        public int damage = 100;
+
 
         [Header("Other")]
         public WeaponAnimator animator;
@@ -40,7 +47,7 @@ namespace Weapons
         public bool allowRun = true;
 
         [Header("Magazine")] 
-        public int ammoLeft = 0;
+        public int ammoLeft = 30;
         public int magazineCapacity = 30;
         public float reloadingTime = 2f;
         public InventoryItemInfo ammoItem;
@@ -53,18 +60,25 @@ namespace Weapons
         public event Action OnEndReloading;
 
         private IInventory _inventory;
+        protected Bullet.Factory BulletFactory;
+        
         protected bool IsReloading;
+        protected bool IsAiming;
+        protected Camera MainCamera;
 
         [Inject]
-        private void Construct(IInventory inventory) => 
+        private void Construct(IInventory inventory, Bullet.Factory bulletFactory)
+        {
             _inventory = inventory;
+            BulletFactory = bulletFactory;
+        }
 
         private void OnAim(InputValue inputValue)
         {
             if(isHidden)
                 return;
-            
-            Aim(inputValue.isPressed);
+            IsAiming = inputValue.isPressed;
+            Aim(IsAiming);
         }
 
         private void OnReload(InputValue inputValue)
@@ -104,8 +118,64 @@ namespace Weapons
             OnEndReloading?.Invoke();
         }
 
-        protected void Shot(Vector2 recoil) => 
+        protected void Shot(Vector2 recoil)
+        {
+            SpawnBullet();
             OnShot?.Invoke(recoil);
+        }
+
+        private void SpawnBullet()
+        {
+            var damageAmount = damage;
+            if (attachmentSystem is not null)
+                damageAmount = attachmentSystem.OverrideDamage(damageAmount);
+            
+            BulletFactory.Create(bulletSpawnPoint.position, GetDestinationPos(), damageAmount);
+        }
+
+        private Vector3 GetDestinationPos()
+        {
+            MainCamera ??= GetComponentInParent<Camera>();
+            
+            Vector3 trailStart = bulletSpawnPoint.position;
+            Vector3 trailEnd;
+            
+            var ray = MainCamera.ScreenPointToRay(GetScreenCenter());
+            if (Physics.Raycast(ray, out RaycastHit hit, 100))
+                trailEnd = hit.point;
+            else
+                trailEnd = ray.origin.normalized + ray.direction.normalized * 100;
+
+            return AddSpreading(trailStart, trailEnd);
+        }
+
+        private Vector3 GetScreenCenter()
+        {
+            var screenPos = new Vector3()
+            {
+                x = Screen.width / 2,
+                y = Screen.height / 2,
+                z = MainCamera.farClipPlane
+            };
+            return screenPos;
+        }
+
+        private Vector3 AddSpreading(Vector3 start, Vector3 end)
+        {
+            if (IsAiming)
+                return end;
+            
+            float dist = Vector3.Distance(start, end);
+            float spreading = dist / 10 * spreadingFor10Units;
+            Vector3 offset = new Vector3()
+            {
+                x = Random.Range(-spreading, spreading),
+                y = Random.Range(-spreading, spreading),
+                z = Random.Range(-spreading, spreading)
+            };
+            return end + offset;
+        }
+
         protected virtual void Aim(bool aim) => 
             OnAiming?.Invoke(aim);
         

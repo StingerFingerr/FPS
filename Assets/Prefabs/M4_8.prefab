@@ -31,6 +31,37 @@ Transform:
   m_Father: {fileID: 5560924668506345503}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1767141062767882730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6642623539267189108}
+  m_Layer: 11
+  m_Name: Bullet spawn pos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6642623539267189108
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1767141062767882730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.059, z: -0.4626}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5560924668506345503}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5558015365564369355
 GameObject:
   m_ObjectHideFlags: 0
@@ -162,6 +193,9 @@ MonoBehaviour:
   hipPosition: {x: 0.34, y: -0.28, z: 0.55}
   aimPosition: {x: 0, y: -0.165, z: 0.4}
   aimingSpeed: 10
+  spreadingFor10Units: 0.3
+  bulletSpawnPoint: {fileID: 6642623539267189108}
+  damage: 100
   animator: {fileID: 5558015365564369353}
   recoil:
     maxVerticalRecoil: 0.3
@@ -174,7 +208,7 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 0f296039c5703244faaf5d2ee2ec6a0d, type: 3}
   uiInventoryWeaponItem: {fileID: 7593101365893039284}
   allowRun: 1
-  ammoLeft: 0
+  ammoLeft: 30
   magazineCapacity: 30
   reloadingTime: 1.2
   ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
@@ -467,7 +501,7 @@ Transform:
   - {fileID: 2262986803391910158}
   - {fileID: 3655100505119251965}
   m_Father: {fileID: 5560924668506345503}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &3764504393547261212
 MonoBehaviour:

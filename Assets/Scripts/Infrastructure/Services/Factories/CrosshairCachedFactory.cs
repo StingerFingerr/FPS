@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Infrastructure;
-using Prefab_service;
 using Zenject;
 
 public class CrosshairCachedFactory: IFactory<CrosshairType, DynamicCrosshairBase>
