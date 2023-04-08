@@ -1,6 +1,8 @@
 using System;
 using Animation;
+using Attachment_system;
 using Player.Interaction;
+using UI.Game.Inventory;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
@@ -11,7 +13,7 @@ using Random = UnityEngine.Random;
 
 namespace Weapons
 {
-    public abstract class WeaponBase: MonoBehaviour, IInteractable
+    public abstract class WeaponBase: MonoBehaviour
     {
         public class Factory: PlaceholderFactory<string, WeaponBase>
         { }
@@ -34,6 +36,8 @@ namespace Weapons
 
         public Rigidbody rigidBody;
 
+        public Sprite icon;
+        public UIInventoryWeaponItem uiInventoryWeaponItem;
 
         public bool allowRun = true;
         
@@ -81,10 +85,7 @@ namespace Weapons
             enabled = true;
         }
 
-        public virtual void Interact() => 
-            Take();
-
-        protected virtual void Take()
+        public virtual void Take()
         {
             interactableCollider.enabled = false;
             animator.Enable();

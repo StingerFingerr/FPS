@@ -1,7 +1,7 @@
+using System.Collections.Generic;
 using Game_logic;
 using Infrastructure;
 using UnityEngine;
-using Weapon;
 using Weapons;
 using Zenject;
 
@@ -34,7 +34,7 @@ public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
             weapon.transform.parent = transform;
             weapon.transform.localEulerAngles = Vector3.zero;
                 
-            weapon.Interact();
+            weapon.Take();
             if (info.isHidden)
             {
                 weapon.transform.localPosition = weapon.hipPosition;
@@ -44,6 +44,15 @@ public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
             {
                 weapon.Show();
             }
+
+
+            List<InventoryItemInfo> attachmentItems = info.attachmentItems;
+            for (int i = 0; i < attachmentItems.Count; i++)
+            {
+                
+                if(attachmentItems[i] is not null)
+                    weapon.uiInventoryWeaponItem.attachmentSlots[i].SetModule(attachmentItems[i]);
+            }
         }
     }
 
@@ -52,11 +61,19 @@ public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
         WeaponInfo info = null;
 
         if (weapon)
+        {
+            List<InventoryItemInfo> attachmentItems = new List<InventoryItemInfo>();
+            foreach (var slot in weapon.uiInventoryWeaponItem.attachmentSlots)
+                attachmentItems.Add(slot.draggableItem.ItemInfo);
+
             info = new()
             {
                 name = weapon.name,
-                isHidden = weapon.isHidden
+                isHidden = weapon.isHidden,
+                attachmentItems = attachmentItems
             };
+        }
+            
 
         if (progress.WeaponInfos.TryAdd(_uniqueId.id, info) is false)
             progress.WeaponInfos[_uniqueId.id] = info;

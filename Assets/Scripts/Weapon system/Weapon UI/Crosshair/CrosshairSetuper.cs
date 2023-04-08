@@ -1,6 +1,5 @@
 using Player;
 using UnityEngine;
-using Weapon;
 using Weapons;
 using Zenject;
 
@@ -15,8 +14,8 @@ public class CrosshairSetuper: MonoBehaviour
     
     [Inject]
     private void Construct(
-        WeaponHolder weaponHolder, 
-        FirstPersonController player,
+        FirstPersonController player, 
+        WeaponHolder weaponHolder,
         DynamicCrosshairBase.CachedFactory crosshairCachedFactory)
     {
         _weaponHolder = weaponHolder;
@@ -24,11 +23,13 @@ public class CrosshairSetuper: MonoBehaviour
         _crosshairCachedFactory = crosshairCachedFactory;
     }
 
-    private void OnEnable() => 
-        _weaponHolder.SwitchCurrentWeapon += SetNewCrosshairFor;
+    private void OnEnable()
+    {
+        _weaponHolder.OnWeaponSwitched += SetNewCrosshairFor;
+    }
 
     private void OnDisable() => 
-        _weaponHolder.SwitchCurrentWeapon -= SetNewCrosshairFor;
+        _weaponHolder.OnWeaponSwitched -= SetNewCrosshairFor;
 
     private void Update()
     {
@@ -39,7 +40,7 @@ public class CrosshairSetuper: MonoBehaviour
         }
     }
 
-    private void SetNewCrosshairFor(WeaponBase weapon)
+    private void SetNewCrosshairFor(WeaponBase weapon, int index)
     {
         SwitchWeapon(weapon);
         CreateNewCrossHair(weapon);
