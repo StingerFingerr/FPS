@@ -87,7 +87,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   name: Shotgun
-  crosshairType: 1
+  crosshairType: 3
   hipPosition: {x: 0.25, y: -0.16, z: 0.3}
   aimPosition: {x: -0.06, y: -0.13, z: 0.07}
   aimingSpeed: 10
