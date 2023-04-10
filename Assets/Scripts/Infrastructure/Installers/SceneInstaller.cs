@@ -16,6 +16,7 @@ public class SceneInstaller: MonoInstaller
         BindIInventory();
 
         BindBulletsPool();
+        
         BindBulletsImpactsPool();
         BindBloodyBulletsImpactsPool();
     }

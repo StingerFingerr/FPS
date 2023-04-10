@@ -1,3 +1,4 @@
+using Shooting;
 using Shooting.Firing_modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -20,11 +21,9 @@ namespace Weapons
         private void Start() => 
             _targetPosition = hipPosition;
 
-        private void Update()
-        {
+        private void Update() => 
             UpdateAiming();
-        }
-        
+
         private void OnFire(InputValue inputValue)
         {
             if(isHidden)
@@ -61,8 +60,11 @@ namespace Weapons
 
         private void Shot()
         {
+            if (IsRunning)
+                return;
+            
             audioSource.PlayOneShot(shotClip);
-
+            
             ammoLeft--;
             if (ammoLeft <= 0)            
                 firingModes[_currentFiringMode].FinishFiring();

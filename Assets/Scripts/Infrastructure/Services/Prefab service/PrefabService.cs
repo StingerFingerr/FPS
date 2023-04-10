@@ -13,7 +13,10 @@ public class PrefabService: ScriptableObject, IPrefabService
     public GameObject gameUIPrefab;
     public GameObject gameInventoryPrefab;
     public List<BaseCollectableItem> collectableItemsPrefabs;
+    
     public GameObject bulletPrefab;
+    public GameObject shotgunBulletPrefab;
+    
     public GameObject bulletImpactPrefab;
     public GameObject bloodyBulletImpactPrefab;
     

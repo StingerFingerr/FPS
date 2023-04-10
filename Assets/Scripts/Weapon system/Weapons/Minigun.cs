@@ -1,4 +1,5 @@
 using System.Collections;
+using Shooting;
 using Shooting.Firing_modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -118,6 +119,9 @@ namespace Weapons
 
         private void Shot()
         {
+            if (IsRunning)
+                return;
+            
             ammoLeft--;
             if(ammoLeft <= 0)
                 CancelShooting();

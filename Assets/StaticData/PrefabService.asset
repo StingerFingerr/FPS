@@ -17,6 +17,7 @@ MonoBehaviour:
   - {fileID: 9088867870206212642, guid: fc8a7115309836a46a2f73ed05a06a29, type: 3}
   - {fileID: 40192591141411879, guid: 8c36f3d745b8a5e4f842adec1f347878, type: 3}
   - {fileID: 4602030177802931218, guid: 043fc94c4bc81e14db166a07bc00a201, type: 3}
+  - {fileID: 3660420012796237679, guid: cbf3ffd43896ae64e9b018f32458a65d, type: 3}
   crosshairsPrefabs:
   - {fileID: 9013263448306912819, guid: 9b522e8f2ba39e146a0210016376b0e7, type: 3}
   - {fileID: 259143283605095931, guid: e102b580da9939b419a2ca6d7b740f2f, type: 3}
@@ -34,6 +35,8 @@ MonoBehaviour:
   - {fileID: 2609047670513501499, guid: f64559f49ced9244290f60d65fe2b844, type: 3}
   - {fileID: 2609047670513501499, guid: 72514e357e21a04418e80883d6a547d0, type: 3}
   bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
+    type: 3}
+  shotgunBulletPrefab: {fileID: 449934005946164999, guid: 1c4df52dbb8b6bb429724ce92137b735,
     type: 3}
   bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
   bloodyBulletImpactPrefab: {fileID: 100000, guid: 1dfcf9fefc5fb0e4ca5526be356288da,

@@ -28,6 +28,7 @@ namespace Weapons
         
         [Header("Shooting")]
         public float spreadingFor10Units = .1f;
+        public bool zeroSpreadingIfAiming = true;
         public Transform bulletSpawnPoint;
         public int damage = 100;
 
@@ -60,18 +61,24 @@ namespace Weapons
         public event Action OnEndReloading;
 
         private IInventory _inventory;
+
         protected Bullet.Factory BulletFactory;
         
         protected bool IsReloading;
         protected bool IsAiming;
-        protected Camera MainCamera;
+        protected bool IsRunning;
+        
+        private Camera _mainCamera;
 
         [Inject]
-        private void Construct(IInventory inventory, Bullet.Factory bulletFactory)
+        private void Construct( IInventory inventory, Bullet.Factory bulletFactory)
         {
             _inventory = inventory;
             BulletFactory = bulletFactory;
         }
+
+        private void OnSprint(InputValue inputValue) => 
+            IsRunning = inputValue.isPressed;
 
         private void OnAim(InputValue inputValue)
         {
@@ -124,23 +131,23 @@ namespace Weapons
             OnShot?.Invoke(recoil);
         }
 
-        private void SpawnBullet()
+        protected virtual void SpawnBullet()
         {
             var damageAmount = damage;
             if (attachmentSystem is not null)
                 damageAmount = attachmentSystem.OverrideDamage(damageAmount);
-            
+
             BulletFactory.Create(bulletSpawnPoint.position, GetDestinationPos(), damageAmount);
         }
 
-        private Vector3 GetDestinationPos()
+        protected Vector3 GetDestinationPos()
         {
-            MainCamera ??= GetComponentInParent<Camera>();
+            _mainCamera ??= GetComponentInParent<Camera>();
             
             Vector3 trailStart = bulletSpawnPoint.position;
             Vector3 trailEnd;
             
-            var ray = MainCamera.ScreenPointToRay(GetScreenCenter());
+            var ray = _mainCamera.ScreenPointToRay(GetScreenCenter());
             if (Physics.Raycast(ray, out RaycastHit hit, 100))
                 trailEnd = hit.point;
             else
@@ -149,20 +156,20 @@ namespace Weapons
             return AddSpreading(trailStart, trailEnd);
         }
 
-        private Vector3 GetScreenCenter()
+        protected Vector3 GetScreenCenter()
         {
             var screenPos = new Vector3()
             {
                 x = Screen.width / 2,
                 y = Screen.height / 2,
-                z = MainCamera.farClipPlane
+                z = _mainCamera.farClipPlane
             };
             return screenPos;
         }
 
         private Vector3 AddSpreading(Vector3 start, Vector3 end)
         {
-            if (IsAiming)
+            if (IsAiming && zeroSpreadingIfAiming)
                 return end;
             
             float dist = Vector3.Distance(start, end);
