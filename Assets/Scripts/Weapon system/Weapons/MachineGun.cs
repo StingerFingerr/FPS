@@ -1,7 +1,7 @@
-using Unity.VisualScripting;
+using Shooting;
+using Shooting.Firing_modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using Weapon.FiringModes;
 
 namespace Weapons
 {
@@ -11,6 +11,7 @@ namespace Weapons
 
         public AudioSource audioSource;
         public AudioClip shotClip;
+        public AudioClip bulletCaseFallingClip;
         public AudioClip reloadClip;
         public AudioClip equippedClip;
         public AudioClip switchFiringModeClip;
@@ -18,23 +19,34 @@ namespace Weapons
         private Vector3 _targetPosition;
         private int _currentFiringMode;
 
+        private bool _playBulletCaseClip;
+
         private void Start() => 
             _targetPosition = hipPosition;
 
-        private void Update()
-        {
+        private void Update() => 
             UpdateAiming();
-        }
-        
+
         private void OnFire(InputValue inputValue)
         {
             if(isHidden)
                 return;
+            if(IsReloading)
+                return;
             
             if(inputValue.isPressed)
+            {
+                if (ammoLeft <= 0)
+                {
+                    Reload();
+                    return;
+                }
                 firingModes[_currentFiringMode].StartFiring(Shot);
-            else 
+            }
+            else
+            {
                 firingModes[_currentFiringMode].FinishFiring();
+            }
         }
 
         private void OnSwitchFiringMode(InputValue inputValue)
@@ -51,14 +63,32 @@ namespace Weapons
 
         private void Shot()
         {
+            if (IsRunning)
+                return;
+            
             audioSource.PlayOneShot(shotClip);
+            if(_playBulletCaseClip)
+                Invoke(nameof(PlayBulletCaseClip), .4f);
+            _playBulletCaseClip = !_playBulletCaseClip;
+            
+            ammoLeft--;
+            if (ammoLeft <= 0)            
+                firingModes[_currentFiringMode].FinishFiring();
+
             base.Shot(CalculateRecoil());
         }
 
+        private void PlayBulletCaseClip() => 
+            audioSource.PlayOneShot(bulletCaseFallingClip);
+
         protected override void Reload()
         {
-            audioSource.PlayOneShot(reloadClip);
+            if (IsReloading)
+                return;
+            
             base.Reload();
+            if(IsReloading)
+                audioSource.PlayOneShot(reloadClip);
         }
 
         public override void Show()

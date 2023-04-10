@@ -277,9 +277,11 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - 
-      - 
-      - 
+      - Press F to take {[NAME]}
+      - "\u041D\u0430\u0436\u043C\u0438\u0442\u0435 F, \u0447\u0442\u043E\u0431\u044B
+        \u0432\u0437\u044F\u0442\u044C {[NAME]}"
+      - "\u041D\u0430\u0446\u0456\u0441\u043D\u0456\u0446\u0435 F, \u043A\u0430\u0431
+        \u0443\u0437\u044F\u0446\u044C {[NAME]}"
       Flags: 000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0

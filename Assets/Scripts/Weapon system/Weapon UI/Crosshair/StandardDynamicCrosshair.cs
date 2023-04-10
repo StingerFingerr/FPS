@@ -7,6 +7,16 @@ public class StandardDynamicCrosshair: DynamicCrosshairBase
 {
     public List<Image> crosshairElements;
     
+    public float normalSize;
+    public float hiddenSize;
+    public float maxSizeOnShot;
+    public float maxSizeOnMove;
+    public float maxSizeOnLook;
+
+    public float restingSpeed;
+    public float shootingSpeed;
+    public float meltingSpeed;
+    
     private RectTransform _rectTransform;
 
     private float _targetSize;

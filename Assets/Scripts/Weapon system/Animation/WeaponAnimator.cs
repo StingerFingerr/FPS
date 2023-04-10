@@ -26,14 +26,14 @@ namespace Animation
         private void OnEnable()
         {
             weaponBase.OnShot += Shot;
-            weaponBase.OnReloading += Reloading;
+            weaponBase.OnStartReloading += StartReloading;
             weaponBase.OnAiming += SwitchMovingAnimator;
         }
 
         private void OnDisable()
         {
             weaponBase.OnShot -= Shot;
-            weaponBase.OnReloading -= Reloading;
+            weaponBase.OnStartReloading -= StartReloading;
             weaponBase.OnAiming -= SwitchMovingAnimator;
         }
 
@@ -95,7 +95,7 @@ namespace Animation
             _sprintParameter = sprinting;
         }
 
-        private void Reloading()
+        private void StartReloading()
         {
             if(weaponAnimator)
                 weaponAnimator.SetTrigger(Reload);

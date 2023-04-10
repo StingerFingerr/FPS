@@ -105,6 +105,38 @@ public class GridInventory: IInventory
         OnInventoryStateChanged?.Invoke();
     }
 
+    public int RemoveItemAmount(InventoryItemInfo info, int amount)
+    {
+        int availableAmount = 0;
+
+        while (availableAmount < amount)
+        {
+            var slot = _slots.FindLast(slot =>
+                slot.IsEmpty is false &&
+                slot.ItemInfo.type == info.type &&
+                slot.ItemInfo.secondaryType == info.secondaryType);
+            
+            if (slot is null)
+                break;
+
+            int requiredAmount = amount - availableAmount;
+            bool enough = slot.Amount >= requiredAmount;
+            if (enough)
+            {
+                availableAmount += requiredAmount;
+                slot.Amount -= requiredAmount;
+                if(slot.Amount <= 0)
+                    slot.Clear();
+                break;
+            }
+            availableAmount += slot.Amount;
+            slot.Clear();
+        }
+
+        OnInventoryStateChanged?.Invoke();
+        return availableAmount;
+    }
+
     private bool TryToAddIntoEmptySlot(InventoryItemInfo itemInfo, out int restAmount, int amount = 1)
     {
         var emptySlot = _slots.Find(slot => slot.IsEmpty);

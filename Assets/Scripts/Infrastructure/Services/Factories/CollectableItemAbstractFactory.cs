@@ -1,5 +1,4 @@
 using Game_logic.Collectable_items;
-using Prefab_service;
 using Zenject;
 
 public class CollectableItemAbstractFactory
