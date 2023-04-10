@@ -68,8 +68,12 @@ public class CrosshairSetuper: MonoBehaviour
             Subscribe();
     }
 
-    private void OnAim(bool isAiming) => 
+    private void OnAim(bool isAiming)
+    {
+        if(isAiming is false)
+            _crosshair.Activate();
         _crosshair.OnAim(isAiming);
+    }
 
     private void OnShot(Vector2 recoil) => 
         _crosshair.OnShot();
@@ -92,8 +96,11 @@ public class CrosshairSetuper: MonoBehaviour
         _weapon.OnEndReloading -= Show;
     }
 
-    private void Show() => 
-        _crosshair.Activate();
+    private void Show()
+    {
+        if(_weapon.IsAiming is false)
+            _crosshair.Activate();
+    }
 
     private void Hide() => 
         _crosshair.Deactivate();

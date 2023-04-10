@@ -60,12 +60,13 @@ namespace Weapons
         public event Action OnStartReloading;
         public event Action OnEndReloading;
 
+        public bool IsAiming { get; private set; }
+
         private IInventory _inventory;
 
         protected Bullet.Factory BulletFactory;
-        
+
         protected bool IsReloading;
-        protected bool IsAiming;
         protected bool IsRunning;
         
         private Camera _mainCamera;
