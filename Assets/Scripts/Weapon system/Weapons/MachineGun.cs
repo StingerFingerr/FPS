@@ -11,12 +11,15 @@ namespace Weapons
 
         public AudioSource audioSource;
         public AudioClip shotClip;
+        public AudioClip bulletCaseFallingClip;
         public AudioClip reloadClip;
         public AudioClip equippedClip;
         public AudioClip switchFiringModeClip;
         
         private Vector3 _targetPosition;
         private int _currentFiringMode;
+
+        private bool _playBulletCaseClip;
 
         private void Start() => 
             _targetPosition = hipPosition;
@@ -64,6 +67,9 @@ namespace Weapons
                 return;
             
             audioSource.PlayOneShot(shotClip);
+            if(_playBulletCaseClip)
+                Invoke(nameof(PlayBulletCaseClip), .4f);
+            _playBulletCaseClip = !_playBulletCaseClip;
             
             ammoLeft--;
             if (ammoLeft <= 0)            
@@ -71,6 +77,9 @@ namespace Weapons
 
             base.Shot(CalculateRecoil());
         }
+
+        private void PlayBulletCaseClip() => 
+            audioSource.PlayOneShot(bulletCaseFallingClip);
 
         protected override void Reload()
         {

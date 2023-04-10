@@ -520,6 +520,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
         type: 3}
+      propertyPath: shotClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 859d3e93880f6e54a98633564de89db0, type: 3}
+    - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
+        type: 3}
+      propertyPath: equippedClip
+      value: 
+      objectReference: {fileID: 8300000, guid: a05098010b656aa4aac8f85737ec7bb6, type: 3}
+    - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
+        type: 3}
       propertyPath: aimPosition.y
       value: -0.07
       objectReference: {fileID: 0}
@@ -548,6 +558,11 @@ PrefabInstance:
       propertyPath: bulletSpawnPoint
       value: 
       objectReference: {fileID: 802794734786677627}
+    - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
+        type: 3}
+      propertyPath: bulletCaseFallingClip
+      value: 
+      objectReference: {fileID: 8300000, guid: d15d53650832e304580b59a7ed419a71, type: 3}
     - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
         type: 3}
       propertyPath: uiInventoryWeaponItem

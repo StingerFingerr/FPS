@@ -51,10 +51,19 @@ namespace UI.Game.Game_UI
             _isActive = true;
         }
 
-        private void UpdateAmmo(Vector2 recoil) => 
+        private void UpdateAmmo(Vector2 recoil)
+        {
+            if (_weapon is null)
+                return;
             ammoText.text = $"{_weapon.ammoLeft}/{_weapon.magazineCapacity}";
-        private void UpdateAmmo() => 
+        }
+
+        private void UpdateAmmo()
+        {
+            if (_weapon is null)
+                return;
             ammoText.text = $"{_weapon.ammoLeft}/{_weapon.magazineCapacity}";
+        }
 
         public void Hide()
         {

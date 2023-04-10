@@ -235,6 +235,7 @@ MonoBehaviour:
   aimPosition: {x: 0, y: 0, z: 0}
   aimingSpeed: 10
   spreadingFor10Units: 0.5
+  zeroSpreadingIfAiming: 1
   bulletSpawnPoint: {fileID: 8045823912301802178}
   damage: 100
   animator: {fileID: 9088867871026181121}
@@ -263,7 +264,7 @@ MonoBehaviour:
   reloadClip: {fileID: 8300000, guid: f642f3fe8aaa6d64c9e3b01d1ac94cbe, type: 3}
   launchAndFiringClip: {fileID: 8300000, guid: a4150a41ceefe4d40b70afbe89b1358f, type: 3}
   stoppingClip: {fileID: 8300000, guid: b4c00d595c9f04e4db5dd2a44d8eb614, type: 3}
-  equippedClip: {fileID: 8300000, guid: e20b1652cd86841439c75218a1d4c1af, type: 3}
+  equippedClip: {fileID: 8300000, guid: a05098010b656aa4aac8f85737ec7bb6, type: 3}
 --- !u!114 &9088867870206212643
 MonoBehaviour:
   m_ObjectHideFlags: 0
