@@ -16,5 +16,5 @@ MonoBehaviour:
   descriptionTerm: MedkitDescription
   maxItemsInSlot: 0
   isStackable: 0
-  type: 3
+  type: 4
   secondaryType: 0

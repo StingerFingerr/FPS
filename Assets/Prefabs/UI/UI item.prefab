@@ -92,8 +92,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b40b33f49c044a45afd90a24fb32ce59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 1991861082}
-  description: {fileID: 1356200179}
   titleLocalize: {fileID: 822116511051241356}
   descriptionLocalize: {fileID: 975603903030989674}
 --- !u!1 &1202676482
@@ -339,8 +337,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0432\u043E\u0441\u0441\u0442\u0430\u043D\u043E\u0432\u0438\u0442
-    \u0432\u0430\u0448\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: aca1b111f31605240b591981bbb43845, type: 2}
   m_sharedMaterial: {fileID: -8214596999770789171, guid: aca1b111f31605240b591981bbb43845,
@@ -368,7 +365,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.05
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -422,7 +419,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: MedkitBigDescription
+  mTerm: '-'
   mTermSecondary: 
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
@@ -515,7 +512,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0411\u043E\u043B\u044C\u0448\u0430\u044F \u0430\u043F\u0442\u0435\u0447\u043A\u0430"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c6361482eba6ad042a7610d63976201a, type: 2}
   m_sharedMaterial: {fileID: -8214596999770789171, guid: c6361482eba6ad042a7610d63976201a,
@@ -543,7 +540,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 13.55
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -597,7 +594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344445a89b4f74a0e9a0a766903df87e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mTerm: MedkitBigTitle
+  mTerm: '-'
   mTermSecondary: 
   PrimaryTermModifier: 0
   SecondaryTermModifier: 0
