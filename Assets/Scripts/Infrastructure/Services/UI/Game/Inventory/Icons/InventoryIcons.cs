@@ -6,6 +6,7 @@ using UnityEngine;
 public class InventoryIcons: ScriptableObject, IInventoryIcons
 {
     public Sprite ammo;
+    public Sprite shotgunAmmo;
     public Sprite medKitLittle;
     public Sprite medKitBig;
     
@@ -18,6 +19,7 @@ public class InventoryIcons: ScriptableObject, IInventoryIcons
         Sprite sprite = info.type switch
         {
             InventoryItemType.Ammo => ammo,
+            InventoryItemType.ShotgunAmmo => shotgunAmmo,
             InventoryItemType.MedKitLittle => medKitLittle,
             InventoryItemType.MedKitBig => medKitBig,
             InventoryItemType.Attachment => null,

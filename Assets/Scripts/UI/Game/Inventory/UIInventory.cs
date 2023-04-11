@@ -10,11 +10,12 @@ public class UIInventory: MonoBehaviour
     [SerializeField] private Canvas canvas;
 
     public InventoryItemInfo bulletsInfo;
+    public InventoryItemInfo shotgunBulletsInfo;
     public InventoryItemInfo medKitLittleInfo;
     public InventoryItemInfo medKitBigInfo;
     public InventoryItemInfo silencerInfo;
     public InventoryItemInfo compensatorInfo;
-    
+
     private IInventory _inventory;
     private PlayerInputs _playerInputs;
     private PlayerInput _playerInput;
@@ -35,6 +36,7 @@ public class UIInventory: MonoBehaviour
         RefreshSlots();
 
         _inventory.TryToAdd(bulletsInfo, 300, out int restAmount);
+        _inventory.TryToAdd(shotgunBulletsInfo, 30, out int asdfv);
         _inventory.TryToAdd(medKitBigInfo, 3, out int r);
         _inventory.TryToAdd(compensatorInfo, 3, out int ras);
         _inventory.TryToAdd(silencerInfo, 3, out int asdfa);

@@ -107,10 +107,10 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 09de8c2834dd2d84c94fe9cef6f21598, type: 3}
   uiInventoryWeaponItem: {fileID: 3941961412872145503}
   allowRun: 1
-  ammoLeft: 5
-  magazineCapacity: 5
+  ammoLeft: 4
+  magazineCapacity: 4
   reloadingTime: 4
-  ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
+  ammoItem: {fileID: 11400000, guid: 00d6590fec82046479a9538786b18c58, type: 2}
   isHidden: 0
   minFractions: 5
   maxFractions: 8
