@@ -23,18 +23,32 @@ namespace UI.Game.Game_UI
                 
                 if (_weapon is not null)
                 {
-                    _weapon.OnShot -= UpdateAmmo;
-                    _weapon.OnEndReloading -= UpdateAmmo;
+                    Unsubscribe();
                 }
                 _weapon = null;
             }
             else
             {
                 _weapon = weapon;
-                _weapon.OnShot += UpdateAmmo;
-                _weapon.OnEndReloading += UpdateAmmo;
+                Subscribe();
                 Show();
             }
+        }
+
+        private void Subscribe()
+        {
+            _weapon.OnShot += UpdateAmmo;
+            _weapon.OnEndReloading += UpdateAmmo;
+            if (_weapon.attachmentSystem)
+                _weapon.attachmentSystem.OnModuleChanged += UpdateAmmo;
+        }
+
+        private void Unsubscribe()
+        {
+            _weapon.OnShot -= UpdateAmmo;
+            _weapon.OnEndReloading -= UpdateAmmo;
+            if (_weapon.attachmentSystem)
+                _weapon.attachmentSystem.OnModuleChanged -= UpdateAmmo;
         }
 
         private void Show()
@@ -55,14 +69,14 @@ namespace UI.Game.Game_UI
         {
             if (_weapon is null)
                 return;
-            ammoText.text = $"{_weapon.ammoLeft}/{_weapon.magazineCapacity}";
+            ammoText.text = $"{_weapon.ammoLeft}/{_weapon.MagazineCapacity}";
         }
 
         private void UpdateAmmo()
         {
             if (_weapon is null)
                 return;
-            ammoText.text = $"{_weapon.ammoLeft}/{_weapon.magazineCapacity}";
+            ammoText.text = $"{_weapon.ammoLeft}/{_weapon.MagazineCapacity}";
         }
 
         public void Hide()

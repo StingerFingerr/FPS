@@ -4,6 +4,5 @@ namespace Attachment_system
     {
         BarrelModule,
         MagazineModule
-        
     }
 }

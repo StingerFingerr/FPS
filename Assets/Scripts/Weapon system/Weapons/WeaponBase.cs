@@ -32,7 +32,6 @@ namespace Weapons
         public Transform bulletSpawnPoint;
         public int damage = 100;
 
-
         [Header("Other")]
         public WeaponAnimator animator;
         public RecoilParameters recoil;
@@ -49,12 +48,13 @@ namespace Weapons
 
         [Header("Magazine")] 
         public int ammoLeft = 30;
-        public int magazineCapacity = 30;
+        [SerializeField] private int defaultMagazineCapacity = 30;
+        public int MagazineCapacity => OverrideMagazineCapacity();
         public float reloadingTime = 2f;
         public InventoryItemInfo ammoItem;
-        
+
         [HideInInspector]public bool isHidden;
-        
+
         public event Action<bool> OnAiming;
         public event Action<Vector2> OnShot;
         public event Action OnStartReloading;
@@ -63,12 +63,9 @@ namespace Weapons
         public bool IsAiming { get; private set; }
 
         private IInventory _inventory;
-
         protected Bullet.Factory BulletFactory;
-
         protected bool IsReloading;
         protected bool IsRunning;
-        
         private Camera _mainCamera;
 
         [Inject]
@@ -100,9 +97,7 @@ namespace Weapons
 
         protected virtual void Reload()
         {
-            int requiredAmount = magazineCapacity;
-            if (attachmentSystem is not null)
-                requiredAmount = attachmentSystem.OverrideMagazineCapacity(magazineCapacity);
+            int requiredAmount = MagazineCapacity;
 
             if(requiredAmount == ammoLeft)
                 return;
@@ -186,7 +181,7 @@ namespace Weapons
 
         protected virtual void Aim(bool aim) => 
             OnAiming?.Invoke(aim);
-        
+
         public virtual void Hide()
         {
             isHidden = true;
@@ -224,7 +219,7 @@ namespace Weapons
             transform.parent = null;
             enabled = false;
         }
-        
+
         protected Vector2 CalculateRecoil()
         {
             return new()
@@ -232,6 +227,14 @@ namespace Weapons
                 x = Random.Range(-recoil.maxHorizontalRecoil, recoil.maxHorizontalRecoil),
                 y = Random.Range(recoil.minVerticalRecoil, recoil.maxVerticalRecoil)
             };
+        }
+
+        private int OverrideMagazineCapacity()
+        {
+            if (attachmentSystem is null)
+                return defaultMagazineCapacity;
+
+            return attachmentSystem.OverrideMagazineCapacity(defaultMagazineCapacity);
         }
     }
 }

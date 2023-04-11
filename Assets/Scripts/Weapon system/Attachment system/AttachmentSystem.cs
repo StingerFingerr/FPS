@@ -1,3 +1,4 @@
+using System;
 using UI.Game.Inventory.Model;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ namespace Attachment_system
 {
     public class AttachmentSystem: MonoBehaviour
     {
+        public event Action OnModuleChanged;
+        
         public BarrelModuleModelChanger barrel;
         public MagazineModuleModelChanger magazine;
 
@@ -27,6 +30,7 @@ namespace Attachment_system
                     SetMagazineModule(new ExtendedMagazineModule(1.5f));
                     break;
             }
+            OnModuleChanged?.Invoke();
         }
 
         public void RemoveModule(SecondaryInventoryItemType type)
@@ -41,6 +45,7 @@ namespace Attachment_system
                     RemoveMagazineModule();
                     break;
             }
+            OnModuleChanged?.Invoke();
         }
         
         #region Barrel
@@ -64,13 +69,13 @@ namespace Attachment_system
         private void SetMagazineModule(BaseMagazineModule magazineModule)
         {
             _magazineModule = magazineModule;
-            magazine.SetModelFor(magazineModule.Type);
+            magazine?.SetModelFor(magazineModule.Type);
         }
 
         private void RemoveMagazineModule()
         {
             _magazineModule = null;
-            magazine.ResetModel();
+            magazine?.ResetModel();
         }
 
         #endregion

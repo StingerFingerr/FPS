@@ -11,8 +11,22 @@ namespace UI.Game.Inventory
         public List<UIInventoryAttachmentSlot> attachmentSlots;
 
         [SerializeField] private TextMeshProUGUI ammoText;
-        
+
+        private void OnEnable()
+        {
+            if (weapon.attachmentSystem is null)
+                return;
+            weapon.attachmentSystem.OnModuleChanged += UpdateAmmo;
+        }
+
+        private void OnDisable()
+        {
+            if (weapon.attachmentSystem is null)
+                return;
+            weapon.attachmentSystem.OnModuleChanged -= UpdateAmmo;
+        }
+
         public void UpdateAmmo() => 
-            ammoText.text = $"{weapon.ammoLeft}/{weapon.magazineCapacity}";
+            ammoText.text = $"{weapon.ammoLeft}/{weapon.MagazineCapacity}";
     }
 }
