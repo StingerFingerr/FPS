@@ -10,7 +10,7 @@ namespace Weapons
         public FiringModeBase[] firingModes;
 
         public AudioSource audioSource;
-        public AudioClip shotClip;
+        public AudioClip defaultShotClip;
         public AudioClip bulletCaseFallingClip;
         public AudioClip reloadClip;
         public AudioClip equippedClip;
@@ -66,7 +66,8 @@ namespace Weapons
             if (IsRunning)
                 return;
             
-            audioSource.PlayOneShot(shotClip);
+            PlayShotClip();
+            
             if(_playBulletCaseClip)
                 Invoke(nameof(PlayBulletCaseClip), .4f);
             _playBulletCaseClip = !_playBulletCaseClip;
@@ -77,6 +78,15 @@ namespace Weapons
 
             base.Shot(CalculateRecoil());
         }
+
+        private void PlayShotClip()
+        {
+            AudioClip clip = defaultShotClip;
+            if (attachmentSystem is not null)
+                clip = attachmentSystem.OverrideShotSound(clip);
+            audioSource.PlayOneShot(clip);
+        }
+
 
         private void PlayBulletCaseClip() => 
             audioSource.PlayOneShot(bulletCaseFallingClip);

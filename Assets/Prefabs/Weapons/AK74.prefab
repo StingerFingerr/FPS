@@ -322,6 +322,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
         type: 3}
+      propertyPath: defaultShotClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 859d3e93880f6e54a98633564de89db0, type: 3}
+    - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
+        type: 3}
       propertyPath: bulletSpawnPoint
       value: 
       objectReference: {fileID: 1094871042596304701}

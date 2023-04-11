@@ -103,8 +103,8 @@ namespace Attachment_system
             return _barrelModule.OverrideDamage(damage);
         }
 
-        public AudioClip OverrideShotSound() => 
-            null;
+        public AudioClip OverrideShotSound(AudioClip defaultClip) => 
+            barrel.OverrideShotSound(defaultClip);
 
         #endregion
         

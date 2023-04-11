@@ -459,6 +459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
         type: 3}
+      propertyPath: defaultShotClip
+      value: 
+      objectReference: {fileID: 8300000, guid: c463dcd3c0a6d4f4c8a1047d57f3c6ab, type: 3}
+    - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
+        type: 3}
       propertyPath: attachmentSystem
       value: 
       objectReference: {fileID: 0}
