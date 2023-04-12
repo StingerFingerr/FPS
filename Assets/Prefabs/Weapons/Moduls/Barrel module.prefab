@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   silencer: {fileID: 1927695068327202193}
   compensator: {fileID: 8209355300874245933}
+  shotWithSilencer: {fileID: 8300000, guid: f36c5abf2e2e272448f74515b7222011, type: 3}
+  shotWithCompensator: {fileID: 8300000, guid: 4f63290957a182e428dd6c77bb95ab21, type: 3}
 --- !u!1001 &1929259740834583779
 PrefabInstance:
   m_ObjectHideFlags: 0

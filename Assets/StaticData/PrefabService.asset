@@ -35,6 +35,8 @@ MonoBehaviour:
   - {fileID: 4495966181603643782, guid: e5089dfe1b8d8b14d9474a58012d5335, type: 3}
   - {fileID: 2609047670513501499, guid: f64559f49ced9244290f60d65fe2b844, type: 3}
   - {fileID: 2609047670513501499, guid: 72514e357e21a04418e80883d6a547d0, type: 3}
+  - {fileID: 2025584900896358883, guid: 0d9d2e62fb9ddff4cb3be696f4a21665, type: 3}
+  - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
   bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
     type: 3}
   shotgunBulletPrefab: {fileID: 449934005946164999, guid: 1c4df52dbb8b6bb429724ce92137b735,

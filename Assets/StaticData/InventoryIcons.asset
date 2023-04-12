@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: InventoryIcons
   m_EditorClassIdentifier: 
   ammo: {fileID: 21300000, guid: 15a479c42307f334c96dd61bf459cc61, type: 3}
+  shotgunAmmo: {fileID: 21300000, guid: f7c4b6ab10f69e04ab5ccababd8fefd2, type: 3}
   medKitLittle: {fileID: 21300000, guid: f7e91c9304cad294584c61504d0aa385, type: 3}
   medKitBig: {fileID: 21300000, guid: 57b32d209e451e24890346924355ead0, type: 3}
   silencer: {fileID: 21300000, guid: 4a2b2120fdd51424e8e81fff46e7ef0b, type: 3}
   compensator: {fileID: 21300000, guid: 4443f26e8c8ed3245bbe3efa12661edb, type: 3}
-  extendedMagazine: {fileID: 0}
+  extendedMagazine: {fileID: 21300000, guid: f7bccd974463e6c439f8d78f7a7cce50, type: 3}
