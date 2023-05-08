@@ -1,7 +1,4 @@
-namespace Enemy
+public interface IDamageable
 {
-    public interface IDamageable
-    {
-        void SetDamage(int damage);
-    }
+    void SetDamage(float damage);
 }

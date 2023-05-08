@@ -1,6 +1,5 @@
 using System.Collections;
 using Effects;
-using Enemy;
 using UnityEngine;
 using Zenject;
 

@@ -251,7 +251,7 @@ MonoBehaviour:
   uiInventoryWeaponItem: {fileID: 4123874396830427741}
   allowRun: 0
   ammoLeft: 60
-  magazineCapacity: 60
+  defaultMagazineCapacity: 60
   reloadingTime: 3.5
   ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
   isHidden: 0

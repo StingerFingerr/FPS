@@ -181,10 +181,8 @@ namespace Player
 			{
 				_fallTimeoutDelta = fallTimeout;
 
-				if (_verticalVelocity < 0.0f)
-				{
+				if (_verticalVelocity < 0.0f)				
 					_verticalVelocity = -2f;
-				}
 
 				if (_input.jump && _jumpTimeoutDelta <= 0.0f)
 				{

@@ -1,0 +1,30 @@
+using UnityEngine;
+
+public class EnemyHealth: MonoBehaviour
+{
+    [SerializeField] private EnemySettings settings;
+    [SerializeField] private Animator animator;
+    [SerializeField] private BaseZombie zombie;
+
+    private float _currentHealth;
+    private static readonly int Death = Animator.StringToHash("Death");
+
+    private void Start()
+    {
+        _currentHealth = Random.Range(settings.minHealth, settings.maxHealth);
+    }
+
+    public void SetDamage(float damage)
+    {
+        if(_currentHealth <= 0)
+            return;
+        
+        _currentHealth -= damage;
+        
+        if(_currentHealth <= 0)
+        {
+            animator.SetTrigger(Death);
+        }
+    }
+        
+}
