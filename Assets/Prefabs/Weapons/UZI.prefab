@@ -430,7 +430,7 @@ PrefabInstance:
     - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
         type: 3}
       propertyPath: ammoLeft
-      value: 25
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5558015366341336935, guid: e3978344c16a74542a814d7b3a9cc9ed,
         type: 3}

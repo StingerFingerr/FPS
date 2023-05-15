@@ -31,6 +31,7 @@ namespace Weapons
         public bool zeroSpreadingIfAiming = true;
         public Transform bulletSpawnPoint;
         public int damage = 100;
+        public LayerMask bulletHitMask;
 
         [Header("Other")]
         public WeaponAnimator animator;
@@ -144,11 +145,11 @@ namespace Weapons
             Vector3 trailEnd;
             
             var ray = _mainCamera.ScreenPointToRay(GetScreenCenter());
-            //if (Physics.Raycast(ray, out RaycastHit hit, 100))
-            //    trailEnd = hit.point;
-            //else
-            //    trailEnd = ray.origin.normalized + ray.direction.normalized * 100;
-            trailEnd = ray.origin.normalized + ray.direction.normalized * 100;
+            if (Physics.Raycast(ray, out RaycastHit hit, 100, bulletHitMask))
+                trailEnd = hit.point;
+            else
+                trailEnd = ray.origin.normalized + ray.direction.normalized * 100;
+            trailEnd = ray.origin + ray.direction.normalized * 100;
 
             return AddSpreading(trailStart, trailEnd);
         }

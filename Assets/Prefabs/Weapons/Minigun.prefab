@@ -238,6 +238,9 @@ MonoBehaviour:
   zeroSpreadingIfAiming: 1
   bulletSpawnPoint: {fileID: 8045823912301802178}
   damage: 100
+  bulletHitMask:
+    serializedVersion: 2
+    m_Bits: 16385
   animator: {fileID: 9088867871026181121}
   recoil:
     maxVerticalRecoil: 0.2

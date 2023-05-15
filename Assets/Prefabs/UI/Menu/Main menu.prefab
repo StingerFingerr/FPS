@@ -1348,7 +1348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -26, y: -26}
+  m_AnchoredPosition: {x: -19.3, y: -14.4}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7443647180588164828
@@ -2480,8 +2480,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 492efea4ea7dc6d4a997e5c278b3564e, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 71545e9659d8e814db568dc666665ad4, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -3516,7 +3516,7 @@ PrefabInstance:
     - target: {fileID: 529613013937296896, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 529613013937296896, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -3531,7 +3531,7 @@ PrefabInstance:
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -3541,7 +3541,7 @@ PrefabInstance:
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7841096617708693052, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -3652,6 +3652,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Music slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702133698232200448, guid: 2831eb2b381544f4288e64954d0f5583,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2831eb2b381544f4288e64954d0f5583, type: 3}
@@ -3891,7 +3896,7 @@ PrefabInstance:
     - target: {fileID: 529613013937296896, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 529613013937296896, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -3911,7 +3916,7 @@ PrefabInstance:
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -3921,7 +3926,7 @@ PrefabInstance:
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6872815894148733887, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -4037,6 +4042,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Master slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702133698232200448, guid: 2831eb2b381544f4288e64954d0f5583,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2831eb2b381544f4288e64954d0f5583, type: 3}
@@ -4400,7 +4410,7 @@ PrefabInstance:
     - target: {fileID: 529613013937296896, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 529613013937296896, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -4420,7 +4430,7 @@ PrefabInstance:
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -4430,7 +4440,7 @@ PrefabInstance:
     - target: {fileID: 3998406491835450766, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.642
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6872815894148733887, guid: 2831eb2b381544f4288e64954d0f5583,
         type: 3}
@@ -4546,6 +4556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Effects slider
+      objectReference: {fileID: 0}
+    - target: {fileID: 8702133698232200448, guid: 2831eb2b381544f4288e64954d0f5583,
+        type: 3}
+      propertyPath: m_Value
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2831eb2b381544f4288e64954d0f5583, type: 3}
