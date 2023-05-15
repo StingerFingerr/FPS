@@ -38,7 +38,7 @@ namespace Shooting
                 
                 if(damageable is not null)
                 {
-                    damageable.SetDamage(damage);
+                    damageable.SetDamage(damage, destination - startPos);
                     _bloodyBulletsImpactsFactory.Create(hit.point, hit.normal);
                 }
                 else

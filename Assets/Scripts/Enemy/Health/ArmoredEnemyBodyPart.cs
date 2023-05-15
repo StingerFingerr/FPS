@@ -26,6 +26,6 @@ public class ArmoredEnemyBodyPart: EnemyBodyPart
         }
     }
 
-    public override void SetDamage(float damage) => 
-        base.SetDamage(damage * _damageMultiplier);
+    public override void SetDamage(float damage, Vector3 hitNormal) => 
+        base.SetDamage(damage * _damageMultiplier, hitNormal);
 }

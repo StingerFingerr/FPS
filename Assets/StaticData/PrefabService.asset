@@ -39,8 +39,8 @@ MonoBehaviour:
   - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
   bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
     type: 3}
-  shotgunBulletPrefab: {fileID: 449934005946164999, guid: 1c4df52dbb8b6bb429724ce92137b735,
-    type: 3}
   bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
   bloodyBulletImpactPrefab: {fileID: 100000, guid: 1dfcf9fefc5fb0e4ca5526be356288da,
+    type: 3}
+  damageIndicator: {fileID: 4139595423149376110, guid: ab19bba8dcf81f64ba3fb35e0b26a8a6,
     type: 3}

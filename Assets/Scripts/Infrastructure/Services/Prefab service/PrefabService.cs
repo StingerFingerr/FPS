@@ -18,6 +18,8 @@ public class PrefabService: ScriptableObject, IPrefabService
     
     public GameObject bulletImpactPrefab;
     public GameObject bloodyBulletImpactPrefab;
+
+    public GameObject damageIndicator;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;

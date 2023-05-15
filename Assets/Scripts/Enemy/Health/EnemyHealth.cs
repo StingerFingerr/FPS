@@ -5,6 +5,7 @@ public class EnemyHealth: MonoBehaviour
     [SerializeField] private EnemySettings settings;
     [SerializeField] private Animator animator;
     [SerializeField] private BaseZombie zombie;
+    [SerializeField] public Transform damageIndicatorSpawnPos;
 
     private float _currentHealth;
     private static readonly int Death = Animator.StringToHash("Death");

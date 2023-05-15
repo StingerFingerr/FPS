@@ -1779,6 +1779,7 @@ MonoBehaviour:
   settings: {fileID: 11400000, guid: ae78113909e886c45b35bd1d15059220, type: 2}
   animator: {fileID: 492659365735521037}
   zombie: {fileID: 6322159684734653815}
+  damageIndicatorSpawnPos: {fileID: 2243604394789605042}
 --- !u!1 &6832898685732424873
 GameObject:
   m_ObjectHideFlags: 0
