@@ -1646,8 +1646,8 @@ GameObject:
   - component: {fileID: 6322159684734653809}
   - component: {fileID: 6322159684734653813}
   - component: {fileID: 6322159684734653814}
-  - component: {fileID: 6322159684734653815}
   - component: {fileID: 6322159684734653808}
+  - component: {fileID: -5312905055611552317}
   m_Layer: 13
   m_Name: Zombie boss
   m_TagString: Untagged
@@ -1663,7 +1663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6592631507005922253}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.643128, y: 0, z: 4.75484}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -1749,21 +1749,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &6322159684734653815
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6592631507005922253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3608ab79174f40c58480aab1123fa2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 492659365735521037}
-  agent: {fileID: 6322159684734653814}
-  settings: {fileID: 11400000, guid: ae78113909e886c45b35bd1d15059220, type: 2}
 --- !u!114 &6322159684734653808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1778,8 +1763,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: ae78113909e886c45b35bd1d15059220, type: 2}
   animator: {fileID: 492659365735521037}
-  zombie: {fileID: 6322159684734653815}
+  zombie: {fileID: -5312905055611552317}
   damageIndicatorSpawnPos: {fileID: 2243604394789605042}
+--- !u!114 &-5312905055611552317
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6592631507005922253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 339796a263f64377b0ad7e5f2ae20dd7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 492659365735521037}
+  agent: {fileID: 6322159684734653814}
+  health: {fileID: 6322159684734653808}
+  settings: {fileID: 11400000, guid: ae78113909e886c45b35bd1d15059220, type: 2}
 --- !u!1 &6832898685732424873
 GameObject:
   m_ObjectHideFlags: 0

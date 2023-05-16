@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Enemy settings", fileName = "zombie settings")]
+[CreateAssetMenu(menuName = "Enemy/Create enemy settings", fileName = "zombie settings")]
 public class EnemySettings: ScriptableObject
 {
     public float patrollingRadius = 5f;

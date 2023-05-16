@@ -15,4 +15,4 @@ MonoBehaviour:
   type: 1
   armorPrefab: {fileID: 1262996259358930, guid: 7dea907e69fa1db4888c36ce5482a775,
     type: 3}
-  damageMultiplier: 0.5
+  damageMultiplier: 0.2

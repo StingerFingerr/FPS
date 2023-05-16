@@ -1538,9 +1538,9 @@ GameObject:
   - component: {fileID: 8780168802205578185}
   - component: {fileID: 2932961184338325388}
   - component: {fileID: 2932961184338325391}
-  - component: {fileID: 2932961184338325390}
   - component: {fileID: 2932961184338325384}
   - component: {fileID: 6281825350241059080}
+  - component: {fileID: -2586039662921535232}
   m_Layer: 13
   m_Name: Base zombie
   m_TagString: Untagged
@@ -1556,7 +1556,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2626321483812811529}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.4391028, y: 0, z: -10.5640335}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1650,21 +1650,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2932961184338325390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2626321483812811529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3608ab79174f40c58480aab1123fa2cb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 8780168802205578185}
-  agent: {fileID: 2932961184338325391}
-  settings: {fileID: 11400000, guid: 61c3b901f81b5a14b8e23c74a435a620, type: 2}
 --- !u!114 &2932961184338325384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1702,8 +1687,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings: {fileID: 11400000, guid: 61c3b901f81b5a14b8e23c74a435a620, type: 2}
   animator: {fileID: 8780168802205578185}
-  zombie: {fileID: 2932961184338325390}
+  zombie: {fileID: -2586039662921535232}
   damageIndicatorSpawnPos: {fileID: 6930415698878522998}
+--- !u!114 &-2586039662921535232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626321483812811529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66cc2a84cc5c4e8da46c76bca6fded20, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8780168802205578185}
+  agent: {fileID: 2932961184338325391}
+  health: {fileID: 6281825350241059080}
+  settings: {fileID: 11400000, guid: 61c3b901f81b5a14b8e23c74a435a620, type: 2}
 --- !u!1 &2628318875034722718
 GameObject:
   m_ObjectHideFlags: 0
@@ -2784,7 +2785,7 @@ MonoBehaviour:
   health: {fileID: 6281825350241059080}
   damageSensitivity: 1
   armorType: 2
-  armorChance: 50
+  armorChance: 20
   armorPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &4180346356271588373
 GameObject:
@@ -3340,9 +3341,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 6281825350241059080}
-  damageSensitivity: 2
+  damageSensitivity: 3
   armorType: 1
-  armorChance: 100
+  armorChance: 20
   armorPosition: {x: 0, y: 0, z: 0}
 --- !u!1 &5174653677039819824
 GameObject:

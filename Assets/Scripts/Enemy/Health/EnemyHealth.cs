@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyHealth: MonoBehaviour
 {
@@ -10,10 +12,12 @@ public class EnemyHealth: MonoBehaviour
     private float _currentHealth;
     private static readonly int Death = Animator.StringToHash("Death");
 
-    private void Start()
-    {
+    
+    private void Start() => 
+        Reset();
+
+    public void Reset() => 
         _currentHealth = Random.Range(settings.minHealth, settings.maxHealth);
-    }
 
     public void SetDamage(float damage)
     {
@@ -25,6 +29,7 @@ public class EnemyHealth: MonoBehaviour
         if(_currentHealth <= 0)
         {
             animator.SetTrigger(Death);
+            zombie.Kill();
         }
     }
         

@@ -7,7 +7,7 @@ public class ArmoredEnemyBodyPart: EnemyBodyPart
     [SerializeField] [Range(10, 100)] private int armorChance = 50;
     [SerializeField] private Vector3 armorPosition;
 
-    private float _damageMultiplier;
+    private float _damageMultiplier = 1f;
 
     [Inject]
     private void Construct(EnemyArmorsProvider armorsProvider)
@@ -26,6 +26,8 @@ public class ArmoredEnemyBodyPart: EnemyBodyPart
         }
     }
 
-    public override void SetDamage(float damage, Vector3 hitNormal) => 
+    public override void SetDamage(float damage, Vector3 hitNormal)
+    {
         base.SetDamage(damage * _damageMultiplier, hitNormal);
+    }
 }
