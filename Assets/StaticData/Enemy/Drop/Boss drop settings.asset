@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6814a594f01a4526b01f68b540f74428, type: 3}
+  m_Name: Boss drop settings
+  m_EditorClassIdentifier: 
+  dropChances:
+  - item: {fileID: 11400000, guid: d3ec5c3b5ff7a0741ae91e3787fd1e5c, type: 2}
+    chance: 0.6
+  - item: {fileID: 11400000, guid: e7e3b9c1e9eb13c4b9b47c442280ca3d, type: 2}
+    chance: 1

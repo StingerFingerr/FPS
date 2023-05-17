@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using Player.Collectable_items;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
@@ -10,6 +11,10 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected EnemyHealth health;
     [SerializeField] protected EnemySettings settings;
+
+    [SerializeField] private CollectableItemDropper itemDropper;
+    [SerializeField] private DropSettings dropSettings;
+    
     public class Factory: PlaceholderFactory<Vector3, Action, BaseZombie>
     { }
     public class Pool : MonoPoolableMemoryPool<Vector3, Action, IMemoryPool, BaseZombie>
@@ -33,8 +38,16 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
     {
         _onKilled?.Invoke();
         _onKilled = null;
+        DropItem();
         await Task.Delay(5000);
         _pool.Despawn(this);
+    }
+
+    protected virtual void DropItem()
+    {
+        var info = dropSettings.GetItemInfo();
+        if(info is not null)
+            itemDropper.DropItem(info, info.maxItemsInSlot);
     }
 
 

@@ -1705,6 +1705,8 @@ MonoBehaviour:
   agent: {fileID: 2932961184338325391}
   health: {fileID: 6281825350241059080}
   settings: {fileID: 11400000, guid: 61c3b901f81b5a14b8e23c74a435a620, type: 2}
+  itemDropper: {fileID: 3389700076692683550}
+  dropSettings: {fileID: 11400000, guid: e6d326b8d1d302541b394d5a857de997, type: 2}
 --- !u!1 &2628318875034722718
 GameObject:
   m_ObjectHideFlags: 0
@@ -5438,6 +5440,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5185310635608086293}
+  - component: {fileID: 3389700076692683550}
   m_Layer: 0
   m_Name: Hips
   m_TagString: Untagged
@@ -5463,6 +5466,19 @@ Transform:
   m_Father: {fileID: 5316502469209430153}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -0.000029028302, y: -90.00001, z: -81.40721}
+--- !u!114 &3389700076692683550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8206975228304929129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4147989c4a014acb90d86990c635f460, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomDropDirection: 1
 --- !u!1 &8208250104910874992
 GameObject:
   m_ObjectHideFlags: 0
