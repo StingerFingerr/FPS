@@ -1,9 +1,10 @@
 using DG.Tweening;
+using UI.Game.Game_UI;
 using UnityEngine;
 using Weapons;
 using Zenject;
 
-namespace UI.Game.Game_UI
+namespace Game_UI
 {
     public class UIWeaponHolder: MonoBehaviour
     {

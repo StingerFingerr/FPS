@@ -11,9 +11,11 @@ public class PrefabService: ScriptableObject, IPrefabService
     public List<WeaponBase> weaponsPrefabs;
     public List<DynamicCrosshairBase> crosshairsPrefabs;
     public GameObject playerPrefab;
+    
     public GameObject gameUIPrefab;
     public GameObject gameInventoryPrefab;
     public List<BaseCollectableItem> collectableItemsPrefabs;
+    public GameObject progressBarPrefab;
     
     public GameObject bulletPrefab;
     

@@ -27,7 +27,6 @@ namespace Game_runner
             _progressService = progressService;
         }
 
-
         private void Awake()
         {
             _gameFactory.CreatePlayer();

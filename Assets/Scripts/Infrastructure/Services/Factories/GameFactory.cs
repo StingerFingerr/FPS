@@ -31,6 +31,7 @@ public class GameFactory: IFactory
     {
         var prefab = _prefabService.GetGameUIPrefab();
         var ui = _diContainer.InstantiatePrefabForComponent<GameUI>(prefab);
+        _diContainer.BindInterfacesAndSelfTo<GameUI>().FromInstance(ui).AsSingle();
         return ui;
     }
 

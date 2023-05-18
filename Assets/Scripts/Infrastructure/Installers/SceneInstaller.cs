@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Effects;
+using Player;
 using Shooting;
 using UnityEngine;
 using Zenject;

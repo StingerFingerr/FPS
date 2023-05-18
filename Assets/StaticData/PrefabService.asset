@@ -37,6 +37,8 @@ MonoBehaviour:
   - {fileID: 2609047670513501499, guid: 72514e357e21a04418e80883d6a547d0, type: 3}
   - {fileID: 2025584900896358883, guid: 0d9d2e62fb9ddff4cb3be696f4a21665, type: 3}
   - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
+  progressBarPrefab: {fileID: 8384222896727570908, guid: a2892c79acc85104bbc7c01a27d4522e,
+    type: 3}
   bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
     type: 3}
   bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}

@@ -10,6 +10,7 @@ public class EnemySpawner: MonoBehaviour
 
     private BaseZombie.Factory _zombieFactory;
     private BaseBossZombie.Factory _bossZombieFactory;
+    private ProgressBar _progressBar;
 
     private int _enemiesToSpawn;
     private int _killedEnemies;
@@ -17,14 +18,16 @@ public class EnemySpawner: MonoBehaviour
     private bool _stopSpawn;
     private bool _bossIsSpawned;
     private bool _bossIsKilled;
-    
+
     [Inject]
     private void Construct(
         BaseZombie.Factory zombieFactory,
-        BaseBossZombie.Factory bossZombieFactory)
+        BaseBossZombie.Factory bossZombieFactory,
+        ProgressBar progressBar)
     {
         _zombieFactory = zombieFactory;
         _bossZombieFactory = bossZombieFactory;
+        _progressBar = progressBar;
     }
 
     private void Start()
@@ -43,9 +46,11 @@ public class EnemySpawner: MonoBehaviour
         
         if(amountToSpawn == 0)
             return;
-
+        
         for (int i = 0; i < amountToSpawn; i++)        
             SpawnZombie();
+
+        UpdateProgress();
     }
 
     private void EnemyKilled()
@@ -55,6 +60,7 @@ public class EnemySpawner: MonoBehaviour
             SpawnBoss();
         if(_stopSpawn is false)
             SpawnZombie();
+        UpdateProgress();
     }
 
     private void ReduceEnemiesToSpawn()
@@ -74,11 +80,28 @@ public class EnemySpawner: MonoBehaviour
         return _killedEnemies >= configuration.spawnBossAfterKills;
     }
 
-    private void BossKilled() => 
+    private void BossKilled()
+    {
         _bossIsKilled = true;
+        UpdateProgress();
+    }
 
-    private int GetProgress() => 
-        (int) (GetIntermediateProgress() * 1f / _targetProgress);
+    private void UpdateProgress()
+    {
+        var progress = GetProgress();
+        if (progress >= 1)
+            MarkAsCleared();
+        _progressBar.SetNewValue(progress);
+    }
+
+    private void MarkAsCleared()
+    {
+        GetComponent<Collider>().enabled = false;
+        _progressBar.Hide();
+    }
+
+    private float GetProgress() => 
+        (GetIntermediateProgress() * 1f / _targetProgress);
 
     private int GetIntermediateProgress()
     {
@@ -114,6 +137,12 @@ public class EnemySpawner: MonoBehaviour
     private Vector3 GetRandomPoint() => 
         spawnPoints[Random.Range(0, spawnPoints.Count)].position;
 
-    private void OnTriggerEnter(Collider other) =>
+    private void OnTriggerEnter(Collider other)
+    {
+        _progressBar.Show();
         Spawn();
+    }
+
+    private void OnTriggerExit(Collider other) => 
+        _progressBar.Hide();
 }

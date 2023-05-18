@@ -777,7 +777,7 @@ PlayerSettings:
     PS4: TextMeshPro
     PS5: TextMeshPro
     Stadia: TextMeshPro
-    Standalone: STARTER_ASSETS_PACKAGES_CHECKED;TextMeshPro
+    Standalone: STARTER_ASSETS_PACKAGES_CHECKED;TextMeshPro;MOREMOUNTAINS_NICEVIBRATIONS_INSTALLED
     WebGL: TextMeshPro
     Windows Store Apps: TextMeshPro
     XboxOne: TextMeshPro
