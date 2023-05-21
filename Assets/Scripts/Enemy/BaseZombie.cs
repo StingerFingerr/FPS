@@ -11,6 +11,7 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
     [SerializeField] protected NavMeshAgent agent;
     [SerializeField] protected EnemyHealth health;
     [SerializeField] protected EnemySettings settings;
+    [SerializeField] private Target targetIndicator;
 
     [SerializeField] private CollectableItemDropper itemDropper;
     [SerializeField] private DropSettings dropSettings;
@@ -38,6 +39,7 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
     {
         _onKilled?.Invoke();
         _onKilled = null;
+        targetIndicator.enabled = false;
         DropItem();
         await Task.Delay(5000);
         _pool.Despawn(this);
@@ -57,7 +59,8 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
         _onKilled = onKill;
 
         transform.position = pos;
-        
+
+        targetIndicator.enabled = true;
         enabled = true;
         health.Reset();
     }

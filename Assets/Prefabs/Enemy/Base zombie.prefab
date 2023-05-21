@@ -1541,6 +1541,7 @@ GameObject:
   - component: {fileID: 2932961184338325384}
   - component: {fileID: 6281825350241059080}
   - component: {fileID: -2586039662921535232}
+  - component: {fileID: 281190701259227843}
   m_Layer: 13
   m_Name: Base zombie
   m_TagString: Untagged
@@ -1705,8 +1706,26 @@ MonoBehaviour:
   agent: {fileID: 2932961184338325391}
   health: {fileID: 6281825350241059080}
   settings: {fileID: 11400000, guid: 61c3b901f81b5a14b8e23c74a435a620, type: 2}
+  targetIndicator: {fileID: 281190701259227843}
   itemDropper: {fileID: 3389700076692683550}
   dropSettings: {fileID: 11400000, guid: e6d326b8d1d302541b394d5a857de997, type: 2}
+--- !u!114 &281190701259227843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2626321483812811529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411060de4483b5e4c9847cd3cbc18554, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetColor: {r: 1, g: 0, b: 0, a: 1}
+  needBoxIndicator: 1
+  needArrowIndicator: 1
+  needDistanceText: 0
+  indicator: {fileID: 0}
 --- !u!1 &2628318875034722718
 GameObject:
   m_ObjectHideFlags: 0
