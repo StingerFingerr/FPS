@@ -1797,6 +1797,9 @@ MonoBehaviour:
   health: {fileID: 6322159684734653808}
   settings: {fileID: 11400000, guid: ae78113909e886c45b35bd1d15059220, type: 2}
   targetIndicator: {fileID: -3338171223384948324}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 8192
   itemDropper: {fileID: 4753592961751224579}
   dropSettings: {fileID: 11400000, guid: 409d4923cecffb74f80d8308cbd56fee, type: 2}
 --- !u!114 &-3338171223384948324

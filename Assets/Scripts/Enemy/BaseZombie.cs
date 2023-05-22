@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using MoreMountains.Tools;
 using Player.Collectable_items;
 using UnityEngine;
 using UnityEngine.AI;
@@ -12,10 +13,13 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
     [SerializeField] protected EnemyHealth health;
     [SerializeField] protected EnemySettings settings;
     [SerializeField] private Target targetIndicator;
+    [SerializeField] protected LayerMask playerMask;
 
     [SerializeField] private CollectableItemDropper itemDropper;
     [SerializeField] private DropSettings dropSettings;
-    
+
+    private PlayerHealth _playerHealth;
+
     public class Factory: PlaceholderFactory<Vector3, Action, BaseZombie>
     { }
     public class Pool : MonoPoolableMemoryPool<Vector3, Action, IMemoryPool, BaseZombie>
@@ -81,7 +85,10 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
 
     public virtual void Attack()
     {
-        
+        if (Vector3.Distance(Player.position, transform.position) < settings.attackDistance)
+        {
+            _playerHealth.SetDamage(settings.damage,Vector3.zero);
+        }
     }
     
     protected virtual void OnStartChasing() => 
@@ -99,6 +106,7 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
     private void OnTriggerEnter(Collider other)
     {
         Player ??= other.transform;
+        _playerHealth ??= other.GetComponent<PlayerHealth>();
         OnStartChasing();
     }
 

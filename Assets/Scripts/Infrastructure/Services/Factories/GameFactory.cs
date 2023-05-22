@@ -22,6 +22,7 @@ public class GameFactory: IFactory
 
         _diContainer.BindInterfacesAndSelfTo<FirstPersonController>().FromInstance(player).AsSingle();
         _diContainer.BindInstance(player.GetComponent<PlayerInputs>()).AsSingle();
+        _diContainer.BindInstance(player.GetComponent<PlayerHealth>()).AsSingle();
         _diContainer.BindInstance(player.GetComponentInChildren<CollectableItemDropper>()).AsSingle();
         
         return player;

@@ -12,4 +12,7 @@ public class EnemySettings: ScriptableObject
 
     public float minHealth = 100;
     public float maxHealth = 150;
+
+    public float attackDistance = 2f;
+    public int damage = 10;
 }

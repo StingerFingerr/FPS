@@ -8,9 +8,5 @@ public class BaseBossZombie: BaseZombie
     { }
     public new class Pool: MonoPoolableMemoryPool<Vector3, Action, IMemoryPool, BaseBossZombie>
     { }
-
-    public override void Attack()
-    {
-        
-    }
+    
 }

@@ -13,7 +13,7 @@ public class EnemyBodyPart: MonoBehaviour, IDamageable
         _damageIndicators = damageIndicators;
 
 
-    public virtual void SetDamage(float damage, Vector3 hitNormal)
+    public virtual void SetDamage(int damage, Vector3 hitNormal)
     {
         int newDamage = (int) (damage * damageSensitivity);
         health.SetDamage(newDamage);
