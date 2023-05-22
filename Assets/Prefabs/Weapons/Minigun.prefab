@@ -238,6 +238,9 @@ MonoBehaviour:
   zeroSpreadingIfAiming: 1
   bulletSpawnPoint: {fileID: 8045823912301802178}
   damage: 100
+  bulletHitMask:
+    serializedVersion: 2
+    m_Bits: 16385
   animator: {fileID: 9088867871026181121}
   recoil:
     maxVerticalRecoil: 0.2
@@ -251,7 +254,7 @@ MonoBehaviour:
   uiInventoryWeaponItem: {fileID: 4123874396830427741}
   allowRun: 0
   ammoLeft: 60
-  magazineCapacity: 60
+  defaultMagazineCapacity: 60
   reloadingTime: 3.5
   ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
   isHidden: 0

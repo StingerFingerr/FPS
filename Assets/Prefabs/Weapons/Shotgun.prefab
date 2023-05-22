@@ -95,6 +95,9 @@ MonoBehaviour:
   zeroSpreadingIfAiming: 0
   bulletSpawnPoint: {fileID: 3660420014403444196}
   damage: 100
+  bulletHitMask:
+    serializedVersion: 2
+    m_Bits: 16385
   animator: {fileID: 3660420013655356790}
   recoil:
     maxVerticalRecoil: 0.5
@@ -107,8 +110,8 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 09de8c2834dd2d84c94fe9cef6f21598, type: 3}
   uiInventoryWeaponItem: {fileID: 3941961412872145503}
   allowRun: 1
-  ammoLeft: 4
-  magazineCapacity: 4
+  ammoLeft: 5
+  defaultMagazineCapacity: 5
   reloadingTime: 4
   ammoItem: {fileID: 11400000, guid: 00d6590fec82046479a9538786b18c58, type: 2}
   isHidden: 0

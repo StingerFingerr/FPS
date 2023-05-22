@@ -1,7 +1,6 @@
-namespace Enemy
+using UnityEngine;
+
+public interface IDamageable
 {
-    public interface IDamageable
-    {
-        void SetDamage(int damage);
-    }
+    void SetDamage(int damage, Vector3 hitNormal);
 }

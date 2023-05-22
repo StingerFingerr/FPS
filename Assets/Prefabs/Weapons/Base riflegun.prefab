@@ -127,8 +127,12 @@ MonoBehaviour:
   aimPosition: {x: 0, y: -0.165, z: 0.4}
   aimingSpeed: 10
   spreadingFor10Units: 0.3
+  zeroSpreadingIfAiming: 1
   bulletSpawnPoint: {fileID: 0}
   damage: 100
+  bulletHitMask:
+    serializedVersion: 2
+    m_Bits: 16385
   animator: {fileID: 5558015365564369353}
   recoil:
     maxVerticalRecoil: 0.3
@@ -142,13 +146,14 @@ MonoBehaviour:
   uiInventoryWeaponItem: {fileID: 0}
   allowRun: 1
   ammoLeft: 30
-  magazineCapacity: 30
+  defaultMagazineCapacity: 30
   reloadingTime: 1.2
   ammoItem: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
   isHidden: 0
   firingModes: []
   audioSource: {fileID: 8664744063532756946}
-  shotClip: {fileID: 8300000, guid: 8617a69dc8775954289471bddc1fddc0, type: 3}
+  defaultShotClip: {fileID: 0}
+  bulletCaseFallingClip: {fileID: 0}
   reloadClip: {fileID: 8300000, guid: 89725f844b357ea4ca589138bb39f3fa, type: 3}
   equippedClip: {fileID: 8300000, guid: e20b1652cd86841439c75218a1d4c1af, type: 3}
   switchFiringModeClip: {fileID: 8300000, guid: 3000176790038ec4aa52626f2e7eaf33,

@@ -21,7 +21,7 @@ TagManager:
   - Weapon
   - Ignore player collision
   - Only player interaction
-  - 
+  - 'Damageable '
   - 
   - 
   - 

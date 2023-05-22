@@ -47,7 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 16385
   trail: {fileID: 4395991296788905860}
 --- !u!96 &4395991296788905860
 TrailRenderer:

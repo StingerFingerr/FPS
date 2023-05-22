@@ -37,10 +37,18 @@ MonoBehaviour:
   - {fileID: 2609047670513501499, guid: 72514e357e21a04418e80883d6a547d0, type: 3}
   - {fileID: 2025584900896358883, guid: 0d9d2e62fb9ddff4cb3be696f4a21665, type: 3}
   - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
-  bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
+  progressBarPrefab: {fileID: 8384222896727570908, guid: a2892c79acc85104bbc7c01a27d4522e,
     type: 3}
-  shotgunBulletPrefab: {fileID: 449934005946164999, guid: 1c4df52dbb8b6bb429724ce92137b735,
+  bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
     type: 3}
   bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
   bloodyBulletImpactPrefab: {fileID: 100000, guid: 1dfcf9fefc5fb0e4ca5526be356288da,
     type: 3}
+  damageIndicator: {fileID: 4139595423149376110, guid: ab19bba8dcf81f64ba3fb35e0b26a8a6,
+    type: 3}
+  enemiesPrefabs:
+  - {fileID: 2626321483812811529, guid: 67dd4dab0fabc4d42a38ee61f7e5799a, type: 3}
+  - {fileID: 6886247726455416618, guid: a7921899ff793724cb5c52b97fb1cb38, type: 3}
+  - {fileID: 4938047332624982982, guid: 58e42707fb4ff6746907171ffbdb4910, type: 3}
+  bossesPrefabs:
+  - {fileID: 6592631507005922253, guid: 2ff056da1f429764691565ae6e0ed51e, type: 3}

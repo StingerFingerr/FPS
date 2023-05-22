@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Effects;
+using Player;
 using Shooting;
 using UnityEngine;
 using Zenject;
@@ -19,6 +20,17 @@ public class SceneInstaller: MonoInstaller
         
         BindBulletsImpactsPool();
         BindBloodyBulletsImpactsPool();
+
+        BindDamageIndicator();
+    }
+
+    private void BindDamageIndicator()
+    {
+        Container.BindFactory<Vector3, Vector3, int, DamageIndicator, DamageIndicator.Factory>()
+            .FromPoolableMemoryPool<Vector3, Vector3, int, DamageIndicator, DamageIndicator.Pool>(poolBinder => poolBinder
+                .WithInitialSize(30)
+                .FromComponentInNewPrefab(prefabs.damageIndicator)
+                .UnderTransformGroup("Damage indicators"));
     }
 
     private void BindBloodyBulletsImpactsPool()
