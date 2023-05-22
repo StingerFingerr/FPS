@@ -1,5 +1,4 @@
 using Infrastructure;
-using Prefab_service;
 using Weapon;
 using Weapons;
 using Zenject;

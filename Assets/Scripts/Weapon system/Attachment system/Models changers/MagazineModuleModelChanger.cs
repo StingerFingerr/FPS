@@ -6,7 +6,7 @@ namespace Attachment_system
     {
         public void SetModelFor(MagazineModuleType type)
         {
-            
+            Debug.Log(type);
         }
 
         public void ResetModel()

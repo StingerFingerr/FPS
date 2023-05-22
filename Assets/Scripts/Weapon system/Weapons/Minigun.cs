@@ -1,5 +1,6 @@
 using System.Collections;
-using FiringModes;
+using Shooting;
+using Shooting.Firing_modes;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -49,6 +50,8 @@ namespace Weapons
 
             if (CanShooting())            
                 _shootingCoroutine = StartCoroutine(LaunchMinigun());
+            else
+                Reload();
         }
 
         private IEnumerator LaunchMinigun()
@@ -112,10 +115,17 @@ namespace Weapons
             barrelTransform.Rotate(Vector3.forward * _currentAngularSpeed);
 
         private bool CanShooting() => 
-            true;
+            ammoLeft > 0;
 
         private void Shot()
         {
+            if (IsRunning)
+                return;
+            
+            ammoLeft--;
+            if(ammoLeft <= 0)
+                CancelShooting();
+            
             base.Shot(CalculateRecoil());
         }
 
@@ -126,8 +136,11 @@ namespace Weapons
         }
         protected override void Reload()
         {
-            audioSource.PlayOneShot(reloadClip);
+            if (IsReloading)
+                return;
             base.Reload();
+            if(IsReloading)
+                audioSource.PlayOneShot(reloadClip);
         }
         
         public override void ThrowAway()

@@ -10,11 +10,13 @@ public class UIInventory: MonoBehaviour
     [SerializeField] private Canvas canvas;
 
     public InventoryItemInfo bulletsInfo;
+    public InventoryItemInfo shotgunBulletsInfo;
     public InventoryItemInfo medKitLittleInfo;
     public InventoryItemInfo medKitBigInfo;
     public InventoryItemInfo silencerInfo;
     public InventoryItemInfo compensatorInfo;
-    
+    public InventoryItemInfo extendedMagazineInfo;
+
     private IInventory _inventory;
     private PlayerInputs _playerInputs;
     private PlayerInput _playerInput;
@@ -34,26 +36,23 @@ public class UIInventory: MonoBehaviour
         SetupUIInventorySlots();
         RefreshSlots();
 
-        _inventory.TryToAdd(bulletsInfo, 59, out int restAmount);
-        _inventory.TryToAdd(medKitBigInfo, 3, out int r);
-        _inventory.TryToAdd(compensatorInfo, 3, out int ras);
-        _inventory.TryToAdd(silencerInfo, 3, out int asdfa);
-        _inventory.TryToAdd(medKitLittleInfo, 12, out int fsd);
-        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[25], compensatorInfo, out int rest);
-        //FillInventory();
+        
+        FillInventory();
 
         CloseInventory();
     }
 
     private void FillInventory()
     {
-        _inventory.TryToAdd(bulletsInfo, 30, out int restAmount);
-        //_inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[10], bulletsInfo, 5);
-        //_inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[12], medKitLittleInfo, 5);
-        //_inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[14], bulletsInfo, 5);
-        //_inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[15], medKitLittleInfo, 10);
-        //_inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[17], medKitBigInfo, 10);
-        //_inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[18], medKitBigInfo, 10);
+        _inventory.TryToAdd(bulletsInfo, 300, out int restAmount);
+        _inventory.TryToAdd(shotgunBulletsInfo, 30, out int asdfv);
+        _inventory.TryToAdd(medKitBigInfo, 3, out int r);
+        _inventory.TryToAdd(compensatorInfo, 3, out int ras);
+        _inventory.TryToAdd(silencerInfo, 3, out int asdfa);
+        _inventory.TryToAdd(medKitLittleInfo, 12, out int fsd);
+        _inventory.TryToAdd(extendedMagazineInfo, 12, out int fasd);
+        _inventory.TryToAdd(extendedMagazineInfo, 12, out int fsbbd);
+        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[25], compensatorInfo, out int rest);
     }
 
     private void OnEnable()

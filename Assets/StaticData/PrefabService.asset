@@ -13,12 +13,16 @@ MonoBehaviour:
   m_Name: PrefabService
   m_EditorClassIdentifier: 
   weaponsPrefabs:
-  - {fileID: 5558015366341336935, guid: 7b5a03335c38a7e468c33e2dac070fa2, type: 3}
+  - {fileID: 7075444460462780847, guid: 4c848117e10d08e45a7575d60692213c, type: 3}
   - {fileID: 9088867870206212642, guid: fc8a7115309836a46a2f73ed05a06a29, type: 3}
+  - {fileID: 40192591141411879, guid: 8c36f3d745b8a5e4f842adec1f347878, type: 3}
+  - {fileID: 4602030177802931218, guid: 043fc94c4bc81e14db166a07bc00a201, type: 3}
+  - {fileID: 3660420012796237679, guid: cbf3ffd43896ae64e9b018f32458a65d, type: 3}
   crosshairsPrefabs:
   - {fileID: 9013263448306912819, guid: 9b522e8f2ba39e146a0210016376b0e7, type: 3}
   - {fileID: 259143283605095931, guid: e102b580da9939b419a2ca6d7b740f2f, type: 3}
   - {fileID: 6601135571122488645, guid: 4db39f1fb57117a4d95d1ac6db1bb17e, type: 3}
+  - {fileID: 4144189719771105520, guid: a2f75a11e6e740c4aa5b481fbbed03df, type: 3}
   playerPrefab: {fileID: 117965870200823786, guid: c4c546b258be303449ac30dc89c37570,
     type: 3}
   gameUIPrefab: {fileID: 3194686539019092264, guid: 45974748f61daf94880fe2e1e5a5247c,
@@ -31,3 +35,20 @@ MonoBehaviour:
   - {fileID: 4495966181603643782, guid: e5089dfe1b8d8b14d9474a58012d5335, type: 3}
   - {fileID: 2609047670513501499, guid: f64559f49ced9244290f60d65fe2b844, type: 3}
   - {fileID: 2609047670513501499, guid: 72514e357e21a04418e80883d6a547d0, type: 3}
+  - {fileID: 2025584900896358883, guid: 0d9d2e62fb9ddff4cb3be696f4a21665, type: 3}
+  - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
+  progressBarPrefab: {fileID: 8384222896727570908, guid: a2892c79acc85104bbc7c01a27d4522e,
+    type: 3}
+  bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
+    type: 3}
+  bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
+  bloodyBulletImpactPrefab: {fileID: 100000, guid: 1dfcf9fefc5fb0e4ca5526be356288da,
+    type: 3}
+  damageIndicator: {fileID: 4139595423149376110, guid: ab19bba8dcf81f64ba3fb35e0b26a8a6,
+    type: 3}
+  enemiesPrefabs:
+  - {fileID: 2626321483812811529, guid: 67dd4dab0fabc4d42a38ee61f7e5799a, type: 3}
+  - {fileID: 6886247726455416618, guid: a7921899ff793724cb5c52b97fb1cb38, type: 3}
+  - {fileID: 4938047332624982982, guid: 58e42707fb4ff6746907171ffbdb4910, type: 3}
+  bossesPrefabs:
+  - {fileID: 6592631507005922253, guid: 2ff056da1f429764691565ae6e0ed51e, type: 3}

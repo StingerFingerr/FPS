@@ -1,7 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Game_logic.Collectable_items;
-using Prefab_service;
 using UnityEngine;
 using Weapons;
 
@@ -11,9 +11,21 @@ public class PrefabService: ScriptableObject, IPrefabService
     public List<WeaponBase> weaponsPrefabs;
     public List<DynamicCrosshairBase> crosshairsPrefabs;
     public GameObject playerPrefab;
+    
     public GameObject gameUIPrefab;
     public GameObject gameInventoryPrefab;
     public List<BaseCollectableItem> collectableItemsPrefabs;
+    public GameObject progressBarPrefab;
+    
+    public GameObject bulletPrefab;
+    
+    public GameObject bulletImpactPrefab;
+    public GameObject bloodyBulletImpactPrefab;
+
+    public GameObject damageIndicator;
+
+    public List<GameObject> enemiesPrefabs;
+    public List<GameObject> bossesPrefabs;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;
@@ -34,4 +46,13 @@ public class PrefabService: ScriptableObject, IPrefabService
         collectableItemsPrefabs.First(item =>
             item.info.type == info.type &&
             item.info.secondaryType == info.secondaryType).gameObject;
+
+    public GameObject GetRandomEnemyPrefab() =>
+        GetRandomFromList(enemiesPrefabs);
+
+    public GameObject GetRandomEnemyBossPrefab() =>
+        GetRandomFromList(bossesPrefabs);
+
+    private GameObject GetRandomFromList(List<GameObject> list) => 
+        list[Random.Range(0, list.Count)];
 }

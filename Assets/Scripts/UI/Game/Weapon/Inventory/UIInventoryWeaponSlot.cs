@@ -1,13 +1,33 @@
+using System;
+using Player.Inputs;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using Weapons;
+using Zenject;
 
 namespace UI.Game.Inventory
 {
     public class UIInventoryWeaponSlot: MonoBehaviour
     {
         public Transform inventorySlots;
-        
+
+        private PlayerInputs _playerInput;
         private WeaponBase _weapon;
+
+
+        [Inject]
+        private void Construct(PlayerInputs playerInput) => 
+            _playerInput = playerInput;
+
+
+        private void OnEnable() => 
+            _playerInput.onTab += UpdateSlot;
+
+        private void OnDisable() => 
+            _playerInput.onTab -= UpdateSlot;
+
+        private void UpdateSlot() => 
+            _weapon?.uiInventoryWeaponItem.UpdateAmmo();
 
         public void SetWeapon(WeaponBase weapon)
         {

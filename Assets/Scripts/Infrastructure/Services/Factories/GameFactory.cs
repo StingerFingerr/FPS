@@ -1,7 +1,6 @@
 using Player;
 using Player.Collectable_items;
 using Player.Inputs;
-using Prefab_service;
 using UI.Game;
 using Zenject;
 
@@ -23,6 +22,7 @@ public class GameFactory: IFactory
 
         _diContainer.BindInterfacesAndSelfTo<FirstPersonController>().FromInstance(player).AsSingle();
         _diContainer.BindInstance(player.GetComponent<PlayerInputs>()).AsSingle();
+        _diContainer.BindInstance(player.GetComponent<PlayerHealth>()).AsSingle();
         _diContainer.BindInstance(player.GetComponentInChildren<CollectableItemDropper>()).AsSingle();
         
         return player;
@@ -32,6 +32,7 @@ public class GameFactory: IFactory
     {
         var prefab = _prefabService.GetGameUIPrefab();
         var ui = _diContainer.InstantiatePrefabForComponent<GameUI>(prefab);
+        _diContainer.BindInterfacesAndSelfTo<GameUI>().FromInstance(ui).AsSingle();
         return ui;
     }
 

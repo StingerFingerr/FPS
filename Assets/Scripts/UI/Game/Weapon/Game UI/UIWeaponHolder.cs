@@ -1,9 +1,10 @@
 using DG.Tweening;
+using UI.Game.Game_UI;
 using UnityEngine;
 using Weapons;
 using Zenject;
 
-namespace UI.Game.Game_UI
+namespace Game_UI
 {
     public class UIWeaponHolder: MonoBehaviour
     {
@@ -48,10 +49,7 @@ namespace UI.Game.Game_UI
 
         private void SwitchWeapon(WeaponBase weapon, int index)
         {
-            if(weapon is null)
-                uiAmmo.Hide();
-            else
-                uiAmmo.Show(Random.Range(1,20), 20);
+            uiAmmo.SetWeapon(weapon);
 
             SetWeaponSlotView(weapon, index);
             SetActiveSlotByIndex(index);

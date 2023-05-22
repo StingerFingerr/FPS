@@ -585,7 +585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8021319314468305761
 Transform:
   m_ObjectHideFlags: 0
@@ -765,10 +765,13 @@ MonoBehaviour:
   - {fileID: 1007306469758950428}
   canvas: {fileID: 7049241882072529533}
   bulletsInfo: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
+  shotgunBulletsInfo: {fileID: 11400000, guid: 00d6590fec82046479a9538786b18c58, type: 2}
   medKitLittleInfo: {fileID: 11400000, guid: e7e3b9c1e9eb13c4b9b47c442280ca3d, type: 2}
   medKitBigInfo: {fileID: 11400000, guid: d3ec5c3b5ff7a0741ae91e3787fd1e5c, type: 2}
   silencerInfo: {fileID: 11400000, guid: c4c58fed6d325ea4ea69f7effcff44e5, type: 2}
   compensatorInfo: {fileID: 11400000, guid: f014e71235794774bb5ac37471b20faf, type: 2}
+  extendedMagazineInfo: {fileID: 11400000, guid: 454a9ceba73737944aee9f1b46ec958e,
+    type: 2}
 --- !u!1 &7049241882845296267
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,7 +1,4 @@
-namespace UI.Game
+public class HealthBar
 {
-    public class HealthBar
-    {
         
-    }
 }
