@@ -17,5 +17,7 @@ MonoBehaviour:
   chasingSpeed: 2
   checkDestinationTime: 1
   stoppingDistance: 2
-  minHealth: 200
-  maxHealth: 300
+  minHealth: 400
+  maxHealth: 700
+  attackDistance: 2
+  damage: 30

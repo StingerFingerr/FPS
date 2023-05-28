@@ -49,10 +49,8 @@ public class FirstPersonController : MonoBehaviour, IProgressReader, IProgressWr
 
 	private const float Threshold = 0.01f;
 
-	private void OnEnable()
-	{
+	private void Awake() => 
 		weaponHolder.OnWeaponSwitched += SetCurrentWeaponSwitched;
-	}
 
 	private void SetCurrentWeaponSwitched(WeaponBase weapon, int index)
 	{
@@ -241,7 +239,6 @@ public class FirstPersonController : MonoBehaviour, IProgressReader, IProgressWr
 
 	public void Save(Progress progress)
 	{
-		Debug.Log("Player save");
 		progress.playerState.position = transform.position.ToVec3();
 		progress.playerState.rotation = transform.eulerAngles.ToVec3();
 		progress.playerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();

@@ -1,8 +1,7 @@
+using Player.Player_stance;
 using UnityEngine;
 
-namespace Player.Player_stance
-{
-    public class Stances : MonoBehaviour
+public class Stances : MonoBehaviour
     {
         public CharacterController characterController;
         public Transform cameraHolder;
@@ -14,6 +13,11 @@ namespace Player.Player_stance
         public StanceSettings prone;
 
         public float changeStanceSpeed = 5f;
+
+        private void Awake()
+        {
+            GetComponent<PlayerHealth>().onPlayerDied += OnProne;
+        }
 
         private void Update()
         {
@@ -83,8 +87,4 @@ namespace Player.Player_stance
             else
                 currentStance = Stance.Prone;
         }
-        
-        
-        
     }
-}

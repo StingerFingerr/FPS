@@ -127,8 +127,8 @@ MonoBehaviour:
   stances: {fileID: 8997996946907055124}
   weaponHolder: {fileID: 1146754262}
   speedSettings:
-    moveSpeed: 4
-    sprintSpeed: 9
+    moveSpeed: 3
+    sprintSpeed: 6
     rotationSpeed: 1
     crouchSpeedModifier: 0.6
     proneSpeedModifier: 0.2
