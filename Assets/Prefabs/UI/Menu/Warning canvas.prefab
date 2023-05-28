@@ -368,7 +368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aedf385e11944c97a4fb3fc7e725f1b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageLabel: {fileID: 8461828415624533079}
+  messageLocalize: {fileID: 8461828415624533098}
   okButton: {fileID: 8461828415495546335}
 --- !u!1 &8461828414449573639
 GameObject:

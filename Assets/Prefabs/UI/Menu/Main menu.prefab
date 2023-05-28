@@ -210,6 +210,8 @@ MonoBehaviour:
   playButton: {fileID: 7443647181122946499}
   continueButton: {fileID: 8991844394888654721}
   exitButton: {fileID: 7798715874640672616}
+  failedToLoadSaveTerm: FailedToLoadSave
+  progressWillBeLostTerm: ProgressWillBeLost
 --- !u!1 &7443647181045982317
 GameObject:
   m_ObjectHideFlags: 0
