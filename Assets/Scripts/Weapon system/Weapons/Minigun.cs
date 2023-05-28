@@ -124,7 +124,10 @@ namespace Weapons
             
             ammoLeft--;
             if(ammoLeft <= 0)
+            {
+                ammoLeft = 0;
                 CancelShooting();
+            }
             
             base.Shot(CalculateRecoil());
         }
