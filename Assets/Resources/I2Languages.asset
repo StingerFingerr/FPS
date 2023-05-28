@@ -344,6 +344,15 @@ MonoBehaviour:
         \u043A\u0440\u0430\u043C\u044B \u043D\u0430 50%"
       Flags: 000000
       Languages_Touch: []
+    - Term: Exit
+      TermType: 0
+      Description: 
+      Languages:
+      - 
+      - 
+      - 
+      Flags: 000000
+      Languages_Touch: []
     CaseInsensitiveTerms: 0
     OnMissingTranslation: 1
     mTerm_AppName: 

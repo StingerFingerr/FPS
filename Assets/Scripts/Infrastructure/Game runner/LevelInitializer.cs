@@ -30,9 +30,9 @@ namespace Game_runner
         private void Awake()
         {
             _gameFactory.CreatePlayer();
+            _gameFactory.CreateInventoryUI();
             _gameFactory.CreateGameUI();
             CreateWeapons();
-            _gameFactory.CreateInventoryUI();
 
             LoadProgress();
         }

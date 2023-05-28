@@ -3,7 +3,8 @@ using Zenject;
 
 public abstract class DynamicCrosshairBase: MonoBehaviour
 {
-    public class CachedFactory: PlaceholderFactory<CrosshairType ,DynamicCrosshairBase> { }
+    public class CachedFactory : PlaceholderFactory<CrosshairType , DynamicCrosshairBase>
+    { }
     
     public CrosshairType type;
 

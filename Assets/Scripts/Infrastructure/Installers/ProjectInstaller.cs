@@ -33,6 +33,8 @@ public class ProjectInstaller: MonoInstaller, ICoroutineRunner
         Container.Bind<MenuBuilderState>().AsSingle();
         Container.Bind<LoadLevelState>().AsSingle();
         Container.Bind<GameLoopState>().AsSingle();
+        Container.Bind<LoadMainMenuState>().AsSingle();
+        Container.Bind<ExitState>().AsSingle();
     }
 
     private void BindProgressService() => 

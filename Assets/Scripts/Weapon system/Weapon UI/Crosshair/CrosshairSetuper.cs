@@ -1,3 +1,4 @@
+using System;
 using Player;
 using UnityEngine;
 using Weapons;
@@ -11,7 +12,7 @@ public class CrosshairSetuper: MonoBehaviour
     private DynamicCrosshairBase.CachedFactory _crosshairCachedFactory;
 
     private DynamicCrosshairBase _crosshair;
-    
+
     [Inject]
     private void Construct(
         FirstPersonController player, 
@@ -54,6 +55,7 @@ public class CrosshairSetuper: MonoBehaviour
             _crosshair = _crosshairCachedFactory.Create(CrosshairType.None);
 
         _crosshair?.transform.SetParent(transform);
+        _crosshair.transform.SetAsFirstSibling();
         
         _crosshair.Reset();
         _crosshair.Activate();

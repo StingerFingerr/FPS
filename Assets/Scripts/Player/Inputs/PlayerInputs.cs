@@ -18,6 +18,7 @@ namespace Player.Inputs
 		public bool sprint;
 		public event Action onInteract;
 		public event Action onTab;
+		public event Action onEscape;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -61,6 +62,11 @@ namespace Player.Inputs
 		private void OnTab(InputValue value)
 		{
 			onTab?.Invoke();
+		}
+
+		private void OnEscape(InputValue value)
+		{
+			onEscape?.Invoke();
 		}
 #endif
 

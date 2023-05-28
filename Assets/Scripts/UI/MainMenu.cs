@@ -9,6 +9,7 @@ public class MainMenu: MonoBehaviour
 {
     public Button playButton;
     public Button continueButton;
+    public Button exitButton;
 
     private IGameStateMachine _gameStateMachine;
     private IWarningPanel _warningPanel;
@@ -30,7 +31,18 @@ public class MainMenu: MonoBehaviour
     {
         playButton.onClick.AddListener(StartNewGame);
         continueButton.onClick.AddListener(LoadSave);
+        exitButton.onClick.AddListener(Exit);
     }
+
+    private void OnDisable()
+    {
+        playButton.onClick.RemoveListener(StartNewGame);
+        continueButton.onClick.RemoveListener(LoadSave);
+        exitButton.onClick.RemoveListener(Exit);
+    }
+
+    private void Exit() => 
+        _gameStateMachine.Enter<ExitState>();
 
     private void StartNewGame()
     {
