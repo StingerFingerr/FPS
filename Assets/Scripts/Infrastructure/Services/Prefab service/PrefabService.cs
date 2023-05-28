@@ -26,6 +26,8 @@ public class PrefabService: ScriptableObject, IPrefabService
 
     public List<GameObject> enemiesPrefabs;
     public List<GameObject> bossesPrefabs;
+
+    public WorldBlur blurPrefab;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;

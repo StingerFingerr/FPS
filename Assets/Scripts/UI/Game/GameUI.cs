@@ -14,22 +14,24 @@ public class GameUI: MonoBehaviour
 
     private PlayerInputs _inputs;
     private PlayerInput _playerInput;
-
     private IGameStateMachine _gameStateMachine;
     private PlayerHealth _playerHealth;
+    private WorldBlur _blur;
 
     [Inject]
     private void Construct(
         PlayerInputs playerInputs, 
         UIInventory inventory,
         IGameStateMachine gameStateMachine,
-        PlayerHealth playerHealth)
+        PlayerHealth playerHealth,
+        WorldBlur blur)
     {
         _inventory = inventory;
         _inputs = playerInputs;
         _playerInput = _inputs.GetComponent<PlayerInput>();
         _gameStateMachine = gameStateMachine;
         _playerHealth = playerHealth;
+        _blur = blur;
     }
 
     private void OnEnable()
@@ -128,11 +130,13 @@ public class GameUI: MonoBehaviour
     {
         _playerInput.SwitchCurrentActionMap("Window");
         Cursor.lockState = CursorLockMode.None;
+        _blur.Show();
     }
 
     private void SetGameActionMap()
     {
         _playerInput.SwitchCurrentActionMap("Game");
         Cursor.lockState = CursorLockMode.Locked;
+        _blur.Hide();
     }
 }

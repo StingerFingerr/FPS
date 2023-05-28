@@ -22,7 +22,12 @@ public class SceneInstaller: MonoInstaller
         BindBloodyBulletsImpactsPool();
 
         BindDamageIndicator();
+
+        BindBlur();
     }
+
+    private void BindBlur() => 
+        Container.Bind<WorldBlur>().FromComponentInNewPrefab(prefabs.blurPrefab).AsSingle();
 
     private void BindDamageIndicator()
     {

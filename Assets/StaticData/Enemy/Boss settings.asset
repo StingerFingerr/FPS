@@ -20,4 +20,4 @@ MonoBehaviour:
   minHealth: 3000
   maxHealth: 4000
   attackDistance: 3
-  damage: 10
+  damage: 100
