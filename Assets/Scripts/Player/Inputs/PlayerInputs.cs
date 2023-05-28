@@ -19,6 +19,7 @@ namespace Player.Inputs
 		public event Action onInteract;
 		public event Action onTab;
 		public event Action onEscape;
+		public event Action onHeal;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -67,6 +68,11 @@ namespace Player.Inputs
 		private void OnEscape(InputValue value)
 		{
 			onEscape?.Invoke();
+		}
+
+		private void OnHeal(InputValue value)
+		{
+			onHeal?.Invoke();
 		}
 #endif
 
