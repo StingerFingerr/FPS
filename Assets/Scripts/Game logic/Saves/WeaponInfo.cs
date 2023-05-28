@@ -9,5 +9,6 @@ namespace Game_logic
         public string name;
         public bool isHidden;
         public List<InventoryItemInfo> attachmentItems;
+        public int ammoLeft;
     }
 }

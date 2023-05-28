@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Game_logic;
+using Infrastructure;
 using Newtonsoft.Json;
 using UnityEngine;
 using Zenject;
@@ -11,10 +13,8 @@ public class ProgressService: IProgressService
 
     private readonly DiContainer _diContainer;
 
-    public ProgressService (DiContainer diContainer)
-    {
+    public ProgressService (DiContainer diContainer) => 
         _diContainer = diContainer;
-    }
 
     public bool Load()
     {
@@ -30,16 +30,27 @@ public class ProgressService: IProgressService
     public void Save() => 
         PlayerPrefs.SetString(KEY,  JsonConvert.SerializeObject(Progress));
 
+    public void InformProgressWritersForSave(DiContainer localDiContainer)
+    {
+        if (Progress is null)
+            InitNewProgress();
+        
+        localDiContainer.Resolve<List<IProgressWriter>>().ForEach(w => w.Save(Progress));
+    }
+
     public void ResetProgress()
     {
         PlayerPrefs.DeleteAll();
         Progress = null;
     }
 
+    public bool SaveExists() => 
+        PlayerPrefs.HasKey(KEY);
+
     public Progress InitNewProgress()
     {
         Progress = new Progress();
-        PlayerPrefs.SetString(KEY,  JsonConvert.SerializeObject(Progress));
+        //PlayerPrefs.SetString(KEY,  JsonConvert.SerializeObject(Progress));
         return null;
     }
 
@@ -49,7 +60,4 @@ public class ProgressService: IProgressService
         //_diContainer.Resolve<List<IProgressReader>>().ForEach(r => r.Load(Progress));
         return Progress;
     }
-
-    public bool SaveExists() => 
-        PlayerPrefs.HasKey(KEY);
 }

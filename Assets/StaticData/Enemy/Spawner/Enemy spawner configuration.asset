@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90abdb11572248729d3911bd789b030b, type: 3}
   m_Name: Enemy spawner configuration
   m_EditorClassIdentifier: 
-  zombieAmount: 10
+  zombieAmount: 3
   maxAmountAtTime: 1
   hasBoos: 1
   spawnBossAfterKills: 1

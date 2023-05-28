@@ -1,7 +1,6 @@
 ﻿using Game_logic;
 using Helpers;
 using Infrastructure;
-using Player.Inputs;
 using Player.Player_settings;
 using Player.Player_stance;
 using UnityEngine;
@@ -242,6 +241,7 @@ public class FirstPersonController : MonoBehaviour, IProgressReader, IProgressWr
 
 	public void Save(Progress progress)
 	{
+		Debug.Log("Player save");
 		progress.playerState.position = transform.position.ToVec3();
 		progress.playerState.rotation = transform.eulerAngles.ToVec3();
 		progress.playerState.cameraRotation = cameraHolder.eulerAngles.ToVec3();

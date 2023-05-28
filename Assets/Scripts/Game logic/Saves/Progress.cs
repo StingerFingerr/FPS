@@ -10,5 +10,6 @@ namespace Game_logic
         public Dictionary<string, WeaponInfo> WeaponInfos = new();
         public WeaponHolderInfo weaponHolderInfo = new();
         public List<InventorySlot> inventorySlots = new();
+        public Dictionary<string, EnemySpawnerInfo> EnemySpawnerInfos = new();
     }
 }

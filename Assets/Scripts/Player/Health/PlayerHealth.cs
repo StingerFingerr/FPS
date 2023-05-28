@@ -2,7 +2,6 @@ using System;
 using Game_logic;
 using Infrastructure;
 using MoreMountains.Feedbacks;
-using Player.Inputs;
 using UnityEngine;
 using Zenject;
 
@@ -56,8 +55,11 @@ public class PlayerHealth: MonoBehaviour, IDamageable, IProgressReader, IProgres
     public void Load(Progress progress) => 
         _currentHealth = progress.playerState.health;
 
-    public void Save(Progress progress) => 
+    public void Save(Progress progress)
+    {
+        Debug.Log("Player health save");
         progress.playerState.health = _currentHealth;
+    }
 
     public void InitializeProgressData() => 
         _currentHealth = maxHealth;

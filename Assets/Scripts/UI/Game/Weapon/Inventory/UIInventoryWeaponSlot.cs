@@ -1,7 +1,4 @@
-using System;
-using Player.Inputs;
 using UnityEngine;
-using UnityEngine.InputSystem;
 using Weapons;
 using Zenject;
 

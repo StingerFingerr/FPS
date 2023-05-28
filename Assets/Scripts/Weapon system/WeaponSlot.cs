@@ -33,6 +33,7 @@ public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
             weapon.isHidden = info.isHidden;
             weapon.transform.parent = transform;
             weapon.transform.localEulerAngles = Vector3.zero;
+            weapon.ammoLeft = info.ammoLeft;
                 
             weapon.Take();
             if (info.isHidden)
@@ -70,7 +71,8 @@ public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
             {
                 name = weapon.name,
                 isHidden = weapon.isHidden,
-                attachmentItems = attachmentItems
+                attachmentItems = attachmentItems,
+                ammoLeft = weapon.ammoLeft
             };
         }
             

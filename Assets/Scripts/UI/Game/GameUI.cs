@@ -1,6 +1,4 @@
 using Game_state_machine;
-using Player.Inputs;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;

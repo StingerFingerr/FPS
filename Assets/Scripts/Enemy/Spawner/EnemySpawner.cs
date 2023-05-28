@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using Game_logic;
+using Infrastructure;
 using UnityEngine;
 using Zenject;
 using Random = UnityEngine.Random;
 
-public class EnemySpawner: MonoBehaviour
+[RequireComponent(typeof(UniqueId))]
+public class EnemySpawner: MonoBehaviour, IProgressReader, IProgressWriter, IProgressInitializer
 {
     [SerializeField] private SpawnerConfiguration configuration;
     [SerializeField] private List<Transform> spawnPoints;
@@ -11,30 +14,78 @@ public class EnemySpawner: MonoBehaviour
     private BaseZombie.Factory _zombieFactory;
     private BaseBossZombie.Factory _bossZombieFactory;
     private ProgressBar _progressBar;
+    private IProgressService _progressService;
+    private DiContainer _diContainer;
+    private UniqueId _uniqueId;
 
+    private Collider _collider;
+    
     private int _enemiesToSpawn;
     private int _killedEnemies;
     private int _targetProgress;
     private bool _stopSpawn;
     private bool _bossIsSpawned;
     private bool _bossIsKilled;
+    private bool _cleared;
 
     [Inject]
     private void Construct(
         BaseZombie.Factory zombieFactory,
         BaseBossZombie.Factory bossZombieFactory,
-        ProgressBar progressBar)
+        ProgressBar progressBar,
+        IProgressService progressService,
+        DiContainer diContainer)
     {
         _zombieFactory = zombieFactory;
         _bossZombieFactory = bossZombieFactory;
         _progressBar = progressBar;
+        _uniqueId = GetComponent<UniqueId>();
+        _collider = GetComponent<Collider>();
+        _progressService = progressService;
+        _diContainer = diContainer;
     }
 
-    private void Start()
+    public void Load(Progress progress)
+    {
+        if (progress.EnemySpawnerInfos.TryGetValue(_uniqueId.id, out EnemySpawnerInfo info))
+        {
+            _enemiesToSpawn = info.enemiesToSpawn;
+            _killedEnemies = info.killedEnemies;
+            _bossIsSpawned = info.bossIsKilled;
+            _bossIsKilled = info.bossIsKilled;
+            _stopSpawn = info.stopSpawn;
+            if (info.cleared is false)
+                _collider.enabled = true;
+        }
+        
+        CalculateTargetProgress();
+    }
+
+    public void Save(Progress progress)
+    {
+        EnemySpawnerInfo info = new()
+        {
+            enemiesToSpawn = (int)configuration.zombieAmount - _killedEnemies,
+            killedEnemies = _killedEnemies,
+            bossIsKilled = _bossIsKilled,
+            stopSpawn = _stopSpawn,
+            cleared = _cleared
+        };
+        if (progress.EnemySpawnerInfos.ContainsKey(_uniqueId.id))
+            progress.EnemySpawnerInfos[_uniqueId.id] = info;
+        else
+            progress.EnemySpawnerInfos.Add(_uniqueId.id, info);
+    }
+
+    public void InitializeProgressData()
     {
         _enemiesToSpawn = (int) configuration.zombieAmount;
-        _targetProgress = GetTargetProgress();
+        _collider.enabled = true;
+        CalculateTargetProgress();
     }
+
+    private void CalculateTargetProgress() => 
+        _targetProgress = GetTargetProgress();
 
     private void Spawn()
     {
@@ -96,8 +147,13 @@ public class EnemySpawner: MonoBehaviour
 
     private void MarkAsCleared()
     {
-        GetComponent<Collider>().enabled = false;
+        _collider.enabled = false;
+        _cleared = true;
         _progressBar.Hide();
+        
+        _progressService.InformProgressWritersForSave(_diContainer);
+        _progressService.Save();
+        Debug.Log("Enemy spawner cleared, progress saved");
     }
 
     private float GetProgress() => 

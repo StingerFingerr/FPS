@@ -32,10 +32,7 @@ public class UIInventory: BaseWindow
     {
         SetupUIInventorySlots();
         RefreshSlots();
-
-        
         FillInventory();
-
         Close();
     }
 

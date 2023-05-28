@@ -22,9 +22,16 @@ public class SceneInstaller: MonoInstaller
         BindBloodyBulletsImpactsPool();
 
         BindDamageIndicator();
-
         BindBlur();
+
+        BindEnemiesSpawners();
     }
+
+    private void BindEnemiesSpawners() => 
+        Container.BindInterfacesTo<EnemySpawner>().FromMethodMultiple(GetEnemySpawners);
+
+    private IEnumerable<EnemySpawner> GetEnemySpawners(InjectContext arg) => 
+        FindObjectsOfType<EnemySpawner>();
 
     private void BindBlur() => 
         Container.Bind<WorldBlur>().FromComponentInNewPrefab(prefabs.blurPrefab).AsSingle();
