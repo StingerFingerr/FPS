@@ -348,9 +348,9 @@ MonoBehaviour:
       TermType: 0
       Description: 
       Languages:
-      - 
-      - 
-      - 
+      - Quit the game
+      - "\u0412\u044B\u0439\u0442\u0438 \u0438\u0437 \u0438\u0433\u0440\u044B"
+      - "\u0412\u044B\u0439\u0441\u0446\u0456 \u0437 \u0433\u0443\u043B\u044C\u043D\u0456"
       Flags: 000000
       Languages_Touch: []
     CaseInsensitiveTerms: 0
