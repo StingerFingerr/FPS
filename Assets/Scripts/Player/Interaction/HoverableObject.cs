@@ -30,6 +30,9 @@ namespace Player.Interaction
         private void OnEnable() => 
             OnHoverEnd();
 
+        private void OnDisable() => 
+            OnMouseExit();
+
         private void OnMouseOver()
         {
             if(CheckDistance() && _isHovered)
@@ -39,7 +42,7 @@ namespace Player.Interaction
                 OnMouseEnter();
         }
 
-        protected void OnMouseEnter()
+        private void OnMouseEnter()
         {
             if (CheckDistance())
                 return;
@@ -50,7 +53,7 @@ namespace Player.Interaction
             onHoverBegin?.Invoke(GetHoverMessage());
         }
 
-        protected void OnMouseExit()
+        private void OnMouseExit()
         {
             if (_isHovered is false)
                 return;
