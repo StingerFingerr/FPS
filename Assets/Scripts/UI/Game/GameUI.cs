@@ -1,40 +1,49 @@
 using Game_state_machine;
 using Player.Inputs;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Zenject;
-using Zenject.Asteroids;
 
 public class GameUI: MonoBehaviour
 {
     [SerializeField] private BaseWindow gameMenu;
     [SerializeField] private BaseWindow settings;
+    [SerializeField] private BaseWindow gameOver;
     private BaseWindow _inventory;
 
     private PlayerInputs _inputs;
     private PlayerInput _playerInput;
 
     private IGameStateMachine _gameStateMachine;
+    private PlayerHealth _playerHealth;
 
     [Inject]
-    private void Construct(PlayerInputs playerInputs, UIInventory inventory, IGameStateMachine gameStateMachine)
+    private void Construct(
+        PlayerInputs playerInputs, 
+        UIInventory inventory,
+        IGameStateMachine gameStateMachine,
+        PlayerHealth playerHealth)
     {
         _inventory = inventory;
         _inputs = playerInputs;
         _playerInput = _inputs.GetComponent<PlayerInput>();
         _gameStateMachine = gameStateMachine;
+        _playerHealth = playerHealth;
     }
 
     private void OnEnable()
     {
         _inputs.onTab += HandleTab;
         _inputs.onEscape += HandleEscape;
+        _playerHealth.onPlayerDied += ShowGameOverWindow;
     }
 
     private void OnDisable()
     {
         _inputs.onTab -= HandleTab;
         _inputs.onEscape -= HandleEscape;
+        _playerHealth.onPlayerDied += ShowGameOverWindow;
     }
 
     public void CloseGameMenu()
@@ -43,14 +52,33 @@ public class GameUI: MonoBehaviour
         SetGameActionMap();
     }
 
+    private void ShowGameOverWindow()
+    {
+        gameOver.Open();
+        SetWindowActionMap();
+    }
+
     public void ExitToMainMenu()
     {
         gameMenu.Close();
         _gameStateMachine.Enter<LoadMainMenuState>();
     }
 
+    public void Exit()
+    {
+        _gameStateMachine.Enter<ExitState>();
+    }
+
+    public void Retry()
+    {
+        gameMenu.Close();
+        _gameStateMachine.Enter<LoadLevelState>();
+    }
+
     private void HandleEscape()
     {
+        if (gameOver.IsOpened)
+            return;
         if(_inventory.IsOpened)
         {
             _inventory.Close();
@@ -79,6 +107,8 @@ public class GameUI: MonoBehaviour
 
     private void HandleTab()
     {
+        if (gameOver.IsOpened)
+            return;
         if(gameMenu.IsOpened)
             return;
 
