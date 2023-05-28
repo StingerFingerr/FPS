@@ -15,8 +15,11 @@ namespace Game_state_machine
             _gameStateMachine = gameStateMachine;
         }
 
-        public void Enter() => 
-            _sceneLoader.LoadSceneAsync("Menu", EnterNextState);
+        public void Enter()
+        {
+            _gameStateMachine.Enter<LoadMainMenuState>();
+            //_sceneLoader.LoadSceneAsync("Menu", EnterNextState);
+        }
 
         private void EnterNextState() => 
             _gameStateMachine.Enter<MenuBuilderState>();

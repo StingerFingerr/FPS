@@ -8,6 +8,15 @@ public class MinigunCrosshair: DynamicCrosshairBase
     public List<Image> normalImages;
     public List<Image> aimingImages;
 
+    public float normalSize;
+    public float maxSizeOnShot;
+    public float maxSizeOnMove;
+    public float maxSizeOnLook;
+
+    public float restingSpeed;
+    public float shootingSpeed;
+    public float meltingSpeed;
+    
     private RectTransform _rectTransform;
 
     private bool _isAiming;

@@ -27,6 +27,18 @@ namespace Player.Interaction
         private void Construct(FirstPersonController player) => 
             _player = player;
 
+        private void OnEnable() => 
+            OnHoverEnd();
+
+        private void OnMouseOver()
+        {
+            if(CheckDistance() && _isHovered)
+                OnMouseExit();
+            
+            if(CheckDistance() is false && _isHovered is false)
+                OnMouseEnter();
+        }
+
         protected void OnMouseEnter()
         {
             if (CheckDistance())
@@ -36,15 +48,6 @@ namespace Player.Interaction
             interactableObject.enabled = true;
             OnHoverBegin();
             onHoverBegin?.Invoke(GetHoverMessage());
-        }
-
-        private void OnMouseOver()
-        {
-            if(CheckDistance() && _isHovered)
-                OnMouseExit();
-            
-            if(CheckDistance() is false && _isHovered is false)
-                OnMouseEnter();
         }
 
         protected void OnMouseExit()
@@ -64,10 +67,14 @@ namespace Player.Interaction
         private string GetHoverMessage()
         {
             if (string.IsNullOrEmpty(_message))
-                _message = I2.Loc.LocalizationManager
-                    .GetTranslation(onHoverTerm)
-                    .Replace(Name, onHoverName);
-            
+            {
+                string hoverName = I2.Loc.LocalizationManager.GetTranslation(onHoverName);
+                if (string.IsNullOrEmpty(hoverName))
+                    hoverName = onHoverName;
+                
+                _message = I2.Loc.LocalizationManager.GetTranslation(onHoverTerm)
+                    .Replace(Name, hoverName);
+            }
             return _message;
         }
 

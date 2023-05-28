@@ -1,5 +1,5 @@
 using System;
-using TMPro;
+using I2.Loc;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,15 +7,15 @@ namespace UI.Warning_panel
 {
     public class WarningPanel: MonoBehaviour, IWarningPanel
     {
-        public TextMeshProUGUI messageLabel;
-        public Button okButton;
+        [SerializeField] private Localize messageLocalize;
+        [SerializeField] private Button okButton;
         
         private Action _onConfirm;
         
-        public void Show(string message, Action onConfirm = null)
+        public void Show(string term, Action onConfirm = null)
         {
-            if(string.IsNullOrEmpty(message) is false)
-                messageLabel.text = message;
+            messageLocalize.SetTerm(term);
+            
             _onConfirm = onConfirm;
             gameObject.SetActive(true);
         }

@@ -23,6 +23,9 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 
     private void Start()
     {
+        for (int i = 0; i < weaponSlots.Length; i++)        
+            OnWeaponSwitched?.Invoke(weaponSlots[i].weapon, i);
+
         OnWeaponSwitched?.Invoke(CurrentWeapon, _weaponIndex);
     }
 
