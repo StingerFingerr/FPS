@@ -7,8 +7,8 @@ using Zenject;
 
 public class ProjectInstaller: MonoInstaller, ICoroutineRunner
 {
-    public GameObject loadingScreenPrefab;
-    
+    public PrefabService prefabs;
+
     public override void InstallBindings()
     {
         BindGameStateMachine();
@@ -19,7 +19,12 @@ public class ProjectInstaller: MonoInstaller, ICoroutineRunner
         BindCoroutineRunner();
         BindSceneLoaderService();
         BindLoadingScreen();
+
+        BindFPSCounter();
     }
+
+    private void BindFPSCounter() => 
+        Container.Bind<FPSCounter>().FromComponentInNewPrefab(prefabs.fpsCounter).AsSingle();
 
     private void BindGameStateMachine() => 
         Container.Bind<IGameStateMachine>().To<GameStateMachine>().AsSingle();
@@ -48,5 +53,5 @@ public class ProjectInstaller: MonoInstaller, ICoroutineRunner
 
     private void BindLoadingScreen() =>
         Container.Bind<ILoadingScreen>().To<LoadingScreen.LoadingScreen>()
-            .FromComponentInNewPrefab(loadingScreenPrefab).AsSingle();
+            .FromComponentInNewPrefab(prefabs.loadingScreenPrefab).AsSingle();
 }

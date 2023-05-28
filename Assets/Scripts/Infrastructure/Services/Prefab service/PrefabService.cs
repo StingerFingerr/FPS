@@ -17,6 +17,9 @@ public class PrefabService: ScriptableObject, IPrefabService
     public List<BaseCollectableItem> collectableItemsPrefabs;
     public GameObject progressBarPrefab;
     
+    public GameObject loadingScreenPrefab;
+    public FPSCounter fpsCounter;
+    
     public GameObject bulletPrefab;
     
     public GameObject bulletImpactPrefab;

@@ -39,6 +39,10 @@ MonoBehaviour:
   - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
   progressBarPrefab: {fileID: 8384222896727570908, guid: a2892c79acc85104bbc7c01a27d4522e,
     type: 3}
+  loadingScreenPrefab: {fileID: 4198641699095151577, guid: a963d2836ca7bcc47b01bce8e8d1e67d,
+    type: 3}
+  fpsCounter: {fileID: 5922313222585162987, guid: 3e64a19335aab8a409e725d9f38aee0c,
+    type: 3}
   bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
     type: 3}
   bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
