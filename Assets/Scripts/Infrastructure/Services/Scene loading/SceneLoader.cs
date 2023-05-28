@@ -26,11 +26,10 @@ namespace Scene_service
 
         private IEnumerator LoadingScene(string name, Action onLoaded = null)
         {
-            //if (SceneManager.GetActiveScene().name.Equals(name))
-            //{
-            //    onLoaded?.Invoke();
-            //    yield break;
-            //}
+            if (SceneManager.GetActiveScene().name.Equals(name))
+            {
+                yield return SceneManager.UnloadSceneAsync(name);
+            }
             
             _loadingScreen.Show();
 
