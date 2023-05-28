@@ -5,13 +5,13 @@ using Infrastructure;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
-using Weapon_system;
+using Weapons;
 
 public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 {
     public WeaponSlot[] weaponSlots;
     public float switchWeaponTimeout = .5f;
-    public event Action<WeaponBase> SwitchCurrentWeapon;
+    public event Action<WeaponBase, int> OnWeaponSwitched;
 
     private WeaponBase CurrentWeapon
     {
@@ -23,8 +23,10 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 
     private void Start()
     {
-        if (CurrentWeapon is not null)
-            SwitchCurrentWeapon?.Invoke(CurrentWeapon);
+        for (int i = 0; i < weaponSlots.Length; i++)        
+            OnWeaponSwitched?.Invoke(weaponSlots[i].weapon, i);
+
+        OnWeaponSwitched?.Invoke(CurrentWeapon, _weaponIndex);
     }
 
     public void SetNewWeapon(WeaponBase weapon)
@@ -33,13 +35,16 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 
         CurrentWeapon = weapon;
         CurrentWeapon.transform.parent = weaponSlots[_weaponIndex].transform;
+        
+        OnWeaponSwitched?.Invoke(CurrentWeapon, _weaponIndex);
     }
 
     private void OnThrowAway(InputValue inputValue)
     {
         CurrentWeapon?.ThrowAway();
         CurrentWeapon = null;
-        SwitchCurrentWeapon?.Invoke(null);
+        
+        OnWeaponSwitched?.Invoke(null, _weaponIndex);
     }
     
     private void OnScroll(InputValue inputValue)
@@ -61,7 +66,7 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
         StartCoroutine(StartSwitchTimeout(switchWeaponTimeout));
         
         CurrentWeapon?.Show();
-        SwitchCurrentWeapon?.Invoke(CurrentWeapon);
+        OnWeaponSwitched?.Invoke(CurrentWeapon, _weaponIndex);
     }
 
     private void ScrollForward()

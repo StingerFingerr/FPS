@@ -1,65 +1,81 @@
+using System.Collections.Generic;
 using Game_logic;
 using Infrastructure;
 using UnityEngine;
-using Weapon;
+using Weapons;
 using Zenject;
 
-namespace Weapon_system
+[RequireComponent(typeof(UniqueId))]
+public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
 {
-    [RequireComponent(typeof(UniqueId))]
-    public class WeaponSlot: MonoBehaviour, IProgressReader, IProgressWriter
+    public WeaponBase weapon;
+
+    private UniqueId _uniqueId;
+    private WeaponBase.Factory _weaponFactory;
+        
+    [Inject]
+    private void Construct(WeaponBase.Factory weaponFactory)
     {
-        public WeaponBase weapon;
+        _weaponFactory = weaponFactory;
 
-        private UniqueId _uniqueId;
-        private WeaponBase.Factory _weaponFactory;
+        _uniqueId ??= GetComponent<UniqueId>();
+    }
         
-        [Inject]
-        private void Construct(WeaponBase.Factory weaponFactory)
+    public void Load(Progress progress)
+    {
+        WeaponInfo info = progress.WeaponInfos[_uniqueId.id];
+
+        if (info is not null)
         {
-            _weaponFactory = weaponFactory;
+            weapon = _weaponFactory.Create(info.name);
 
-            _uniqueId ??= GetComponent<UniqueId>();
-        }
-        
-        public void Load(Progress progress)
-        {
-            WeaponInfo info = progress.WeaponInfos[_uniqueId.id];
-
-            if (info is not null)
-            {
-                weapon = _weaponFactory.Create(info.name);
-
-                weapon.name = info.name;
-                weapon.isHidden = info.isHidden;
-                weapon.transform.parent = transform;
-                weapon.transform.localEulerAngles = Vector3.zero;
+            weapon.name = info.name;
+            weapon.isHidden = info.isHidden;
+            weapon.transform.parent = transform;
+            weapon.transform.localEulerAngles = Vector3.zero;
                 
-                if (info.isHidden)
-                {
-                    weapon.transform.localPosition = weapon.hipPosition;
-                    weapon.Hide();
-                }
-                else
-                {
-                    weapon.Show();
-                }
+            weapon.Take();
+            if (info.isHidden)
+            {
+                weapon.transform.localPosition = weapon.hipPosition;
+                weapon.Hide();
+            }
+            else
+            {
+                weapon.Show();
+            }
+
+
+            List<InventoryItemInfo> attachmentItems = info.attachmentItems;
+            for (int i = 0; i < attachmentItems.Count; i++)
+            {
+                
+                if(attachmentItems[i] is not null)
+                    weapon.uiInventoryWeaponItem.attachmentSlots[i].SetModule(attachmentItems[i]);
             }
         }
+    }
 
-        public void Save(Progress progress)
+    public void Save(Progress progress)
+    {
+        WeaponInfo info = null;
+
+        if (weapon)
         {
-            WeaponInfo info = null;
+            List<InventoryItemInfo> attachmentItems = new List<InventoryItemInfo>();
+            foreach (var slot in weapon.uiInventoryWeaponItem.attachmentSlots)
+                attachmentItems.Add(slot.draggableItem.ItemInfo);
 
-            if (weapon)
-                info = new()
-                {
-                    name = weapon.name,
-                    isHidden = weapon.isHidden
-                };
-
-            if (progress.WeaponInfos.TryAdd(_uniqueId.id, info) is false)
-                progress.WeaponInfos[_uniqueId.id] = info;
+            info = new()
+            {
+                name = weapon.name,
+                isHidden = weapon.isHidden,
+                attachmentItems = attachmentItems
+            };
         }
+            
+
+        if (progress.WeaponInfos.TryAdd(_uniqueId.id, info) is false)
+            progress.WeaponInfos[_uniqueId.id] = info;
     }
 }

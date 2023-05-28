@@ -1,3 +1,4 @@
+using System;
 using Player.Player_stance;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,6 +16,10 @@ namespace Player.Inputs
 		public Vector2 look;
 		public bool jump;
 		public bool sprint;
+		public event Action onInteract;
+		public event Action onTab;
+		public event Action onEscape;
+		public event Action onHeal;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -48,6 +53,26 @@ namespace Player.Inputs
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+
+		private void OnInteract(InputValue value)
+		{
+			onInteract?.Invoke();
+		}
+
+		private void OnTab(InputValue value)
+		{
+			onTab?.Invoke();
+		}
+
+		private void OnEscape(InputValue value)
+		{
+			onEscape?.Invoke();
+		}
+
+		private void OnHeal(InputValue value)
+		{
+			onHeal?.Invoke();
 		}
 #endif
 
