@@ -17,6 +17,9 @@ public class PrefabService: ScriptableObject, IPrefabService
     public List<BaseCollectableItem> collectableItemsPrefabs;
     public GameObject progressBarPrefab;
     
+    public GameObject loadingScreenPrefab;
+    public FPSCounter fpsCounter;
+    
     public GameObject bulletPrefab;
     
     public GameObject bulletImpactPrefab;
@@ -26,6 +29,8 @@ public class PrefabService: ScriptableObject, IPrefabService
 
     public List<GameObject> enemiesPrefabs;
     public List<GameObject> bossesPrefabs;
+
+    public WorldBlur blurPrefab;
     
     public GameObject GetWeaponPrefabByName(string name) => 
         weaponsPrefabs.FirstOrDefault(x => x.name.Equals(name))?.gameObject;

@@ -39,6 +39,10 @@ MonoBehaviour:
   - {fileID: 7088434096923487282, guid: ddde8405956953a48bd1be76c11e19f0, type: 3}
   progressBarPrefab: {fileID: 8384222896727570908, guid: a2892c79acc85104bbc7c01a27d4522e,
     type: 3}
+  loadingScreenPrefab: {fileID: 4198641699095151577, guid: a963d2836ca7bcc47b01bce8e8d1e67d,
+    type: 3}
+  fpsCounter: {fileID: 5922313222585162987, guid: 3e64a19335aab8a409e725d9f38aee0c,
+    type: 3}
   bulletPrefab: {fileID: 3029151777396918020, guid: ff3e1ffdb5a5649428af934a74bfc720,
     type: 3}
   bulletImpactPrefab: {fileID: 100000, guid: e97800d83246b694d917786264af9c0b, type: 3}
@@ -52,3 +56,5 @@ MonoBehaviour:
   - {fileID: 4938047332624982982, guid: 58e42707fb4ff6746907171ffbdb4910, type: 3}
   bossesPrefabs:
   - {fileID: 6592631507005922253, guid: 2ff056da1f429764691565ae6e0ed51e, type: 3}
+  blurPrefab: {fileID: 7344236505075126274, guid: 43e130a9927706c45880218bc3c2065a,
+    type: 3}

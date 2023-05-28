@@ -2,7 +2,7 @@
     "name": "StarterAssets",
     "maps": [
         {
-            "name": "Player",
+            "name": "Game",
             "id": "f62a4b92-ef5e-4175-8f4c-c9075429d32c",
             "actions": [
                 {
@@ -135,6 +135,15 @@
                     "name": "SwitchFiringMode",
                     "type": "Button",
                     "id": "cc4a31b1-1a3a-4f5b-9d76-db80da3bf0e4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "92c96fe4-f895-4001-a35c-3dad3758ee5d",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -471,17 +480,37 @@
                     "action": "Tab",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1134ab5c-3872-4216-b2ab-98d5bf87a7d5",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
         {
-            "name": "Inventory",
+            "name": "Window",
             "id": "495bbf11-ac14-41bf-809e-bb0ef8971b14",
             "actions": [
                 {
                     "name": "Tab",
                     "type": "Button",
                     "id": "cf153d37-b2c6-49a8-bd79-0dc295992c4d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Escape",
+                    "type": "Button",
+                    "id": "d24cf489-8e1c-40a3-a028-8d3e63e966d9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -497,6 +526,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Tab",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d1e32088-c58a-4c3c-900f-f876e3084e50",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

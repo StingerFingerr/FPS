@@ -40,6 +40,7 @@ public class GameFactory: IFactory
     {
         var prefab = _prefabService.GetInventoryUIPrefab();
         var ui = _diContainer.InstantiatePrefabForComponent<UIInventory>(prefab);
+        _diContainer.BindInstance(ui);
         return ui;
     }
 

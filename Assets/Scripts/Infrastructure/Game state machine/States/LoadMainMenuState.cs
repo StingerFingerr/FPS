@@ -2,24 +2,23 @@ using Scene_service;
 
 namespace Game_state_machine
 {
-    public class InitialState: IState
-    { 
+    public class LoadMainMenuState: IState
+    {
         private readonly IGameStateMachine _gameStateMachine;
+
         private readonly ISceneLoader _sceneLoader;
 
-        public InitialState (
+        public LoadMainMenuState (
             ISceneLoader sceneLoader,
-            IGameStateMachine gameStateMachine)
+            IGameStateMachine gameStateMachine
+        )
         {
-            _sceneLoader = sceneLoader;
             _gameStateMachine = gameStateMachine;
+            _sceneLoader = sceneLoader;
         }
 
-        public void Enter()
-        {
-            _gameStateMachine.Enter<LoadMainMenuState>();
-            //_sceneLoader.LoadSceneAsync("Menu", EnterNextState);
-        }
+        public void Enter() => 
+            _sceneLoader.LoadSceneAsync("Menu", EnterNextState);
 
         private void EnterNextState() => 
             _gameStateMachine.Enter<MenuBuilderState>();

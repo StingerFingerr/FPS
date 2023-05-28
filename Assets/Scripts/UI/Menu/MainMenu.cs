@@ -1,4 +1,3 @@
-using System;
 using Game_state_machine;
 using UI.Warning_panel;
 using UnityEngine;
@@ -7,8 +6,12 @@ using Zenject;
 
 public class MainMenu: MonoBehaviour
 {
-    public Button playButton;
-    public Button continueButton;
+    [SerializeField] private Button playButton;
+    [SerializeField] private Button continueButton;
+    [SerializeField] private Button exitButton;
+
+    [SerializeField] private string failedToLoadSaveTerm;
+    [SerializeField] private string progressWillBeLostTerm;
 
     private IGameStateMachine _gameStateMachine;
     private IWarningPanel _warningPanel;
@@ -30,12 +33,23 @@ public class MainMenu: MonoBehaviour
     {
         playButton.onClick.AddListener(StartNewGame);
         continueButton.onClick.AddListener(LoadSave);
+        exitButton.onClick.AddListener(Exit);
     }
+
+    private void OnDisable()
+    {
+        playButton.onClick.RemoveListener(StartNewGame);
+        continueButton.onClick.RemoveListener(LoadSave);
+        exitButton.onClick.RemoveListener(Exit);
+    }
+
+    private void Exit() => 
+        _gameStateMachine.Enter<ExitState>();
 
     private void StartNewGame()
     {
         if(_progressService.SaveExists())
-            _warningPanel.Show(String.Empty, ResetProgressAndStartNewGame);
+            _warningPanel.Show(progressWillBeLostTerm, ResetProgressAndStartNewGame);
         else
             ResetProgressAndStartNewGame();
     }
@@ -51,7 +65,7 @@ public class MainMenu: MonoBehaviour
         if(_progressService.Load())
             StartLevelLoading();
         else
-            _warningPanel.Show(String.Empty);
+            _warningPanel.Show(failedToLoadSaveTerm);
     }
 
     private void StartLevelLoading() => 

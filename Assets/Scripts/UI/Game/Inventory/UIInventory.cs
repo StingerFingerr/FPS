@@ -1,10 +1,8 @@
 using UnityEngine;
 using Zenject;
 using System.Collections.Generic;
-using Player.Inputs;
-using UnityEngine.InputSystem;
 
-public class UIInventory: MonoBehaviour
+public class UIInventory: BaseWindow
 {
     [SerializeField] private List<UIInventorySlot> uiSlots;
     [SerializeField] private Canvas canvas;
@@ -17,18 +15,17 @@ public class UIInventory: MonoBehaviour
     public InventoryItemInfo compensatorInfo;
     public InventoryItemInfo extendedMagazineInfo;
 
+    public override bool IsOpened => _inventoryIsOpen;
+
     private IInventory _inventory;
-    private PlayerInputs _playerInputs;
-    private PlayerInput _playerInput;
 
     private bool _inventoryIsOpen;
-    
+
+
     [Inject]
-    private void Construct(IInventory inventory, PlayerInputs playerInputs)
+    private void Construct(IInventory inventory)
     {
         _inventory = inventory;
-        _playerInputs = playerInputs;
-        _playerInput = playerInputs.GetComponent<PlayerInput>();
     }
 
     private void Start()
@@ -39,7 +36,7 @@ public class UIInventory: MonoBehaviour
         
         FillInventory();
 
-        CloseInventory();
+        Close();
     }
 
     private void FillInventory()
@@ -58,40 +55,22 @@ public class UIInventory: MonoBehaviour
     private void OnEnable()
     {
         _inventory.OnInventoryStateChanged += RefreshSlots;
-        _playerInputs.onTab += OnTab;
     }
 
     private void OnDisable()
     {
         _inventory.OnInventoryStateChanged -= RefreshSlots;
-        _playerInputs.onTab -= OnTab;
     }
 
-    private void OnTab()
-    {
-        if(_inventoryIsOpen)
-            CloseInventory();
-        else
-            OpenInventory();
-    }
-
-    private void OpenInventory()
+    public override void Open()
     {
         _inventoryIsOpen = true;
-
-        Cursor.lockState = CursorLockMode.None;
-        _playerInput.SwitchCurrentActionMap("Inventory");
-
         canvas.enabled = true;
     }
 
-    private void CloseInventory()
+    public override void Close()
     {
         _inventoryIsOpen = false;
-        
-        Cursor.lockState = CursorLockMode.Locked;
-        _playerInput.SwitchCurrentActionMap("Player");
-
         canvas.enabled = false;
     }
 

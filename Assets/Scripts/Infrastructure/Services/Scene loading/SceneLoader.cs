@@ -28,8 +28,7 @@ namespace Scene_service
         {
             if (SceneManager.GetActiveScene().name.Equals(name))
             {
-                onLoaded?.Invoke();
-                yield break;
+                yield return SceneManager.UnloadSceneAsync(name);
             }
             
             _loadingScreen.Show();
