@@ -8,5 +8,6 @@ namespace Game_logic
         public Vec3 position;
         public Vec3 rotation;
         public Vec3 cameraRotation;
+        public int health;
     }
 }
