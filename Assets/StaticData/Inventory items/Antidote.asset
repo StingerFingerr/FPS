@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
-  m_Name: Extended magazine info
+  m_Name: Antidote
   m_EditorClassIdentifier: 
-  titleTerm: ExtendedMagazineTitle
-  descriptionTerm: ExtendedMagazineDescription
+  titleTerm: AntidoteTitle
+  descriptionTerm: AntidoteDescription
   maxItemsInSlot: 1
   isStackable: 0
-  type: 6
-  secondaryType: 3
+  type: 5
+  secondaryType: 0

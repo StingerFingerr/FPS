@@ -15,3 +15,5 @@ MonoBehaviour:
   prefabService: {fileID: 11400000, guid: d3670338520f28f4ba54b1d9d8ce9636, type: 2}
   inventoryIcons: {fileID: 11400000, guid: 5eb82677d0649134e80b4c30f1266077, type: 2}
   enemyArmors: {fileID: 11400000, guid: 2fd09c96e8fd9b74ea964ec118ca242a, type: 2}
+  inventoryInitialState: {fileID: 11400000, guid: bbec3f456c67b8b41bc44f38552a005f,
+    type: 2}

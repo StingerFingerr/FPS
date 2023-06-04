@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
-  m_Name: Extended magazine info
+  m_Script: {fileID: 11500000, guid: 20ab8969a1d043008afd759e52794688, type: 3}
+  m_Name: Poisoning settings
   m_EditorClassIdentifier: 
-  titleTerm: ExtendedMagazineTitle
-  descriptionTerm: ExtendedMagazineDescription
-  maxItemsInSlot: 1
-  isStackable: 0
-  type: 6
-  secondaryType: 3
+  poisoningDelay: 1
+  poisoningDamage: 5

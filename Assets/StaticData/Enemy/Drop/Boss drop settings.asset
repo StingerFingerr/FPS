@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Boss drop settings
   m_EditorClassIdentifier: 
   dropChances:
-  - item: {fileID: 11400000, guid: d3ec5c3b5ff7a0741ae91e3787fd1e5c, type: 2}
+  - item: {fileID: 11400000, guid: 691e64779f4a6eb4e952c8c39b6822e6, type: 2}
     chance: 0.9
-  - item: {fileID: 11400000, guid: 454a9ceba73737944aee9f1b46ec958e, type: 2}
+  - item: {fileID: 11400000, guid: d3ec5c3b5ff7a0741ae91e3787fd1e5c, type: 2}
     chance: 1

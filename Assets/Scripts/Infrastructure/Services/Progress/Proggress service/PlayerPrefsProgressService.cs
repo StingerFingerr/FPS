@@ -11,11 +11,6 @@ public class ProgressService: IProgressService
     
     private const string KEY = "Save";
 
-    private readonly DiContainer _diContainer;
-
-    public ProgressService (DiContainer diContainer) => 
-        _diContainer = diContainer;
-
     public bool Load()
     {
         if (SaveExists())
