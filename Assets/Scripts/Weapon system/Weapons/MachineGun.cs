@@ -73,8 +73,11 @@ namespace Weapons
             _playBulletCaseClip = !_playBulletCaseClip;
             
             ammoLeft--;
-            if (ammoLeft <= 0)            
+            if (ammoLeft <= 0)
+            {
+                ammoLeft = 0;
                 firingModes[_currentFiringMode].FinishFiring();
+            }
 
             base.Shot(CalculateRecoil());
         }

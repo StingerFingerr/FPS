@@ -16,4 +16,6 @@ MonoBehaviour:
   - item: {fileID: 11400000, guid: 17e19be6007e2f04ca1cbf8c87b98a75, type: 2}
     chance: 0.5
   - item: {fileID: 11400000, guid: 00d6590fec82046479a9538786b18c58, type: 2}
-    chance: 0.3
+    chance: 0.25
+  - item: {fileID: 11400000, guid: e7e3b9c1e9eb13c4b9b47c442280ca3d, type: 2}
+    chance: 0.1

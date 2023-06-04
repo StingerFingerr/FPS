@@ -1,8 +1,6 @@
 ﻿using System.IO;
 using System.Linq;
 using System.Text;
-using Player;
-using Player.Inputs;
 using UnityEditor;
 using UnityEngine;
 

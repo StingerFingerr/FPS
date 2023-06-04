@@ -1,7 +1,6 @@
 ﻿using Game_logic;
 using Helpers;
 using Infrastructure;
-using Player.Inputs;
 using Player.Player_settings;
 using Player.Player_stance;
 using UnityEngine;
@@ -50,10 +49,8 @@ public class FirstPersonController : MonoBehaviour, IProgressReader, IProgressWr
 
 	private const float Threshold = 0.01f;
 
-	private void OnEnable()
-	{
+	private void Awake() => 
 		weaponHolder.OnWeaponSwitched += SetCurrentWeaponSwitched;
-	}
 
 	private void SetCurrentWeaponSwitched(WeaponBase weapon, int index)
 	{

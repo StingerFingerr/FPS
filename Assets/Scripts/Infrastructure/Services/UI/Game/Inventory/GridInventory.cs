@@ -5,9 +5,14 @@ using Game_logic;
 public class GridInventory: IInventory
 {
     public event Action OnInventoryStateChanged;
+
+    private InventoryInitialState _initialState;
     
     private List<InventorySlot> _slots;
-    
+
+    public GridInventory (InventoryInitialState initialState) => 
+        _initialState = initialState;
+
     public void Load(Progress progress) => 
         _slots = progress.inventorySlots;
 
@@ -20,6 +25,14 @@ public class GridInventory: IInventory
 
         for (int i = 0; i < 30; i++)        
             _slots.Add(new InventorySlot());
+
+        FillSlots();
+    }
+
+    private void FillSlots()
+    {
+        foreach (var item in _initialState.items)        
+            TryToAdd(item.info, item.amount, out int restAmount);
     }
 
     public bool TryToAdd(InventoryItemInfo itemInfo, int amount, out int restAmount)

@@ -9,13 +9,18 @@ public class ScriptableObjectServicesInstaller : ScriptableObjectInstaller<Scrip
     public PrefabService prefabService;
     public InventoryIcons inventoryIcons;
     public EnemyArmorsProvider enemyArmors;
+    public InventoryInitialState inventoryInitialState;
 
     public override void InstallBindings()
     {
         BindPrefabService();
         BindInventoryIcons();
         BindEnemyArmorsProvider();
+        BindInventoryInitialState();
     }
+
+    private void BindInventoryInitialState() => 
+        Container.Bind<InventoryInitialState>().FromInstance(inventoryInitialState).AsSingle();
 
     private void BindEnemyArmorsProvider() => 
         Container.Bind<EnemyArmorsProvider>().FromInstance(enemyArmors).AsSingle();

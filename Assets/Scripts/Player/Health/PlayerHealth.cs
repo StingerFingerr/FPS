@@ -1,12 +1,12 @@
 using System;
+using System.Collections;
 using Game_logic;
 using Infrastructure;
 using MoreMountains.Feedbacks;
-using Player.Inputs;
 using UnityEngine;
 using Zenject;
 
-public class PlayerHealth: MonoBehaviour, IDamageable, IProgressReader, IProgressWriter, IProgressInitializer
+public class PlayerHealth : MonoBehaviour, IDamageable, IProgressReader, IProgressWriter, IProgressInitializer
 {
     [SerializeField] private MMF_Player takeDamageFeedback;
     [SerializeField] private int maxHealth;
@@ -14,18 +14,23 @@ public class PlayerHealth: MonoBehaviour, IDamageable, IProgressReader, IProgres
     [SerializeField] private InventoryItemInfo medKitLittle;
     [SerializeField] private InventoryItemInfo medKitBig;
 
+    [SerializeField] private PoisoningSettings poisoningSettings;
+    [SerializeField] private InventoryItemInfo antidote;
+
     private float _medKitLittleHealthMultiplier = .2f;
 
-    public Action<float> onHealthChanged;
-    public Action onPlayerDied;
+    public event Action<float> onHealthChanged;
+    public event Action onPlayerDied;
+    public event Action<bool> onPoisoning;
 
     private PlayerInputs _playerInputs;
     private IInventory _inventory;
-    
+
     private int _currentHealth;
+    private bool _isPoisoned;
 
     [Inject]
-    private void Construct(IInventory inventory) => 
+    private void Construct(IInventory inventory) =>
         _inventory = inventory;
 
     private void Awake()
@@ -34,23 +39,47 @@ public class PlayerHealth: MonoBehaviour, IDamageable, IProgressReader, IProgres
         _playerInputs.onHeal += Heal;
     }
 
-    private void Start() => 
+    private void Start() =>
         onHealthChanged?.Invoke(GetHealthValue());
 
     public void SetDamage(int damage, Vector3 hitNormal)
     {
-        if(_currentHealth <= 0)
+        if (IsDead())
             return;
         _currentHealth -= damage;
 
-        if (_currentHealth <= 0)
+        if (IsDead())
         {
             _currentHealth = 0;
             onPlayerDied?.Invoke();
         }
-        
+
         takeDamageFeedback.PlayFeedbacks();
         InvokeHealthChanged();
+    }
+
+    private bool IsDead() => 
+        _currentHealth <= 0;
+
+    public void SetPoisoning()
+    {
+        if (IsDead())
+            return;
+        if (_isPoisoned)
+            return;
+        _isPoisoned = true;
+        
+        StartCoroutine(Poisoning());
+        onPoisoning?.Invoke(_isPoisoned);
+    }
+
+    private IEnumerator Poisoning()
+    {
+        while (IsDead() is false && _isPoisoned)
+        {
+            yield return new WaitForSeconds(poisoningSettings.poisoningDelay);
+            SetDamage(poisoningSettings.poisoningDamage, Vector3.zero);
+        }
     }
 
     public void Load(Progress progress) => 
@@ -64,6 +93,12 @@ public class PlayerHealth: MonoBehaviour, IDamageable, IProgressReader, IProgres
 
     private void Heal()
     {
+        if (_isPoisoned)
+        {
+            if (TryUseAntidote())
+                return;
+        }
+        
         var health = GetHealthValue();
         
         if (health >= 1f) 
@@ -79,6 +114,17 @@ public class PlayerHealth: MonoBehaviour, IDamageable, IProgressReader, IProgres
             if (TryUseMedKitBig() is false)
                 TryUseMedKitLittle();
         }
+    }
+
+    private bool TryUseAntidote()
+    {
+        if (TryGetMedKit(antidote))
+        {
+            _isPoisoned = false;
+            onPoisoning?.Invoke(_isPoisoned);
+            return true;
+        }
+        return false;
     }
 
     private bool TryUseMedKitBig()

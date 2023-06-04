@@ -59,8 +59,11 @@ namespace Weapons
             Invoke(nameof(PlayPreReloadClip), .1f);
             
             ammoLeft--;
-            if (ammoLeft <= 0)            
+            if (ammoLeft <= 0)
+            {
+                ammoLeft = 0;
                 firingMode.FinishFiring();
+            }
 
             base.Shot(CalculateRecoil());
         }

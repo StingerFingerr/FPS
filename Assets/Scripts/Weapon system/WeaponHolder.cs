@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using Weapon;
 using Weapons;
+using Zenject;
 
 public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
 {
@@ -13,6 +14,8 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
     public float switchWeaponTimeout = .5f;
     public event Action<WeaponBase, int> OnWeaponSwitched;
 
+    private PlayerHealth _playerHealth;
+    
     private WeaponBase CurrentWeapon
     {
         get => weaponSlots[_weaponIndex].weapon;
@@ -20,6 +23,9 @@ public class WeaponHolder : MonoBehaviour, IProgressReader, IProgressWriter
     }
     private int _weaponIndex = 0;
     private bool _canSwitchWeapon = true;
+
+    private void Awake() => 
+        GetComponentInParent<PlayerHealth>().onPlayerDied += () => OnThrowAway(null);
 
     private void Start()
     {

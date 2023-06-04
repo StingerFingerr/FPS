@@ -9,6 +9,7 @@ public class InventoryIcons: ScriptableObject, IInventoryIcons
     public Sprite shotgunAmmo;
     public Sprite medKitLittle;
     public Sprite medKitBig;
+    public Sprite antidote;
     
     public Sprite silencer;
     public Sprite compensator;
@@ -22,6 +23,7 @@ public class InventoryIcons: ScriptableObject, IInventoryIcons
             InventoryItemType.ShotgunAmmo => shotgunAmmo,
             InventoryItemType.MedKitLittle => medKitLittle,
             InventoryItemType.MedKitBig => medKitBig,
+            InventoryItemType.Antidote => antidote,
             InventoryItemType.Attachment => null,
             _ => null
         };

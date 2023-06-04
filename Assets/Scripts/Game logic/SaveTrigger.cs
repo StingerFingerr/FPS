@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Infrastructure;
 using UnityEngine;
 using Zenject;
 
@@ -19,12 +17,9 @@ namespace Game_logic
 
         private void OnTriggerEnter(Collider other)
         {
-            if (_progressService.Progress is null)
-                _progressService.InitNewProgress();
-            
-            _diContainer.Resolve<List<IProgressWriter>>().ForEach(w => w.Save(_progressService.Progress));
-            Debug.Log("Game Saved on save trigger");
+            _progressService.InformProgressWritersForSave(_diContainer);
             _progressService.Save();
+            Debug.Log("Game Saved on save trigger");
         }
     }
 }

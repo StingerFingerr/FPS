@@ -1,5 +1,6 @@
 using Player.Collectable_items;
 using UI.Game.Inventory;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
@@ -44,6 +45,8 @@ public class UIInventorySlot: UISlot
 
     public void Refresh()
     {
+        if (InventorySlot is null)
+            return;
         if(InventorySlot.IsEmpty)
             draggableItem.Hide();
         else

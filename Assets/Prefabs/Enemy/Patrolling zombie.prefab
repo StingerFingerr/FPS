@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Patrolling zombie
       objectReference: {fileID: 0}
+    - target: {fileID: 2932961184338325388, guid: 67dd4dab0fabc4d42a38ee61f7e5799a,
+        type: 3}
+      propertyPath: m_Radius
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 3402823377043581363, guid: 67dd4dab0fabc4d42a38ee61f7e5799a,
         type: 3}
       propertyPath: m_RootOrder

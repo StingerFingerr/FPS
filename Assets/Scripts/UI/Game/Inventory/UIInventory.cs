@@ -32,24 +32,17 @@ public class UIInventory: BaseWindow
     {
         SetupUIInventorySlots();
         RefreshSlots();
-
-        
-        FillInventory();
-
         Close();
     }
 
     private void FillInventory()
     {
-        _inventory.TryToAdd(bulletsInfo, 300, out int restAmount);
+        _inventory.TryToAdd(bulletsInfo, 100, out int restAmount);
         _inventory.TryToAdd(shotgunBulletsInfo, 30, out int asdfv);
-        _inventory.TryToAdd(medKitBigInfo, 3, out int r);
         _inventory.TryToAdd(compensatorInfo, 3, out int ras);
         _inventory.TryToAdd(silencerInfo, 3, out int asdfa);
         _inventory.TryToAdd(medKitLittleInfo, 12, out int fsd);
         _inventory.TryToAdd(extendedMagazineInfo, 12, out int fasd);
-        _inventory.TryToAdd(extendedMagazineInfo, 12, out int fsbbd);
-        _inventory.TryToAddIntoSlot(_inventory.GetAllSlots()[25], compensatorInfo, out int rest);
     }
 
     private void OnEnable()

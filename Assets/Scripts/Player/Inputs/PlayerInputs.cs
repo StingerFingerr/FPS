@@ -5,113 +5,109 @@ using UnityEngine.InputSystem;
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
 #endif
 
-namespace Player.Inputs
+public class PlayerInputs : MonoBehaviour
 {
-	public class PlayerInputs : MonoBehaviour
-	{
-		public Stances stances;
+    public Stances stances;
 		
-		[Header("Character Input Values")]
-		public Vector2 move;
-		public Vector2 look;
-		public bool jump;
-		public bool sprint;
-		public event Action onInteract;
-		public event Action onTab;
-		public event Action onEscape;
-		public event Action onHeal;
+    [Header("Character Input Values")]
+    public Vector2 move;
+    public Vector2 look;
+    public bool jump;
+    public bool sprint;
+    public event Action onInteract;
+    public event Action onTab;
+    public event Action onEscape;
+    public event Action onHeal;
 
-		[Header("Movement Settings")]
-		public bool analogMovement;
+    [Header("Movement Settings")]
+    public bool analogMovement;
 
-		[Header("Mouse Cursor Settings")]
-		public bool cursorLocked = true;
-		public bool cursorInputForLook = true;
+    [Header("Mouse Cursor Settings")]
+    public bool cursorLocked = true;
+    public bool cursorInputForLook = true;
 
 #if ENABLE_INPUT_SYSTEM && STARTER_ASSETS_PACKAGES_CHECKED
-		public void OnMove(InputValue value)
-		{
-			MoveInput(value.Get<Vector2>());
-		}
+    public void OnMove(InputValue value)
+    {
+        MoveInput(value.Get<Vector2>());
+    }
 
-		public void OnLook(InputValue value)
-		{
-			if(cursorInputForLook)
-			{
-				LookInput(value.Get<Vector2>());
-			}
-		}
+    public void OnLook(InputValue value)
+    {
+        if(cursorInputForLook)
+        {
+            LookInput(value.Get<Vector2>());
+        }
+    }
 
-		public void OnJump(InputValue value)
-		{
-			if(stances.currentStance is Stance.Prone)
-				return;
+    public void OnJump(InputValue value)
+    {
+        if(stances.currentStance is Stance.Prone)
+            return;
 			
-			JumpInput(value.isPressed);
-		}
+        JumpInput(value.isPressed);
+    }
 
-		public void OnSprint(InputValue value)
-		{
-			SprintInput(value.isPressed);
-		}
+    public void OnSprint(InputValue value)
+    {
+        SprintInput(value.isPressed);
+    }
 
-		private void OnInteract(InputValue value)
-		{
-			onInteract?.Invoke();
-		}
+    private void OnInteract(InputValue value)
+    {
+        onInteract?.Invoke();
+    }
 
-		private void OnTab(InputValue value)
-		{
-			onTab?.Invoke();
-		}
+    private void OnTab(InputValue value)
+    {
+        onTab?.Invoke();
+    }
 
-		private void OnEscape(InputValue value)
-		{
-			onEscape?.Invoke();
-		}
+    private void OnEscape(InputValue value)
+    {
+        onEscape?.Invoke();
+    }
 
-		private void OnHeal(InputValue value)
-		{
-			onHeal?.Invoke();
-		}
+    private void OnHeal(InputValue value)
+    {
+        onHeal?.Invoke();
+    }
 #endif
 
 
-		public void MoveInput(Vector2 newMoveDirection)
-		{
-			move = newMoveDirection;
-		} 
+    public void MoveInput(Vector2 newMoveDirection)
+    {
+        move = newMoveDirection;
+    } 
 
-		public void LookInput(Vector2 newLookDirection)
-		{
-			look = newLookDirection;
-		}
+    public void LookInput(Vector2 newLookDirection)
+    {
+        look = newLookDirection;
+    }
 
-		public void JumpInput(bool newJumpState)
-		{
-			jump = newJumpState;
-		}
+    public void JumpInput(bool newJumpState)
+    {
+        jump = newJumpState;
+    }
 
-		public void SprintInput(bool newSprintState)
-		{
-			if (stances.currentStance is Stance.Prone)
-			{
-				sprint = false;
-				return;
-			}
+    public void SprintInput(bool newSprintState)
+    {
+        if (stances.currentStance is Stance.Prone)
+        {
+            sprint = false;
+            return;
+        }
 				
-			sprint = newSprintState;
-		}
+        sprint = newSprintState;
+    }
 		
-		private void OnApplicationFocus(bool hasFocus)
-		{
-			SetCursorState(cursorLocked);
-		}
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        SetCursorState(cursorLocked);
+    }
 
-		private void SetCursorState(bool newState)
-		{
-			Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
-		}
-	}
-	
+    private void SetCursorState(bool newState)
+    {
+        Cursor.lockState = newState ? CursorLockMode.Locked : CursorLockMode.None;
+    }
 }

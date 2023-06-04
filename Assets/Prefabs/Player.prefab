@@ -127,8 +127,8 @@ MonoBehaviour:
   stances: {fileID: 8997996946907055124}
   weaponHolder: {fileID: 1146754262}
   speedSettings:
-    moveSpeed: 4
-    sprintSpeed: 9
+    moveSpeed: 3
+    sprintSpeed: 6
     rotationSpeed: 1
     crouchSpeedModifier: 0.6
     proneSpeedModifier: 0.2
@@ -346,6 +346,8 @@ MonoBehaviour:
   maxHealth: 300
   medKitLittle: {fileID: 11400000, guid: e7e3b9c1e9eb13c4b9b47c442280ca3d, type: 2}
   medKitBig: {fileID: 11400000, guid: d3ec5c3b5ff7a0741ae91e3787fd1e5c, type: 2}
+  poisoningSettings: {fileID: 11400000, guid: 7f1f1f0e286f44248b758894531267bc, type: 2}
+  antidote: {fileID: 11400000, guid: 691e64779f4a6eb4e952c8c39b6822e6, type: 2}
 --- !u!1 &1826235255177905485
 GameObject:
   m_ObjectHideFlags: 0

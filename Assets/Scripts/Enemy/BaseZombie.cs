@@ -5,6 +5,7 @@ using Player.Collectable_items;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
+using Random = UnityEngine.Random;
 
 public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
 {
@@ -88,9 +89,14 @@ public class BaseZombie: MonoBehaviour, IPoolable<Vector3, Action, IMemoryPool>
         if (Vector3.Distance(Player.position, transform.position) < settings.attackDistance)
         {
             _playerHealth.SetDamage(settings.damage,Vector3.zero);
+            if(NeedSetPoisoning())
+                _playerHealth.SetPoisoning();
         }
     }
-    
+
+    private bool NeedSetPoisoning() => 
+        Random.Range(0, 100) <= settings.setPoisoningChance;
+
     protected virtual void OnStartChasing() => 
         animator.SetBool(IsChasing, true);
 

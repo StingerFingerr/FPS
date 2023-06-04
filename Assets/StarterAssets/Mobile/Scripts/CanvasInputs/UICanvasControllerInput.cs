@@ -1,4 +1,3 @@
-using Player.Inputs;
 using UnityEngine;
 
 namespace StarterAssets

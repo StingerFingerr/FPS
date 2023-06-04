@@ -9,11 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90abdb11572248729d3911bd789b030b, type: 3}
-  m_Name: Enemy spawner configuration
+  m_Script: {fileID: 11500000, guid: adbc0c9268d540f2a7cd798f3fce1de9, type: 3}
+  m_Name: Antidote
   m_EditorClassIdentifier: 
-  zombieAmount: 10
-  maxAmountAtTime: 1
-  hasBoos: 1
-  spawnBossAfterKills: 1
-  bossWeight: 5
+  titleTerm: AntidoteTitle
+  descriptionTerm: AntidoteDescription
+  maxItemsInSlot: 1
+  isStackable: 0
+  type: 5
+  secondaryType: 0
